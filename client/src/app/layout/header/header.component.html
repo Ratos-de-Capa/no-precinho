@@ -1,0 +1,32 @@
+<mat-toolbar class="header">
+  <span>
+    <a mat-button class="page-logo">Projeto Web</a>
+  </span>
+  <span class="search-field">
+    <i class="fa-solid fa-magnifying-glass icon"></i>
+    <input
+      class="search-bar"
+      type="text"
+      placeholder="Pesquisar produtos, marcas, lojas e as melhores ofertas "
+      [(ngModel)]="searchTerm"
+      (keyup)="search($event)"
+    />
+  </span>
+
+  <span>
+    <a mat-button class="user-btn">
+      <i class="fa-regular fa-user user-icon"></i>
+      <span class="user-label">Entre ou cadastre-se</span>
+    </a>
+  </span>
+
+  <div class="actions">
+    <button mat-icon-button matTooltip="Favoritos">
+      <i class="fa-solid fa-heart"></i>
+    </button>
+
+    <button mat-icon-button matTooltip="Carrinho">
+      <i class="fa-solid fa-cart-shopping"></i>
+    </button>
+  </div>
+</mat-toolbar>
