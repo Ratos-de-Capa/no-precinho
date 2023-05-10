@@ -1,0 +1,19 @@
+version: '3.1'
+
+services:
+
+  projeto-app-nginx:
+    build:
+      context: app-nginx/
+    volumes:
+      - ../../client/dist:/usr/share/nginx/html/projeto-frontend
+    ports:
+      - "8080:8080"
+    networks:
+      projeto-net:
+        aliases:
+          - projeto-nginx
+
+
+networks:
+  projeto-net: null
