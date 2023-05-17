@@ -1,0 +1,18 @@
+.navbar {
+    display: flex;
+    padding: 0 8%;
+    font-size: 18px;
+    margin-top: 16px;
+    justify-content: space-between;
+}
+
+.category-btn {
+    i {
+        margin-left: 5px;
+    }
+}
+
+.nav-actions-link {
+    display: flex;
+    gap: 5vw;
+}

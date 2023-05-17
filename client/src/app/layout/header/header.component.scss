@@ -1,0 +1,56 @@
+.header {
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+}
+
+.page-logo {
+  height: 86px;
+  font-family: "Exo 2";
+  font-size: 34px;
+  line-height: 41px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #000000;
+}
+
+.search-field {
+  width: 100%;
+  max-width: 729px;
+}
+
+.search-field i {
+  position: absolute;
+}
+
+.icon {
+  padding: 12px 0 0 16px;
+  min-width: 40px;
+}
+
+.search-bar {
+  box-sizing: border-box;
+  max-width: 729px;
+  width: 100%;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.016);
+  border: 1px solid #a9a9a9;
+  border-radius: 4px;
+  padding: 0 0 0 40px;
+}
+
+.mat-toolbar-single-row {
+  padding: 0 8%;
+}
+
+.user-icon {
+  margin-right: 8px;
+}
+
+.user-label {
+  font-family: "Exo 2";
+  font-weight: 400;
+  font-size: 18px;
+}
