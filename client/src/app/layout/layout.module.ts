@@ -6,12 +6,14 @@ import { MaterialModule } from 'src/modules/material.module';
 import { LayoutRoutingModule } from './layout-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
     LayoutComponent,
     HeaderComponent,
-    NavbarComponent
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
