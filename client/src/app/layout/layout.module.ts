@@ -21,6 +21,12 @@ import { FooterComponent } from './footer/footer.component';
     ReactiveFormsModule,
     MaterialModule,
     LayoutRoutingModule
+  ],
+  exports: [
+    HeaderComponent,
+    NavbarComponent,
+    FooterComponent
+
   ]
 })
 export class LayoutModule { }
