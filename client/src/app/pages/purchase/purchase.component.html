@@ -1,0 +1,157 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<main>
+    <!-- Caminho até o Produto -->
+    
+    <section id="path">
+        <mat-toolbar>
+            <p id="productPath"><span id="home" routerLink="/">Home</span> > Eletronicos > Tv</p>
+            <span class="example-spacer"></span>
+            
+            <div class="shareOption">
+                <mat-icon id="shareIcon">share</mat-icon>
+                <p>Compartilhar</p>
+            </div>
+        </mat-toolbar>
+    </section>
+        
+    <!-- Area da Compra do Produto  -->
+
+    <section id="productArea">
+        <div id="productImg">
+            <figure class="mainImage">
+                <img src="https://source.unsplash.com/5WbYFH0kf_8" alt="Imagem 1">
+            </figure>
+            <div class="imgContainer" >
+                
+                <figure class="active" (click)="changeImg(1)">
+                    <img id="1" src="https://source.unsplash.com/5WbYFH0kf_8" alt="Imagem 1">
+                </figure>
+
+                <figure (click)="changeImg(2)">
+                    <img id="2" src="https://source.unsplash.com/VgbUxvW3gS4" alt="Imagem 2">
+                </figure>
+
+                <figure (click)="changeImg(3)">
+                    <img id="3" src="https://source.unsplash.com/5WbYFH0kf_8" alt="Imagem 3">
+                </figure>
+
+                <figure (click)="changeImg(4)">
+                    <img id="4" src="https://source.unsplash.com/VgbUxvW3gS4" alt="Imagem 4">
+                </figure>
+
+            </div>
+
+        </div>
+
+        <div id="productInfo">
+
+            <div>
+
+                <h2>Smart TV LED 50" Samsung Crystal 4K HDR UN50AU7700GXZD</h2>
+                <div id="productRating">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <p>4.0 (800) Avaliações</p>
+                </div>
+            </div>
+
+            <div id="productPrice">
+                <h3>R$ 2.199,00</h3>
+                <p>ou 12x de 162,89 com juros</p>
+            </div>
+
+            <div>
+                <a id="purchaseBtn" mat-raised-button href="https://www.google.com/" target="_blank">Ir para a Loja</a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Detalhes do Produto -->
+
+    <section>
+        <div id="detailsContainer">
+
+            <div>
+                <div class="container" id="description">
+                    <h2>Descrição do Produto</h2>
+                    <p> 
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ex aliquid, asperiores itaque temporibus magnam officia voluptas dolor modi sed! Ad laudantium doloribus quia nam asperiores nobis eum, totam eaque doloremque!
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae esse vel magni reprehenderit! Maiores est nulla dicta alias sint, esse ex consequatur dolorem tempora quod veritatis asperiores, a facere laboriosam!
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus suscipit veritatis iusto quia corporis quidem nostrum doloremque! Non eos architecto magnam? Sunt, porro optio quis est enim dolores. Necessitatibus, in?
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam, delectus voluptatibus amet sit iusto minima in commodi debitis quibusdam culpa ipsum nisi neque facilis quo harum minus qui architecto impedit.
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore perferendis enim voluptates, ad a labore, aliquam quod inventore cupiditate excepturi repudiandae sint, adipisci cumque sequi quia accusantium esse ullam voluptate?
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ducimus, eveniet? Rem, perspiciatis voluptatem nesciunt illum officia ea reprehenderit? Incidunt quo nulla dolorem magnam impedit natus quidem ut numquam dignissimos asperiores.
+
+                    </p>
+                </div>
+            </div>
+
+            <div id="details">
+                <div class="attribute">
+                    <div class="container">
+                        <h2>Características da Imagem</h2>
+                        <p> 
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ex aliquid, asperiores itaque temporibus magnam officia voluptas dolor modi sed! Ad laudantium doloribus quia nam asperiores nobis eum, totam eaque doloremque!
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae esse vel magni reprehenderit! Maiores est nulla dicta alias sint, esse ex consequatur dolorem tempora quod veritatis asperiores, a facere laboriosam!
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus suscipit veritatis iusto quia corporis quidem nostrum doloremque! Non eos architecto magnam? Sunt, porro optio quis est enim dolores. Necessitatibus, in?
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam, delectus voluptatibus amet sit iusto minima in commodi debitis quibusdam culpa ipsum nisi neque facilis quo harum minus qui architecto impedit.
+                        </p>
+                    </div>
+                </div>
+
+                <div id="datasheet">
+                    <div class="container">
+                        <h2>Ficha Técnica</h2>
+                        <p> 
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ex aliquid, asperiores itaque temporibus magnam officia voluptas dolor modi sed! Ad laudantium doloribus quia nam asperiores nobis eum, totam eaque doloremque!
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae esse vel magni reprehenderit! Maiores est nulla dicta alias sint, esse ex consequatur dolorem tempora quod veritatis asperiores, a facere laboriosam!
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus suscipit veritatis iusto quia corporis quidem nostrum doloremque! Non eos architecto magnam? Sunt, porro optio quis est enim dolores. Necessitatibus, in?
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam, delectus voluptatibus amet sit iusto minima in commodi debitis quibusdam culpa ipsum nisi neque facilis quo harum minus qui architecto impedit.
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore perferendis enim voluptates, ad a labore, aliquam quod inventore cupiditate excepturi repudiandae sint, adipisci cumque sequi quia accusantium esse ullam voluptate?
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Produtos Relacionados -->
+
+    <section>
+        <div id="relatedProducts">
+            <h2>Produtos Semelhantes</h2>
+
+            <div class="container productsContainer" *ngFor="let i of products">
+                <figure class="productsRelatedImg">
+                    <img  src="{{i.src}}" alt="imagem">
+                </figure>
+
+                <div class="containerPrice">
+                    <h2>R$ {{i.totalPrice.toFixed(2)}} à vista</h2>
+                    <p>ou {{i.installments}}x de R$ {{i.price.toFixed(2)}} com juros</p>
+                </div>
+
+                <div class="containerStore">
+                    <div class="storeText">
+                        <mat-icon>store</mat-icon>
+                        <p>{{i.store}}</p>
+                    </div>
+                    
+                    <div>
+                        <a id="storeBtn" mat-raised-button href="https://www.google.com/" target="_blank">Ir para a Loja</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </section>
+
+
+</main>
+    
+    
