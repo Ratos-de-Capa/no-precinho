@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { LayoutComponent } from './layout.component';
 import { HeaderComponent } from './header/header.component';
 import { MaterialModule } from 'src/modules/material.module';
-import { LayoutRoutingModule } from './layout-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -17,10 +17,10 @@ import { FooterComponent } from './footer/footer.component';
   ],
   imports: [
     CommonModule,
+    RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule,
-    LayoutRoutingModule
+    MaterialModule
   ],
   exports: [
     HeaderComponent,
