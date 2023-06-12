@@ -8,7 +8,7 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
-        path: '',
+        path: 'compra',
         loadChildren: () => import('./pages/purchase/purchase.module').then(m => m.PurchaseModule)
       }
     ]

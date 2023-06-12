@@ -5,13 +5,9 @@
   
 }
 
-main{
- padding: 0 8%;
-}
-
 #path{
     margin-top: 2em;
-    padding: 0 2em;
+    padding: 0 1em;
 }
 
 .example-spacer {
@@ -24,14 +20,18 @@ main{
     cursor: pointer;
 }
 
-.shareOption p{
-    font-size: .8rem;
+.shareOption:hover{
+    color: #000;
 }
 
-#productPath{
+.shareOption p{
+    font-size: .85rem;
+}
+
+.productPath{
     font-size: .8rem;
     letter-spacing: 1px;
-    font-weight: 600;
+    font-weight: bold;
 }
 
 #home:hover{
@@ -58,7 +58,7 @@ mat-toolbar{
 
 #productArea{
     display: flex;
-    padding: 2% 7%;
+    padding: 2% 3%;
     gap: 1.3em;
     margin-bottom: 3.5em;
 }
@@ -88,8 +88,34 @@ img{
 .imgContainer{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     margin-top: 1.5em;
+    max-width: 25em;
+    overflow: auto;
+    overflow-x: visible;
+    scroll-behavior: smooth;
+}
+
+
+.imgContainer::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 1em;
+	background-color: #f1f1f1;
+}
+
+.imgContainer::-webkit-scrollbar
+{   
+    height: .9em;
+	width: 2em;
+	background-color: #f1f1f1;
+}
+
+.imgContainer::-webkit-scrollbar-thumb
+{
+	border-radius: 1em;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #666;
 }
 
 .imgContainer figure{
@@ -100,7 +126,7 @@ img{
     padding: 1rem;
     border-radius: .2em;
     margin: .2em;
-    transition: all ease-in .1s;
+    transition: all ease-in .08s;
     cursor: pointer;
 }
 
@@ -178,7 +204,7 @@ img{
 #purchaseBtn {
     background-color: #139721;
     color: #f1f1f1;
-    width: 85%;
+    width: 100%;
     text-decoration: none;
     font-size: 1.2rem;
     font-weight: 600;
@@ -194,7 +220,7 @@ img{
 
 
 #detailsContainer{
-    padding: 5%;
+    padding: 5% 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -233,7 +259,7 @@ img{
 // Produtos Semelhantes
 
 #relatedProducts{
-    padding: 5%;
+    padding: 5% 0;
     display: flex;
     flex-direction: column;
     justify-content: center;

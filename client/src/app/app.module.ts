@@ -7,10 +7,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LayoutModule } from './layout/layout.module';
 import { MaterialModule } from 'src/modules/material.module';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
+import { ShareIconsModule } from 'ngx-sharebuttons/icons';
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -19,7 +24,10 @@ import { MaterialModule } from 'src/modules/material.module';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    LayoutModule
+    LayoutModule,
+    MatDialogModule,
+    ShareButtonsModule,
+    ShareIconsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,12 +2,12 @@
 
 <section id="path">
   <mat-toolbar>
-    <p id="productPath">
+    <p class="productPath">
       <span id="home" routerLink="/">Home</span> > Eletronicos > Tv
     </p>
     <span class="example-spacer"></span>
 
-    <div class="shareOption">
+    <div class="shareOption" (click)="openDialog()">
       <mat-icon id="shareIcon">share</mat-icon>
       <p>Compartilhar</p>
     </div>
