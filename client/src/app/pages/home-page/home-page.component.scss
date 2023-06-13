@@ -12,5 +12,7 @@
 
 .product-list {
   padding-top: 3em;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
 }
