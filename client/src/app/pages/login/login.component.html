@@ -1,0 +1,18 @@
+<article class="wrapper">
+    <section class="infos">
+    </section>
+    <section class="login">
+        <span>Projeto Web</span>
+        <h1>Bem-Vindo</h1>
+        <div class="login__form" [formGroup]="loginForm">
+            <mat-form-field appearance="outline">
+                <input matInput type="text" formControlName="email" id="email" placeholder="Seu email">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <input matInput type="password" formControlName="password" name="password" id="password" placeholder="Sua senha">
+            </mat-form-field>
+
+            <button mat-flat-button color="primary" [disabled]="!loginForm.valid">Log in</button>
+        </div>
+    </section>
+</article>
