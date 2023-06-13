@@ -17,10 +17,13 @@
 <!-- Area da Compra do Produto  -->
 
 <section id="productArea">
+
   <div id="productImg">
+
     <figure class="mainImage">
       <img src="https://source.unsplash.com/5WbYFH0kf_8" alt="Imagem 1" />
     </figure>
+
     <div class="imgContainer">
       <figure class="active" (click)="changeImg(1)">
         <img
@@ -173,7 +176,7 @@
 
 <section>
   <div id="relatedProducts">
-    <h2>Produtos Semelhantes</h2>
+    <h2 id="relatedProductsText">Produtos Semelhantes</h2>
 
     <div class="container productsContainer" *ngFor="let i of products">
       <figure class="productsRelatedImg">
