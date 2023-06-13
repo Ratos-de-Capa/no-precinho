@@ -1,0 +1,24 @@
+<carousel class="custom-carousel">
+  <slide *ngFor="let item of items" class="slide">
+    <div class="item-carousel">
+      <img
+        *ngIf="item.type === 'img'"
+        alt="Imagem"
+        class="d-block w-100 h-100"
+        [src]="item.src"
+      />
+      <video
+        *ngIf="item.type === 'video'"
+        class="d-block w-100 h-100"
+        [src]="item.src"
+        autoplay="autoplay"
+        loop="loop"
+      ></video>
+      <!-- carousel caption if needed -->
+      <!-- <div class="carousel-caption">
+        <h4>{{ item.title }}</h4>
+        <p>{{ item.description }}</p>
+      </div> -->
+    </div>
+  </slide>
+</carousel>

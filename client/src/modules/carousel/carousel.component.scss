@@ -1,0 +1,54 @@
+@import "~@fortawesome/fontawesome-free/css/all.css";
+
+// .carousel-caption {
+//   background-color: rgba(0, 0, 0, 0.5);
+//   color: #fff;
+//   padding: 10px;
+// }
+
+.custom-carousel {
+  height: 23em;
+}
+
+.slide {
+  height: 23em;
+}
+
+.item-carousel img,
+.item-carousel video {
+  width: 100% !important;
+  height: 23em !important;
+  object-fit: contain;
+}
+
+:host ::ng-deep {
+  .carousel-control-prev-icon, .carousel-control-next-icon {
+    background-image: none !important;
+  }
+
+  .carousel-control-prev-icon::before,
+  .carousel-control-next-icon::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    text-decoration: none;
+  }
+
+  .carousel-control-prev-icon::before {
+    content: "\f137"; /* Ícone do FontAwesome para o ícone "Previous" */
+    font-size: 30px;
+    color: white;
+  }
+
+  .carousel-control-next-icon::before {
+    content: "\f138"; /* Ícone do FontAwesome para o ícone "Next" */
+    font-size: 30px;
+    color: white;
+  }
+
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    text-decoration: none !important;
+  }
+}
+
+

@@ -57,3 +57,10 @@ body {
   src: local("Exo 2"), url(./assets/fonts/Exo2-Regular.ttf) format("truetype");
   font-weight: 400;
 }
+
+/* Importing Bootstrap SCSS file. */
+@import "./node_modules/bootstrap/scss/bootstrap";
+
+/* Importing Datepicker SCSS file. */
+@import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
+
