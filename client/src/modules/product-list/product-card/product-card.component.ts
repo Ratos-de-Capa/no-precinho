@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-card',
@@ -10,6 +11,8 @@ export class ProductCardComponent {
 
   @Input() product: any;
 
+  constructor(private router: Router) { }
+
   ngAfterViewInit() {
     const elemento = this.description.nativeElement;
     const lineHeight = parseInt(getComputedStyle(elemento).lineHeight, 10);
@@ -18,5 +21,9 @@ export class ProductCardComponent {
     if (elemento.scrollHeight > maxHeight) {
       elemento.classList.add('truncate');
     }
+  }
+
+  navigateToProduct() {
+    this.router.navigate(['/product']);
   }
 }
