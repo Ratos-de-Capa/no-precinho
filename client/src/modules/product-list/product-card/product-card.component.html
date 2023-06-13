@@ -1,9 +1,8 @@
 <div class="product-card" (click)="navigateToProduct()">
   <div class="img-container">
-    <img
-      [src]="product.src"
-      alt="imagem do Produto"
-    />
+    <figure>
+      <img [src]="product.src" alt="imagem do Produto"/>
+    </figure>
   </div>
   <div class="price">
     <span>{{ product.price | currency:'BRL' }}</span>

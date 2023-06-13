@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class HomePageComponent {
 
+  categories = [
+    {
+      src: '../../assets/img/pub-02.png',
+      type: 'img'
+    },
+    {
+      src: '../../assets/img/pub-03.mp4',
+      type: 'video'
+    }
+  ];
 }

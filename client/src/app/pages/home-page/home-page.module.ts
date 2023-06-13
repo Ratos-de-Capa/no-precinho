@@ -5,6 +5,7 @@ import { HomePageRoutingModule } from './home-page-routing.module';
 import { HomePageComponent } from './home-page.component';
 import { AppCarouselModule } from 'src/modules/carousel/carousel.module';
 import { ProductListModule } from 'src/modules/product-list/product-list.module';
+import { CategoryCardModule } from 'src/modules/category-card/category-card.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ProductListModule } from 'src/modules/product-list/product-list.module'
     CommonModule,
     HomePageRoutingModule,
     AppCarouselModule,
-    ProductListModule
+    ProductListModule,
+    CategoryCardModule
   ]
 })
 export class HomePageModule { }
