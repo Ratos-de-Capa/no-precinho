@@ -64,3 +64,6 @@ body {
 /* Importing Datepicker SCSS file. */
 @import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
 
+a {
+  text-decoration: none !important;
+}

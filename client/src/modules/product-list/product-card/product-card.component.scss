@@ -28,6 +28,7 @@
   text-align: left;
   max-height: 2.4em;
   overflow: hidden;
+  margin-top: 5px;
 
   p {
     font-weight: 500;
@@ -44,4 +45,9 @@
   right: 0;
   background-color: #fff;
   padding: 0 0.5em;
+}
+
+.price {
+  margin-top: 5px;
+  font-weight: 600;
 }

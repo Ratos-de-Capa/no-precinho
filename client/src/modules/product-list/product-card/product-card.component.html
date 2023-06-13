@@ -1,11 +1,14 @@
 <div class="product-card">
   <div class="img-container">
     <img
-      src="https://i.zst.com.br/thumbs/45/17/18/-985316511.jpg"
-      alt="Nome do Produto"
+      [src]="product.src"
+      alt="imagem do Produto"
     />
   </div>
+  <div class="price">
+    <span>{{ product.price | currency:'BRL' }}</span>
+  </div>
   <div class="card-content" #description>
-    <p>Smartphone Xiaomi Redmi Note 12 6GB RAM 128GB Câmera Tripla</p>
+    <p>{{product.description}}</p>
   </div>
 </div>
