@@ -6,6 +6,12 @@
   overflow: hidden;
   padding: 1em;
   cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.product-card:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
 }
 
 .img-container {
