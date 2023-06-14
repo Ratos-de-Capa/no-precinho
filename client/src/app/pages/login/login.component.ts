@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  hide = true;
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -17,8 +18,22 @@ export class LoginComponent {
 
   createFormLogin(): FormGroup {
     return this.formBuilder.group({
-      email: ['', Validators.required, Validators.email],
-      password: ['', Validators.required]
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required])
     });
+  }
+
+  get loginFormControl() {
+    return this.loginForm.controls;
+  }
+
+  changeHideState() {
+    this.hide = !this.hide;
+  }
+
+  onSubmit() {
+    if (this.loginForm.valid) {
+      console.log('form valido')
+    }
   }
 }

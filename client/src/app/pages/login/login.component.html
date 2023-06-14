@@ -4,15 +4,33 @@
     <section class="login">
         <span>Projeto Web</span>
         <h1>Bem-Vindo</h1>
-        <div class="login__form" [formGroup]="loginForm">
+        <form class="login__form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <mat-form-field appearance="outline">
                 <input matInput type="text" formControlName="email" id="email" placeholder="Seu email">
+                <mat-error class="text--danger"
+                    *ngIf="loginFormControl['email'].touched && loginFormControl['email'].hasError('required')">
+                    Campo Obrigatório
+                </mat-error>
+                <mat-error class="text--danger"
+                    *ngIf="loginFormControl['email'].touched && loginFormControl['email'].hasError('email')">
+                    Insira um email válido
+                </mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">
-                <input matInput type="password" formControlName="password" name="password" id="password" placeholder="Sua senha">
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" id="password"
+                    placeholder="Sua senha">
+                <button mat-icon-button matSuffix (click)="changeHideState()" aria-label="Esconder senha"
+                    [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+
+                <mat-error class="text--danger"
+                    *ngIf="loginFormControl['password'].touched && loginFormControl['password'].hasError('required')">
+                    Campo Obrigatório
+                </mat-error>
             </mat-form-field>
 
             <button mat-flat-button color="primary" [disabled]="!loginForm.valid">Log in</button>
-        </div>
+        </form>
     </section>
 </article>
