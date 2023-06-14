@@ -9,7 +9,8 @@
       type="text"
       placeholder="Pesquisar produtos, marcas, lojas e as melhores ofertas "
       [(ngModel)]="searchTerm"
-      (keyup)="search($event)"
+      value="searchTerm"
+      (keyup.enter)="search($event)"
     />
   </span>
 

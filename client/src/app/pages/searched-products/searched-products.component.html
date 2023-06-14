@@ -1,6 +1,6 @@
 <div class="content">  
     <div class="filters-side-bar">
-        <mat-slide-toggle size>Frete Gratis</mat-slide-toggle>
+        <mat-slide-toggle class="slide-toggle">Frete Gratis</mat-slide-toggle>
 
         <div class="brand">
             <h3>Marca</h3>
@@ -19,10 +19,20 @@
         </div>
     </div>
 
-    <div class="products-list-box">
-        <app-product-card
-            *ngFor="let product of products"
-            [product]="product"
-        ></app-product-card>
+    <div class="result">
+        <div>
+            <span>Voce buscou por</span>
+            <h1><b>{{searchedItem}}</b></h1>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <span>{{products.length}} resultados</span>
+        <div class="products-list-box">            
+            <app-product-card
+                *ngFor="let product of products"
+                [product]="product"
+            ></app-product-card>
+        </div>
     </div>
 </div>

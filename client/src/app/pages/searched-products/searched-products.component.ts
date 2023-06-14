@@ -1,11 +1,13 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-searched-products',
   templateUrl: './searched-products.component.html',
   styleUrls: ['./searched-products.component.scss']
 })
-export class SearchedProductsComponent {
+export class SearchedProductsComponent implements OnInit, OnDestroy{
   @Input() products: Product[] = [
     {
       id: 1,
@@ -251,6 +253,26 @@ export class SearchedProductsComponent {
   ];
 
   brands: string[] = ['Todos', 'Apple', 'Samsung', 'Motorola', 'Xiaomi', 'Asus', 'LG', 'Lenovo', 'Sony', 'Multilaser', 'Positivo', 'Philco', 'CCE', 'Outros'];
+
+  searchedItem: string;
+  sub: Subscription;
+
+  constructor(
+    private activatedRoute: ActivatedRoute
+  ) { }
+  
+  ngOnInit(): void {
+    this.sub = this.activatedRoute.queryParams.subscribe((queryParams) => {
+      console.log(queryParams)
+      this.searchedItem = queryParams['item'];
+    }) 
+  }
+
+  ngOnDestroy(): void {
+    if(this.sub) this.sub.unsubscribe();
+  }
+
+  
 }
 
 interface Product {
