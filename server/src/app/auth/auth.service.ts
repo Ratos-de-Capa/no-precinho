@@ -17,11 +17,11 @@ export class AuthService {
         }
 
         const payload: ISession = {
-            login: user.login,
             sub: user.id,
+            login: user.login,
             email: user.email,
-            loginDate: new Date(),
             name: user.name,
+            loginDate: new Date(),
             registerDate: user.createdAt
         };
 

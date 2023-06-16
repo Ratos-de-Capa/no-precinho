@@ -4,6 +4,9 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './app/users/users.module';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from './app/auth/guards/auth.guard';
+import { AuthModule } from './app/auth/auth.module';
+import { JwtModule } from '@nestjs/jwt';
+import { jwtConstants } from './app/auth/constants/jwt.constant';
 
 @Module({
   imports: [
@@ -24,7 +27,14 @@ import { AuthGuard } from './app/auth/guards/auth.guard';
       }),
       inject: [ConfigService],
     }),
-    UsersModule,],
+    JwtModule.register({
+      global: true,
+      secret: jwtConstants.secret,
+      signOptions: { expiresIn: '60m' },
+    }),
+    UsersModule,
+    AuthModule
+  ],
   controllers: [],
   providers: [
     {
@@ -36,9 +46,9 @@ import { AuthGuard } from './app/auth/guards/auth.guard';
 export class AppModule implements OnModuleInit {
   private readonly logger = new Logger(AppModule.name);
 
-  constructor(private configService: ConfigService) {}
+  constructor(private configService: ConfigService) { }
   onModuleInit() {
     this.logger.log(`Listen in port: ${this.configService.get('PORT')} `);
-    this.logger.log(`Environment: ${this.configService.get('NODE_ENV')} `);
+    this.logger.log(`Environment: ${this.configService.get('AMBIENTE')} `);
   }
 }

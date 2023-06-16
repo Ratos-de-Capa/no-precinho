@@ -38,4 +38,18 @@ export class AuthController {
     getProfile(@Request() req) {
         return req.user;
     }
+
+    @Public()
+    @HttpCode(HttpStatus.OK)
+    @Post('logout')
+    async signOut(@Res() res: Response) {
+        res.clearCookie(SessionAccessToken);
+
+        //TODO - log user logout event
+
+        res.json({
+            success: true,
+            message: 'Logout ok'
+        });
+    }
 }

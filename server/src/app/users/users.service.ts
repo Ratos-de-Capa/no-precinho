@@ -1,27 +1,40 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { User } from './entities/user.entity';
+import { User , UserDocument} from './entities/user.entity';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class UsersService {
+
+  private readonly logger = new Logger(UsersService.name);
+
+  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) { }
+
   create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+    this.logger.log(`Creating property name ${createUserDto.name}`);
+    const createdUser = new this.userModel(createUserDto);
+    return createdUser.save();
   }
 
   findAll() {
-    return `This action returns all users`;
+    this.logger.log(`Finding all users`);
+    return this.userModel.find().exec();
   }
 
-  async findOne(loign: string): Promise<User> {
-    throw new Error('Method not implemented.');
+  async findOne(login: string) {
+    this.logger.log(`Finding user by login ${login}`);
+    return this.userModel.findOne({ login }).exec();
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  update(id: string, updateUserDto: UpdateUserDto) {
+    this.logger.log(`Updating user by id ${id}`);
+    return this.userModel.updateOne({ _id: id }, updateUserDto).exec();
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  remove(id: string) {
+    this.logger.log(`Removing user by id ${id}`);
+    return this.userModel.deleteOne({ _id: id }).exec();
   }
 }
