@@ -1,6 +1,7 @@
 import { Logger, Module, OnModuleInit } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ProductsModule } from './app/products/products.module';
 
 @Module({
   imports: [
@@ -20,7 +21,9 @@ import { MongooseModule } from '@nestjs/mongoose';
         readPreference: 'primaryPreferred',
       }),
       inject: [ConfigService],
-    }),],
+    }),
+    ProductsModule
+  ],
   controllers: [],
   providers: [],
 })
