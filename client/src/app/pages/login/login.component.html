@@ -4,7 +4,7 @@
     <section class="login">
         <span>Projeto Web</span>
         <h1>Bem-Vindo</h1>
-        <form class="login__form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="login__form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <mat-form-field appearance="outline">
                 <input matInput type="text" formControlName="email" id="email" placeholder="Seu email">
                 <mat-error class="text--danger"
@@ -30,7 +30,7 @@
                 </mat-error>
             </mat-form-field>
 
-            <button mat-flat-button color="primary" [disabled]="!loginForm.valid">Log in</button>
-        </form>
+            <button mat-flat-button color="primary" [disabled]="!loginForm.valid" (click)="onSubmit()">Log in</button>
+        </div>
     </section>
 </article>

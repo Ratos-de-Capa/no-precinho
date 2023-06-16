@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { LoginService, User } from './login.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,10 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   hide = true;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private loginService: LoginService
+  ) { }
 
   ngOnInit() {
     this.loginForm = this.createFormLogin();
@@ -33,7 +37,9 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      console.log('form valido')
+      const user = this.loginForm.value as User;
+
+      this.loginService.save(user);
     }
   }
 }
