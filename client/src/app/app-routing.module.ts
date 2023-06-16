@@ -24,7 +24,11 @@ const routes: Routes = [
         path: 'products',
         loadChildren: () => import('./pages/searched-products/searched-products.module').then(m => m.SearchedProductsModule)
       }
-    ]
+    ],
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule)
   }
 ];
 
