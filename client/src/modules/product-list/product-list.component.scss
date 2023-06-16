@@ -1,6 +1,10 @@
 .list {
   display: flex;
-  justify-content: flex-start;
-  gap: 1em;
-  flex-wrap: wrap;
+  gap: 3%;
+  overflow: hidden;
+  width: 100%;
+}
+
+.product-card {
+  width: 22.75%;
 }

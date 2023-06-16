@@ -21,7 +21,7 @@ export class CarouselComponent {
       description: 'Descrição do Slide 2'
     },
     {
-      src: 'https://designerapp.officeapps.live.com/designerapp/Media.ashx/?id=535cf35c-c070-41b3-adb3-6727e1300269.mp4&fileToken=6bc77d2e-cb19-400f-a7fb-fa7568563c53&dcHint=EastUS',
+      src: 'https://designerapp.officeapps.live.com/designerapp/Media.ashx/?id=58363348-ebea-41cc-aeed-6b00b39fc2ec.mp4&fileToken=b724c7e3-57d9-454e-9bcc-8a94f7f1c5c3&dcHint=BrazilSouth',
       type: 'video',
       title: 'Slide 3',
       description: 'Descrição do Slide 3'
