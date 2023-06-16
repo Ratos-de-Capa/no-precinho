@@ -5,7 +5,6 @@ import { MaterialModule } from '../styles/material.module';
 import { ProductCardModule } from '../product-card/product-card.module';
 
 
-
 @NgModule({
   declarations: [
     ProductListComponent,

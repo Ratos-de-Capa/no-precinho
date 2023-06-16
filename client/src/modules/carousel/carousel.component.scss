@@ -23,7 +23,8 @@
 }
 
 :host ::ng-deep {
-  .carousel-control-prev-icon, .carousel-control-next-icon {
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
     background-image: none !important;
   }
 
@@ -35,15 +36,15 @@
   }
 
   .carousel-control-prev-icon::before {
-    content: "\f137"; /* Ícone do FontAwesome para o ícone "Previous" */
+    content: "\f137";
     font-size: 30px;
-    color: white;
+    color: black;
   }
 
   .carousel-control-next-icon::before {
-    content: "\f138"; /* Ícone do FontAwesome para o ícone "Next" */
+    content: "\f138";
     font-size: 30px;
-    color: white;
+    color: black;
   }
 
   .carousel-control-prev-icon,
@@ -51,5 +52,3 @@
     text-decoration: none !important;
   }
 }
-
-
