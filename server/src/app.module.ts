@@ -20,14 +20,15 @@ import { MongooseModule } from '@nestjs/mongoose';
         readPreference: 'primaryPreferred',
       }),
       inject: [ConfigService],
-    }),],
+    }),
+  ],
   controllers: [],
   providers: [],
 })
 export class AppModule implements OnModuleInit {
   private readonly logger = new Logger(AppModule.name);
 
-  constructor(private configService: ConfigService) {}
+  constructor(private configService: ConfigService) { }
   onModuleInit() {
     this.logger.log(`Listen in port: ${this.configService.get('PORT')} `);
     this.logger.log(`Environment: ${this.configService.get('NODE_ENV')} `);

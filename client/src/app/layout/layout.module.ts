@@ -26,7 +26,6 @@ import { RouterModule } from '@angular/router';
     HeaderComponent,
     NavbarComponent,
     FooterComponent
-
   ]
 })
 export class LayoutModule { }
