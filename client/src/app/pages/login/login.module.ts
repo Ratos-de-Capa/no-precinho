@@ -5,6 +5,7 @@ import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
 import { MaterialModule } from 'src/modules/styles/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({

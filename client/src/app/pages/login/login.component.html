@@ -6,14 +6,10 @@
         <h1>Bem-Vindo</h1>
         <div class="login__form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <mat-form-field appearance="outline">
-                <input matInput type="text" formControlName="email" id="email" placeholder="Seu email">
+                <input matInput type="text" formControlName="login" id="login" placeholder="Seu login">
                 <mat-error class="text--danger"
-                    *ngIf="loginFormControl['email'].touched && loginFormControl['email'].hasError('required')">
+                    *ngIf="loginFormControl['login'].touched && loginFormControl['login'].hasError('required')">
                     Campo Obrigatório
-                </mat-error>
-                <mat-error class="text--danger"
-                    *ngIf="loginFormControl['email'].touched && loginFormControl['email'].hasError('email')">
-                    Insira um email válido
                 </mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">

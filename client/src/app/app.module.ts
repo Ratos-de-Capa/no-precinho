@@ -11,6 +11,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 import { DialogComponent } from './dialog/dialog.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { DialogComponent } from './dialog/dialog.component';
     LayoutModule,
     MatDialogModule,
     ShareButtonsModule,
-    ShareIconsModule
+    ShareIconsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

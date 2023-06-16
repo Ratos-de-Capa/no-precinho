@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
 
   createFormLogin(): FormGroup {
     return this.formBuilder.group({
-      email: new FormControl('', [Validators.required, Validators.email]),
+      login: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required])
     });
   }
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       const user = this.loginForm.value as User;
 
-      this.loginService.save(user);
+      this.loginService.login(user);
     }
   }
 }
