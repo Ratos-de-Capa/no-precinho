@@ -1,0 +1,53 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+}
+
+#path{
+    margin-top: 2em;
+    padding: 0 1em;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+.shareOption{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.shareOption:hover{
+    color: #000;
+}
+
+.shareOption p{
+    font-size: .85rem;
+}
+
+.productPath{
+    font-size: .8rem;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+#home:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#shareIcon{
+    font-size: .75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+mat-toolbar{
+    background-color: transparent;
+}
+
