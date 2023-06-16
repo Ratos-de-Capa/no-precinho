@@ -1,6 +1,9 @@
 import { Logger, Module, OnModuleInit } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
+import { UsersModule } from './app/users/users.module';
+import { APP_GUARD } from '@nestjs/core';
+import { AuthGuard } from './app/auth/guards/auth.guard';
 
 @Module({
   imports: [
@@ -20,9 +23,15 @@ import { MongooseModule } from '@nestjs/mongoose';
         readPreference: 'primaryPreferred',
       }),
       inject: [ConfigService],
-    }),],
+    }),
+    UsersModule,],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: AuthGuard,
+    },
+  ],
 })
 export class AppModule implements OnModuleInit {
   private readonly logger = new Logger(AppModule.name);
