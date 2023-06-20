@@ -6,9 +6,9 @@ services:
     build:
       context: app-nginx/
     volumes:
-      - ../../client/dist:/usr/share/nginx/html/projeto-frontend
+      - ../../client/dist/client:/usr/share/nginx/html/projeto-frontend
     ports:
-      - "8080:8080"
+      - "80:80"
     networks:
       projeto-net:
         aliases:

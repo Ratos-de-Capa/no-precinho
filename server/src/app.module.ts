@@ -22,7 +22,7 @@ import { ProductsModule } from './app/products/products.module';
       }),
       inject: [ConfigService],
     }),
-    ProductsModule
+    ProductsModule,
   ],
   controllers: [],
   providers: [],
