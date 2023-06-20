@@ -53,3 +53,5 @@ export class Program {
         mercadoLivreScrape.startScraping();
     }
 }
+
+new Program();
