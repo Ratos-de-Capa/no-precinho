@@ -13,6 +13,8 @@ async function bootstrap() {
   app.use(json({ limit: '200mb' }));
   app.use(urlencoded({ limit: '200mb', extended: true }));
 
+  app.enableCors();
+
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
 
   const swaggerConfig = new DocumentBuilder()
@@ -24,7 +26,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('docs', app, document);
 
-  const configService = app.get(ConfigService);  
+  const configService = app.get(ConfigService);
 
   const port = configService.get('PORT') ? configService.get('PORT') : 3000;
 

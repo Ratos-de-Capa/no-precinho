@@ -3,6 +3,13 @@ import { CommonModule } from '@angular/common';
 import { PurchaseComponent } from './purchase.component';
 import { PurchaseRoutingModule } from './purchase-routing.module';
 import { MaterialModule } from 'src/modules/styles/material.module';
+import { ProductInfoModule } from 'src/modules/product-info/product-info.module';
+import { RelatedProductListModule } from 'src/modules/related-product-list/related-product-list.module';
+import { PurchaseCarouselModule } from 'src/modules/purchase-carousel/purchase-carousel.module';
+import { ProductPathModule } from 'src/modules/product-path/product-path.module';
+
+
+
 
 @NgModule({
   declarations: [
@@ -11,7 +18,11 @@ import { MaterialModule } from 'src/modules/styles/material.module';
   imports: [
     CommonModule,
     PurchaseRoutingModule,
-    MaterialModule
+    MaterialModule,
+    ProductInfoModule,
+    RelatedProductListModule,
+    PurchaseCarouselModule,
+    ProductPathModule
   ]
 })
 export class PurchaseModule { }

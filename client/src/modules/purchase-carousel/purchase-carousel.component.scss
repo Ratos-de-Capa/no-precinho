@@ -1,0 +1,79 @@
+#productImg{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2em;
+}
+
+img{
+    width: 100%;
+    display: block;
+}
+
+.mainImage{
+    width: 100%;
+    max-width: 26em;
+    margin: 0 auto;
+    border-radius: .4em;
+    border: 2px solid #ccc;
+}
+
+.imgContainer{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 1.5em;
+    max-width: 26em;
+    overflow: auto;
+    overflow-x: visible;
+    scroll-behavior: smooth;
+}
+
+
+.imgContainer::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 1em;
+	background-color: #f1f1f1;
+}
+
+.imgContainer::-webkit-scrollbar
+{   
+    height: .9em;
+	width: 2em;
+	background-color: #f1f1f1;
+}
+
+.imgContainer::-webkit-scrollbar-thumb
+{
+	border-radius: 1em;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #666;
+}
+
+.imgContainer figure{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid  #ccc;
+    padding: 1rem;
+    border-radius: .2em;
+    margin: .2em;
+    transition: all ease-in .08s;
+    cursor: pointer;
+}
+
+
+.active{
+    border-color: #444 !important;
+}
+
+.imgContainer figure:hover{
+    border-color: #444 !important;
+}
+
+.imgContainer figure img{
+    width: 3em;
+    
+}

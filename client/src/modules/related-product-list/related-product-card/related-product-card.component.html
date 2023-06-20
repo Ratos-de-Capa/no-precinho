@@ -1,0 +1,27 @@
+<div class="productsContainer" (click)="navigateToProduct()">
+    <figure class="productsRelatedImg">
+      <img src="{{ product.src }}" alt="imagem" />
+    </figure>
+
+    <div class="containerPrice">
+      <h2>R$ {{ product.totalPrice.toFixed(2) }} à vista</h2>
+      <p>ou {{ product.installments }}x de R$ {{ product.price.toFixed(2) }} com juros</p>
+    </div>
+
+    <div class="containerStore">
+      <div class="storeText">
+        <mat-icon>store</mat-icon>
+        <p>{{ product.store }}</p>
+      </div>
+
+      <div>
+        <a
+          id="storeBtn"
+          mat-raised-button
+          href="https://www.google.com/"
+          target="_blank"
+          >Ir para a Loja</a
+        >
+      </div>
+    </div>
+</div>

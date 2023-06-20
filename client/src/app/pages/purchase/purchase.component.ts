@@ -27,52 +27,18 @@ export class PurchaseComponent {
 
 
 
-
-
-  // Mudar imagens
-  changeImg(num: Number){
-    this.imageIndex = num;
-    const newImg = document.getElementById(String(this.imageIndex));
-    const mainImg = document.querySelector('.mainImage img');
-    document.querySelector('.active').classList.remove('active');
-    newImg.parentElement.classList.add('active');
-    mainImg.setAttribute('src', newImg.getAttribute('src'));
-  }
-
-  products = [
-    {
-      src: 'https://source.unsplash.com/5WbYFH0kf_8',
-      totalPrice: 2399.00,
-      installments:12,
-      price: 232.33,
-      store:'Loja'
-    },
-
-    {
-      src: 'https://source.unsplash.com/5WbYFH0kf_8',
-      totalPrice: 2321.80,
-      installments: 10,
-      price: 247.00,
-      store:'Loja'
-    },
-
-    {
-      src: 'https://source.unsplash.com/5WbYFH0kf_8',
-      totalPrice:2374.05,
-      installments:10,
-      price: 249.90,
-      store:'Loja'
-    },
-
-    {
-      src: 'https://source.unsplash.com/5WbYFH0kf_8',
-      totalPrice: 2459.00,
-      installments:10,
-      price: 245.90,
-      store:'Loja'
-    }
-  
-  ]
-
-
+  loremText: string = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+    Sed vestibulum semper velit, vitae consequat erat viverra nec. 
+    Nullam vitae metus id metus suscipit feugiat. 
+    In posuere tellus enim, eget gravida dui varius a. 
+    Nullam ultrices tortor eget odio dapibus, vel aliquet ligula posuere. 
+    Sed congue metus at commodo consectetur. 
+    Integer vitae dui et tellus pharetra interdum nec non nunc.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+    Sed vestibulum semper velit, vitae consequat erat viverra nec. 
+    Nullam vitae metus id metus suscipit feugiat. 
+    In posuere tellus enim, eget gravida dui varius a. 
+    Nullam ultrices tortor eget odio dapibus, vel aliquet ligula posuere. 
+    Sed congue metus at commodo consectetur. 
+    Integer vitae dui et tellus pharetra interdum nec non nunc.`;
 }
