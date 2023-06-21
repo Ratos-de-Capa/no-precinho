@@ -12,14 +12,14 @@ export class ProductsController {
     return this.productsService.create(createProductDto);
   }
 
-  @Get()
-  findAll() {
-    return this.productsService.findAll();
-  }
+  // @Get()
+  // findAll() {
+  //   return this.productsService.findAll();
+  // }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.productsService.findOne(+id);
+  @Get(':item')
+  async findOne(@Param('item') item: string) {
+    return await this.productsService.findOne(item);
   }
 
   @Patch(':id')
