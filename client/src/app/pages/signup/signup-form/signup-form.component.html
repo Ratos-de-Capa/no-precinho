@@ -1,7 +1,7 @@
 <section class="signup">
     <span>Projeto Web</span>
     <h1>Bem-Vindo</h1>
-    <div class="signup__form" [formGroup]="signupForm">
+    <div class="signup__form" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
         <mat-form-field appearance="outline">
             <input matInput type="text" formControlName="username" id="username" placeholder="Seu login">
             <mat-error class="text--danger"
@@ -16,12 +16,21 @@
                 *ngIf="signupFormControl['email'].touched && signupFormControl['email'].hasError('required')">
                 Campo Obrigatório
             </mat-error>
+
+            <mat-error class="text--danger"
+                *ngIf="signupFormControl['email'].touched && signupFormControl['email'].hasError('email')">
+                Insira um email válido
+            </mat-error>
         </mat-form-field>
 
-
         <mat-form-field appearance="outline">
-            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" id="password"
+            <input matInput [type]="passwordHide ? 'password' : 'text'" formControlName="password" id="password"
                 placeholder="Sua senha">
+
+            <button mat-icon-button matSuffix (click)="changePasswordHideState()" aria-label="Esconder senha"
+                [attr.aria-pressed]="passwordHide">
+                <mat-icon>{{passwordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
 
             <mat-error class="text--danger"
                 *ngIf="signupFormControl['password'].touched && signupFormControl['password'].hasError('required')">
@@ -31,15 +40,25 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline">
-            <input matInput type="text" formControlName="confirmPassword" id="confirmPassword"
+            <input matInput [type]="confirmPasswordHide ? 'password' : 'text'" formControlName="confirmPassword" id="confirmPassword"
                 placeholder="Insira sua senha novamente">
+
+            <button mat-icon-button matSuffix (click)="changeConfirmPasswordHideState()" aria-label="Esconder senha"
+                [attr.aria-pressed]="confirmPasswordHide">
+                <mat-icon>{{confirmPasswordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
             <mat-error class="text--danger"
                 *ngIf="signupFormControl['confirmPassword'].touched && signupFormControl['confirmPassword'].hasError('required')">
                 Campo Obrigatório
             </mat-error>
+
+            <mat-error class="text--danger"
+                *ngIf="signupFormControl['confirmPassword'].touched && signupFormControl['confirmPassword'].hasError('passwordMismatch')">
+                As senhas não coincidem
+            </mat-error>
         </mat-form-field>
 
-        <button mat-flat-button color="primary" [disabled]="!signupForm.valid">Log in</button>
+        <button mat-flat-button color="primary" [disabled]="!signupForm.valid">Cadastrar</button>
     </div>
 
     <span><a href="login">Já possui uma conta?</a></span>

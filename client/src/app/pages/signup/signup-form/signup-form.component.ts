@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { SignupService } from '../signup.service';
+import { ValidationService } from 'src/modules/form-validation/validation.service';
 
 @Component({
   selector: 'app-signup-form',
@@ -9,10 +10,13 @@ import { SignupService } from '../signup.service';
 })
 export class SignupFormComponent implements OnInit{
   signupForm: FormGroup;
-  hide = true;
+  
+  passwordHide = true;
+  confirmPasswordHide = true;
   
   constructor(
     private formBuilder: FormBuilder,
+    private validationService: ValidationService,
     private signupService: SignupService
   ) { }
 
@@ -24,12 +28,28 @@ export class SignupFormComponent implements OnInit{
     this.signupForm  = this.createSignupForm(); 
   }
 
+  changePasswordHideState() {
+    this.passwordHide = !this.passwordHide;
+  }
+
+  changeConfirmPasswordHideState() {
+    this.confirmPasswordHide = !this.confirmPasswordHide;
+  }
+
   createSignupForm(): FormGroup {
     return this.formBuilder.group({
-      username: new FormControl(),
-      email: new FormControl(),
-      password: new FormControl(),
-      confirmPassword: new FormControl()
+      username: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required]),
+      confirmPassword: new FormControl('', [Validators.required])
+    }, {
+      validators: [this.validationService.matchPassword('password', 'confirmPassword')]
     });
+  }
+
+  onSubmit() {
+    if (this.signupForm.valid) {
+      const user = this.signupForm.value;
+    }
   }
 }
