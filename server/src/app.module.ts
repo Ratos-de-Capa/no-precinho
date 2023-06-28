@@ -26,7 +26,6 @@ import { jwtConstants } from './app/auth/constants/jwt.constant';
         readPreference: 'primaryPreferred',
       }),
       inject: [ConfigService],
-<<<<<<< HEAD
     }),
     JwtModule.register({
       global: true,
@@ -35,9 +34,6 @@ import { jwtConstants } from './app/auth/constants/jwt.constant';
     }),
     UsersModule,
     AuthModule
-=======
-    })
->>>>>>> web-scraping-script
   ],
   controllers: [],
   providers: [
