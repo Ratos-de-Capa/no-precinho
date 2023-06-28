@@ -7,7 +7,7 @@ export class Program {
     apiService: ApiService;
 
     constructor() {
-        this.apiService = new ApiService("");
+        this.apiService = new ApiService("localhost:9000");
         this.start();
     }
 

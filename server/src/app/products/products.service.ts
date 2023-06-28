@@ -1,6 +1,8 @@
 import { ConsoleLogger, Injectable } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
+import { IProductToSearch } from './entities/product.entity';
+import { mockProductsToSearch } from './mock-products';
 
 export interface IProducts {
     name: string;
@@ -15,8 +17,8 @@ export class ProductsService {
     return 'This action adds a new product';
   }
 
-  findAll() {
-    return `This action returns all products`;
+  findAll(): IProductToSearch[] {
+    return mockProductsToSearch;
   }
 
   findOne(item: string) {
