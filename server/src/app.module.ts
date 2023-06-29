@@ -7,6 +7,7 @@ import { AuthGuard } from './app/auth/guards/auth.guard';
 import { AuthModule } from './app/auth/auth.module';
 import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './app/auth/constants/jwt.constant';
+import { ProductsModule } from './app/products/products.module';
 
 @Module({
   imports: [
@@ -33,7 +34,8 @@ import { jwtConstants } from './app/auth/constants/jwt.constant';
       signOptions: { expiresIn: '60m' },
     }),
     UsersModule,
-    AuthModule
+    AuthModule,
+    ProductsModule,
   ],
   controllers: [],
   providers: [
