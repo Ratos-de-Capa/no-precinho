@@ -28,10 +28,9 @@ export class ProductsController {
     return this.productsService.findAll();
   }
 
-  @Public()
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.productsService.findOne(id);
+  @Get(':item')
+  async findOne(@Param('item') item: string) {
+    return await this.productsService.findOne(item);
   }
 
   @Public()

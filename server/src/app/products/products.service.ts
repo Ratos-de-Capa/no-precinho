@@ -5,6 +5,13 @@ import { CreateProductDto } from './dto/create-product.dto';
 import { Product, ProductDocument } from './entities/product.entity';
 import { UpdateProductDto } from './dto/update-product.dto';
 
+export interface IProducts {
+    name: string;
+    price: string;
+    imageSource: string;
+    link: string;
+} 
+
 @Injectable()
 export class ProductsService {
   private readonly logger = new Logger(ProductsService.name);
