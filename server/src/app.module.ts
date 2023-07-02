@@ -6,9 +6,9 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './app/auth/auth.module';
 import { jwtConstants } from './app/auth/constants/jwt.constant';
 import { AuthGuard } from './app/auth/guards/auth.guard';
+import { CategoriesModule } from './app/categories/categories.module';
 import { ProductsModule } from './app/products/products.module';
 import { UsersModule } from './app/users/users.module';
-import { CategoriesModule } from './app/categories/categories.module';
 
 @Module({
   imports: [

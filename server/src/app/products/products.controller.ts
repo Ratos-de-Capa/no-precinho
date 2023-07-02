@@ -20,10 +20,10 @@ export class ProductsController {
     return this.productsService.create(createProductDto);
   }
 
-  // @Get()
-  // findAll() {
-  //   return this.productsService.findAll();
-  // }
+  @Get()
+  findAll() {
+    return this.productsService.findAll();
+  }
 
   @Get(':item')
   findOne(@Param('item') item: string) {

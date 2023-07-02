@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
-import puppeteer from 'puppeteer';
+import { IProductToSearch } from './entities/product.entity';
+import { mockProductsToSearch } from './mock-products';
 
 export interface IProducts {
   name: string;
@@ -16,8 +17,8 @@ export class ProductsService {
     throw new Error('Method not implemented.');
   }
 
-  findAll() {
-    return `This action returns all products`;
+  findAll(): IProductToSearch[] {
+    return mockProductsToSearch;
   }
 
   async findOne(item: string) {
