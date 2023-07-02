@@ -1,0 +1,31 @@
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
+
+export type CategoryDocument = Category & Document & TimestampedDocument;
+
+export type CategoryProps = {
+  name: string;
+  category: string;
+  subCategory: string;
+};
+
+@Schema({ timestamps: true })
+export class Category {
+  constructor(props: CategoryProps) {
+    Object.assign(this, props);
+  }
+
+  @Prop({ required: true, unique: true })
+  name: string;
+
+  @Prop({ required: true })
+  category: string;
+
+  @Prop({ required: true })
+  subCategory: string;
+}
+
+export const CategorySchema = SchemaFactory.createForClass(Category).index(
+  { name: 1, category: 1, subCategory: 1 },
+  { unique: true },
+);

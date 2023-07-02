@@ -11,13 +11,14 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 import { DialogComponent } from './dialog/dialog.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     DialogComponent,
- 
+
   ],
   imports: [
     BrowserModule,
@@ -32,7 +33,7 @@ import { HttpClientModule } from '@angular/common/http';
     ShareIconsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
@@ -18,8 +26,8 @@ export class ProductsController {
   }
 
   @Get(':item')
-  async findOne(@Param('item') item: string) {
-    return await this.productsService.findOne(item);
+  findOne(@Param('item') item: string) {
+    return this.productsService.findOne(item);
   }
 
   @Patch(':id')
