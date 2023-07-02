@@ -2,15 +2,15 @@ import { Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateProductDto } from './dto/create-product.dto';
-import { Product, ProductDocument } from './entities/product.entity';
 import { UpdateProductDto } from './dto/update-product.dto';
+import { Product, ProductDocument } from './entities/product.entity';
 
 export interface IProducts {
-    name: string;
-    price: string;
-    imageSource: string;
-    link: string;
-} 
+  name: string;
+  price: string;
+  imageSource: string;
+  link: string;
+}
 
 @Injectable()
 export class ProductsService {

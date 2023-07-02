@@ -29,8 +29,8 @@ export class ProductsController {
   }
 
   @Get(':item')
-  async findOne(@Param('item') item: string) {
-    return await this.productsService.findOne(item);
+  findOne(@Param('item') item: string) {
+    return this.productsService.findOne(item);
   }
 
   @Public()
