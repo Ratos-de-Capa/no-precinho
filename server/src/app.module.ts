@@ -37,6 +37,7 @@ import { UsersModule } from './app/users/users.module';
     }),
     UsersModule,
     AuthModule,
+    ProductsModule,
     CategoriesModule,
   ],
   controllers: [],
