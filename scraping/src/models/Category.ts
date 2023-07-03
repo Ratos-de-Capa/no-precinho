@@ -1,4 +1,4 @@
-export interface Search {  
+export interface Category {  
     name: string;
     subCategory: string;
     category: string;

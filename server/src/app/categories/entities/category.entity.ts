@@ -9,6 +9,8 @@ export type CategoryProps = {
   subCategory: string;
 };
 
+// TODO: THINK ABOUT NAME OF THIS ENTITY
+
 @Schema({ timestamps: true })
 export class Category {
   constructor(props: CategoryProps) {

@@ -5,13 +5,6 @@ import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { Product, ProductDocument } from './entities/product.entity';
 
-export interface IProducts {
-  name: string;
-  price: string;
-  imageSource: string;
-  link: string;
-}
-
 @Injectable()
 export class ProductsService {
   private readonly logger = new Logger(ProductsService.name);
@@ -20,10 +13,13 @@ export class ProductsService {
     @InjectModel(Product.name) private productModel: Model<ProductDocument>,
   ) {}
 
-  create(createProductDto: CreateProductDto) {
-    this.logger.log(`Creating product name ${createProductDto.name}`);
-    const createdProduct = new this.productModel(createProductDto);
-    return createdProduct.save();
+  create(createProductDtos: CreateProductDto[]) {
+    this.logger.log(`adding products in db`);
+    const products = [];
+    for ( const product of createProductDtos) {
+      products.push(new this.productModel(product));
+    }
+    return this.productModel.updateMany(products, { upsert: true }).exec();
   }
 
   findAll() {

@@ -21,4 +21,9 @@ export class CreateProductDto {
   @IsNotEmpty()
   @IsString()
   link: string;
+
+  @ApiProperty({ type: String, required: true })
+  @IsNotEmpty()
+  @IsString()
+  origin: string;
 }

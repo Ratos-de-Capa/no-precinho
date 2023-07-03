@@ -8,6 +8,7 @@ export type ProductProps = {
   price: string;
   imageSource: string;
   link: string;
+  origin: string;
 };
 
 @Schema({ timestamps: true })
@@ -27,6 +28,9 @@ export class Product {
 
   @Prop({ required: true })
   link: string;
+
+  @Prop({ required: true })
+  origin: string;
 }
 
-export const ProductSchema = SchemaFactory.createForClass(Product);
+export const ProductSchema = SchemaFactory.createForClass(Product).index({ link: 1 }, { unique: true});

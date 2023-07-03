@@ -1,5 +1,5 @@
 import { ApiService } from "./services/ApiService";
-import { Search } from "./models/Search";
+import { Category } from "./models/Category";
 import { AmazonScraping } from "./scripts/AmazonScraping";
 import { MercadoLivreScraping } from "./scripts/MercadoLivreScraping";
 
@@ -7,31 +7,33 @@ export class Program {
     apiService: ApiService;
 
     constructor() {
-        this.apiService = new ApiService("localhost:9000");
+        this.apiService = new ApiService("http://localhost:9000");
         this.start();
     }
 
     async start(): Promise<void> {
         console.log("Starting program...")
 
-        const searchList: Search[] = await this.getSearch();
+        const searchList: Category[] = await this.getSearch();
 
-        console.log(`Searched list: ${searchList}`);
+        //console.log(`Searched list: ${searchList}`);
 
-        this.startScraping(searchList);
+        await this.startScraping(searchList);
     }
 
-    async getSearch(): Promise<Search[]> {
+    async getSearch(): Promise<Category[]> {
         try {
             console.log('Getting search...')
             for (let i = 0; i < 10; i++) {
-                const response = await this.apiService.get<Search[]>("search");
+                const response = await this.apiService.get<Category[]>("categories");
                 
                 if (!response) {
                     console.log(`Error fetching search list on attempt ${i+1}. Retrying...`);
                     continue;
                 }
 
+                console.log("get search response: ", response);
+            
                 return response;
             }
 
@@ -43,14 +45,14 @@ export class Program {
         }
     }
 
-    startScraping(searchList: Search[]) {
+    async startScraping(searchList: Category[]) {
         console.log('Starting scraping...')
 
         const amazonScrape = new AmazonScraping(searchList);
         const mercadoLivreScrape = new MercadoLivreScraping(searchList);
         
-        amazonScrape.startScraping();
-        mercadoLivreScrape.startScraping();
+        await amazonScrape.startScraping();
+        //mercadoLivreScrape.startScraping();
     }
 }
 

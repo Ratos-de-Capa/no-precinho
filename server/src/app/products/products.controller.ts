@@ -18,7 +18,7 @@ export class ProductsController {
 
   @Public()
   @Post()
-  create(@Body() createProductDto: CreateProductDto) {
+  create(@Body() createProductDto: CreateProductDto[]) {
     return this.productsService.create(createProductDto);
   }
 

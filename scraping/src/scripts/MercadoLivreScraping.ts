@@ -1,15 +1,15 @@
-import { Product } from "../models/Product";
+import { Product, SiteOriginEnum } from "../models/Product";
 import { Scraping } from "../models/Scraping";
-import { Search } from "../models/Search";
+import { Category } from "../models/Category";
 
 export class MercadoLivreScraping extends Scraping {
 
-    constructor(searchList: Search[]) {
+    constructor(searchList: Category[]) {
         super(searchList);
     }
 
-    async search(search: Search): Promise<Product[]> {
-        return [{ name: "", price: "", imageSource: "", link: ""}]
+    async search(search: Category): Promise<Product[]> {
+        return [{ name: "", price: "", imageSource: "", link: "", origin: SiteOriginEnum.mercadoLivre}]
     }
     
 }
