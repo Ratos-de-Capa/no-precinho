@@ -1,7 +1,7 @@
-import { ApiService } from "./services/ApiService";
-import { Category } from "./models/Category";
-import { AmazonScraping } from "./scripts/AmazonScraping";
-import { MercadoLivreScraping } from "./scripts/MercadoLivreScraping";
+import { ApiService } from "./services/api";
+import { Category } from "./models/category";
+import { AmazonScraping } from "./scripts/amazon.scraping";
+import { MercadoLivreScraping } from "./scripts/mercadolivre.scraping";
 
 export class Program {
     apiService: ApiService;

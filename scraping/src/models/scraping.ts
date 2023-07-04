@@ -1,6 +1,6 @@
-import { Product } from "./Product";
-import { Category } from "./Category";
-import { ApiService } from "../services/ApiService";
+import { Product } from "./product";
+import { Category } from "./category";
+import { ApiService } from "../services/api";
 
 export abstract class Scraping {
     searchList: Category[];

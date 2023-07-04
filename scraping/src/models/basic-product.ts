@@ -1,12 +1,7 @@
-export interface Product {
+export interface BasicProduct {
     name: string;
     price: number;
     imageSource: string;
     link: string;
     origin: "amazon" | "mercado_livre";
-}
-
-export enum SiteOriginEnum {
-    mercadoLivre = "mercado_livre",
-    amazon = "amazon",
 }
