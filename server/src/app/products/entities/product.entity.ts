@@ -5,7 +5,7 @@ export type ProductDocument = Product & Document & TimestampedDocument;
 
 export type ProductProps = {
   name: string;
-  price: string;
+  price: number;
   imageSource: string;
   link: string;
   origin: string;
@@ -21,7 +21,7 @@ export class Product {
   name: string;
 
   @Prop({ required: true })
-  price: string;
+  price: number;
 
   @Prop({ required: true })
   imageSource: string;

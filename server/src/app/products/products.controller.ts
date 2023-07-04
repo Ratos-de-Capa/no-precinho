@@ -8,7 +8,7 @@ import {
   Delete,
 } from '@nestjs/common';
 import { ProductsService } from './products.service';
-import { CreateProductDto } from './dto/create-product.dto';
+import { CreateProductDtos } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { Public } from '../auth/decorators/public.decorator';
 
@@ -18,8 +18,9 @@ export class ProductsController {
 
   @Public()
   @Post()
-  create(@Body() createProductDto: CreateProductDto[]) {
-    return this.productsService.create(createProductDto);
+  create(@Body() updateProducts: CreateProductDtos) {
+    console.log("createProductDto: ", updateProducts);
+    return this.productsService.create(updateProducts);
   }
 
   @Public()

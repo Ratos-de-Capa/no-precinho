@@ -1,7 +1,6 @@
-
 export interface Product {
     name: string;
-    price: string;
+    price: number;
     imageSource: string;
     link: string;
     origin: "amazon" | "mercado_livre";

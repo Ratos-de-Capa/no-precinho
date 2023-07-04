@@ -17,7 +17,7 @@ export class ApiService {
         console.log("starting api service [get], path: ", path);
         return this.request<T>(path, HttpMethod.GET);
     }
-
+    
     public async post<T>(path: string, body: any): Promise<T | undefined> {
         return this.request<T>(path, HttpMethod.POST, body);
     }
@@ -31,13 +31,14 @@ export class ApiService {
     }
 
     public async request<T>(path: string, method: HttpMethod, body?: any): Promise<T | undefined> {
-        console.log("starting api service [request], path: ", path, ", method: ", method, ", body: ", body)
+        console.log("starting api service [request], path: ", path, ", method: ", method)
+        console.log("body stringified: ", JSON.stringify(body));
 
 
         const response = await fetch(`${this.baseUrl}/${path}`, {
             method,
             body: method === HttpMethod.POST ? JSON.stringify(body) : null,
-            headers: {},
+            headers: {'Content-Type': 'application/json'}
         });
 
         if (!response.ok) {
