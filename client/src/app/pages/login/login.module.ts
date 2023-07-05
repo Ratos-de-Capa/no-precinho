@@ -5,12 +5,15 @@ import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
 import { MaterialModule } from 'src/modules/styles/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { InfosComponent } from './infos/infos.component';
+import { LoginFormComponent } from './login-form/login-form.component';
 
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    InfosComponent,
+    LoginFormComponent
   ],
   imports: [
     CommonModule,

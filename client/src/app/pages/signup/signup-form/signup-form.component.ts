@@ -38,7 +38,8 @@ export class SignupFormComponent implements OnInit{
 
   createSignupForm(): FormGroup {
     return this.formBuilder.group({
-      username: new FormControl('', [Validators.required]),
+      name: new FormControl('', [Validators.required]),
+      login: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required]),
       confirmPassword: new FormControl('', [Validators.required])
@@ -47,9 +48,11 @@ export class SignupFormComponent implements OnInit{
     });
   }
 
-  onSubmit() {
+  async onSubmit() {
     if (this.signupForm.valid) {
       const user = this.signupForm.value;
+
+      await this.signupService.createUser(user);
     }
   }
 }

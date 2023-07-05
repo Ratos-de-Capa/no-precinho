@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-export type User = {
+export type LoginPayload = {
   login: string,
   password: string
 }
@@ -19,17 +19,17 @@ export class LoginService {
 
   constructor(private _http: HttpClient) { }
 
-  async login(user: User) {
+  async login(loginPayload: LoginPayload) {
     try {
       const httpResponse = await this._http.post(this.url, {
-        login: user.login,
-        password: user.password
+        login: loginPayload.login,
+        password: loginPayload.password
       }, {
         headers: this.getHeaders()
       }).toPromise() as LoginResponse;
   
       if (httpResponse.success) {
-        console.log(`user: ${user.login} logged in`);
+        console.log(`user: ${loginPayload.login} logged in`);
       }
     } catch (error) {
       console.error('deu pau', error)

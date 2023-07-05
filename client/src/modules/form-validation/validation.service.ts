@@ -18,8 +18,13 @@ export class ValidationService {
       if (passwordControl.value && confirmPasswordControl.value) {
         const isMatchedPassword = passwordControl.value === confirmPasswordControl.value;
 
-        confirmPasswordControl.setErrors(validationError);
-        return isMatchedPassword ? null : validationError;
+        if (!isMatchedPassword) {
+          confirmPasswordControl.setErrors(validationError);
+        
+          return validationError;
+        }
+        
+        return null;
       }
 
       return null;
