@@ -45,6 +45,10 @@ export class AmazonScraping extends Scraping {
         document.querySelectorAll(".a-section.a-spacing-base")
       );
 
+      const categorySpan = document.querySelector('#departments ul span a span.a-size-base.a-color-base');
+
+      const category = categorySpan ? (<HTMLSpanElement>categorySpan).innerText : '';
+
       const productsAux: BasicProduct[] = [];
 
       for (const element of productElements) {
@@ -53,14 +57,15 @@ export class AmazonScraping extends Scraping {
         const priceFractionElement = element.querySelector<HTMLSpanElement>(".a-price-fraction");
         const imageElement = element.querySelector<HTMLImageElement>(".s-image");
         const linkElement = element.querySelector<HTMLAnchorElement>(".a-link-normal.a-text-normal");
+        const paymentDetailsSpan = Array.from(element.querySelectorAll('span.a-color-secondary'));
+        const paymentDetailsText = paymentDetailsSpan.map((span) => span.textContent?.trim()).join(' ');
 
         const name = nameElement ? nameElement.innerText.trim() : "";
         const priceWhole = priceWholeElement ? priceWholeElement.innerText.trim() : "";
         const priceFraction = priceFractionElement ? priceFractionElement.innerText.trim() : "";
         const image = imageElement ? imageElement.src : "";
         const link = linkElement ? linkElement.href : "";
-
-        // //const price = priceWhole && priceFraction ? `${priceWhole}.${priceFraction}` : '';
+        const paymentDetails = paymentDetailsText !== '' ? paymentDetailsText.substring(paymentDetailsText.indexOf('até'), paymentDetailsText.indexOf('juros') + 'juros'.length) : '';
         const price = priceWhole && priceFraction ? parseFloat(`${priceWhole.replace(/\./g, '')}.${priceFraction}`.replace(/[\n,]/g, "")) : null;
 
         const pushProduct = {
@@ -68,7 +73,9 @@ export class AmazonScraping extends Scraping {
           price,
           imageSource: image,
           link,
-          origin: "amazon"
+          origin: "amazon",
+          category,
+          paymentDetails
         } as BasicProduct;
 
         if (pushProduct.name === '' || pushProduct.price === null || pushProduct.imageSource === '' || pushProduct.link === '') {

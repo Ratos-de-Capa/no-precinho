@@ -4,4 +4,6 @@ export interface BasicProduct {
     imageSource: string;
     link: string;
     origin: "amazon" | "mercado_livre";
+    category: string;
+    paymentDetails?: string;   
 }
