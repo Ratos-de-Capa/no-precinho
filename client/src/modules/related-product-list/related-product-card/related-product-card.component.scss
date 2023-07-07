@@ -8,9 +8,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 2px solid #ccc;
-    box-shadow: 0 3px 3px #ccc;
-    border-radius: 1em;
+    border: 1px solid rgb(209, 209, 209);
+    border-radius: .5em;
     padding: 1.5em 2.5em;
     gap: 2em;
     cursor: pointer;
@@ -20,11 +19,14 @@
 
 }
 
-
+.productsContainer:hover{
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgb(0, 0, 0);;
+}
 
 .productsRelatedImg{
     border-radius: .2em;
-    border: 2px solid #ccc;
+    border: 1px solid #ccc;
 }
 
 .productsRelatedImg img{

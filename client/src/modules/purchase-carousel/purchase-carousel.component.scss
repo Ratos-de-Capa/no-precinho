@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 2em;
+    padding: 1em .5em;
 }
 
 img{
@@ -13,10 +13,10 @@ img{
 
 .mainImage{
     width: 100%;
-    max-width: 26em;
+    max-width: 55em;
     margin: 0 auto;
     border-radius: .4em;
-    border: 2px solid #ccc;
+    border: 1px solid #ccc;
 }
 
 .imgContainer{

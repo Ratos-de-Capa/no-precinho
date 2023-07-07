@@ -11,8 +11,8 @@ export class RelatedProductCardComponent {
   constructor(private router: Router) { }
 
 
-  navigateToProduct() {
-    this.router.navigate(['/product']);
+  navigateToProduct(id: number) {
+    this.router.navigate(['/product', id]);
   }
 
 }

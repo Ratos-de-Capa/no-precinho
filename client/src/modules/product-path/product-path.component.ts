@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 import { Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class ProductPathComponent {
   constructor(public dialog: MatDialog, private router: Router) {}
-
+  @Input() product: any;
 
    // Abrir dialog
    openDialog(): void {
@@ -18,6 +18,10 @@ export class ProductPathComponent {
   }
 
   redirectToHome() {
-    this.router.navigate([`/`]);
+    this.router.navigate(['/']);
+  }
+
+  redirectToPage(path: string){
+    this.router.navigate(['/products'], { queryParams: { item: path.toLowerCase() } });
   }
 }

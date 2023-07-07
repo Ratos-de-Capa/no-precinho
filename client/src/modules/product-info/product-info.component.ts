@@ -7,6 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class ProductInfoComponent {
   @Input() title: string;
-  @Input() information: string;
+  @Input() data: string;
 
 }
