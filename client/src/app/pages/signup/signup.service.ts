@@ -1,35 +1,35 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-export type LoginPayload = {
+type User = {
+  id?: string,
   login: string,
+  email: string,
+  name: string,
   password: string
-}
-
-type LoginResponse = {
-  success: boolean,
-  message: string
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
-  private url = 'http://localhost:9000/auth/login';
+export class SignupService {
+  private url = 'http://localhost:9000/users/create';
 
   constructor(private _http: HttpClient) { }
 
-  async login(loginPayload: LoginPayload) {
+  async createUser({ email, login, password, name }: User) {
     try {
       const httpResponse = await this._http.post(this.url, {
-        login: loginPayload.login,
-        password: loginPayload.password
+        name,
+        login,
+        email,
+        password
       }, {
         headers: this.getHeaders()
-      }).toPromise() as LoginResponse;
+      }).toPromise();
   
-      if (httpResponse.success) {
-        console.log(`user: ${loginPayload.login} logged in`);
+      if (httpResponse['success']) {
+        console.log(`user: ${login} created`);
       }
     } catch (error) {
       console.error('deu pau', error)
