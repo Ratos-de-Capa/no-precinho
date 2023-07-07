@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { DialogComponent } from 'src/app/dialog/dialog.component';
 
 @Component({
   selector: 'app-purchase',
@@ -14,15 +12,10 @@ import { DialogComponent } from 'src/app/dialog/dialog.component';
 export class PurchaseComponent {
   imageIndex: Number = 1;
 
-  constructor(public dialog: MatDialog) {}
+  constructor() {}
   
   ngOninit(): void {
 
-  }
-
-  // Abrir dialog
-  openDialog(): void {
-    const dialogRef = this.dialog.open(DialogComponent);
   }
 
 
