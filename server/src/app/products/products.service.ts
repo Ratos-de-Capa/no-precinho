@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { CreateProductDto } from './dto/create-product.dto';
+import { CreateProductDtos } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { Product, ProductDocument } from './entities/product.entity';
 
@@ -13,13 +13,16 @@ export class ProductsService {
     @InjectModel(Product.name) private productModel: Model<ProductDocument>,
   ) {}
 
-  create(createProductDtos: CreateProductDto[]) {
+  create(updateProducts: CreateProductDtos) {
     this.logger.log(`adding products in db`);
-    const products = [];
-    for (const product of createProductDtos) {
-      products.push(new this.productModel(product));
-    }
-    return this.productModel.updateMany(products, { upsert: true }).exec();
+    const bulkOps = updateProducts.data.map((updateProduct) => ({
+      updateOne: {
+        filter: { link: updateProduct.link },
+        update: updateProduct,
+        upsert: true,
+      },
+    }));
+    return this.productModel.bulkWrite(bulkOps);
   }
 
   findAll() {

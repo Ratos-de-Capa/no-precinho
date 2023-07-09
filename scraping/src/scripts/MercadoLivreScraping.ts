@@ -9,7 +9,7 @@ export class MercadoLivreScraping extends Scraping {
     }
 
     async search(search: Category): Promise<Product[]> {
-        return [{ name: "", price: "", imageSource: "", link: "", origin: SiteOriginEnum.mercadoLivre}]
+        return [{ name: "", price: 0, imageSource: "", link: "", origin: SiteOriginEnum.mercadoLivre}]
     }
     
 }

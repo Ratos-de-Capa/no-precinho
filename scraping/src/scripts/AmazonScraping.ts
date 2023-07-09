@@ -50,13 +50,13 @@ export class AmazonScraping extends Scraping {
         const link = linkElement ? linkElement.href : "";
 
         // //const price = priceWhole && priceFraction ? `${priceWhole}.${priceFraction}` : '';
-        const price: string = priceWhole && priceFraction ? `${priceWhole}.${priceFraction}`.replace(/[\n,]/g, "") : "";
+        const price = priceWhole && priceFraction ? parseFloat(`${priceWhole.replace(/\./g, '')}.${priceFraction}`.replace(/[\n,]/g, "")) : null;
 
         const pushProduct = {
-          name: name,
-          price: price,
+          name,
+          price,
           imageSource: image,
-          link: link,
+          link,
           origin: "amazon"
         } as Product;
 

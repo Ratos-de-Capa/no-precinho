@@ -33,7 +33,7 @@ export abstract class Scraping {
 
         const apiService = new ApiService("http://localhost:9000");
         console.log('Posting products...')
-        apiService.post<Product[]>("products", this.foundedProducts);
+        apiService.post<Product[]>("products", { data: this.foundedProducts });
     }
 
     abstract search(search: Category): Promise<Product[]> 

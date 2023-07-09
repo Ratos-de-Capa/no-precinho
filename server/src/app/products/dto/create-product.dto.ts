@@ -1,6 +1,13 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsArray, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import {
+  IsArray,
+  IsNotEmpty,
+  IsNumber,
+  IsString,
+  ValidateNested,
+} from 'class-validator';
 import { Info } from '../entities/product.entity';
+import { Type } from 'class-transformer';
 
 class Review {
   @ApiProperty({ type: String, required: true })
@@ -32,10 +39,9 @@ export class CreateProductDto {
   @IsString()
   name: string;
 
-  @ApiProperty({ type: String, required: true })
-  @IsNotEmpty()
-  @IsString()
-  price: string;
+  @ApiProperty({ type: Number, required: true })
+  @IsNumber()
+  price: number;
 
   @ApiProperty({ type: String, required: true })
   @IsNotEmpty()
@@ -80,4 +86,10 @@ export class CreateProductDto {
   @IsArray()
   @IsString({ each: true })
   datasheet?: Info[];
+}
+
+export class CreateProductDtos {
+  @ValidateNested({ each: true })
+  @Type(() => CreateProductDto)
+  data: CreateProductDto[];
 }
