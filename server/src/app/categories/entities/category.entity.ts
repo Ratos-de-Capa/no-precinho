@@ -4,9 +4,8 @@ import { Document } from 'mongoose';
 export type CategoryDocument = Category & Document & TimestampedDocument;
 
 export type CategoryProps = {
-  name: string;
-  category: string;
-  subCategory: string;
+  subCategory: string; // xiaomi
+  category: string; // celular
 };
 
 // TODO: THINK ABOUT NAME OF THIS ENTITY
@@ -17,9 +16,6 @@ export class Category {
     Object.assign(this, props);
   }
 
-  @Prop({ required: true, unique: true })
-  name: string;
-
   @Prop({ required: true })
   category: string;
 
@@ -28,6 +24,6 @@ export class Category {
 }
 
 export const CategorySchema = SchemaFactory.createForClass(Category).index(
-  { name: 1, category: 1, subCategory: 1 },
+  { category: 1, subCategory: 1 },
   { unique: true },
 );

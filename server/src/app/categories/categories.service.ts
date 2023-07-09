@@ -17,7 +17,7 @@ export class CategoriesService {
   ) {}
 
   create(createCategoryDto: CreateCategoryDto) {
-    this.logger.log(`Creating category name ${createCategoryDto.name}`);
+    this.logger.log(`Creating category ${createCategoryDto.subCategory}`);
     const createdCategory = new this.categoryModel(createCategoryDto);
     return createdCategory.save();
   }
@@ -31,9 +31,9 @@ export class CategoriesService {
     );
   }
 
-  findOne(name: string) {
-    this.logger.log(`Finding category by name ${name}`);
-    return this.categoryModel.findOne({ name }).exec();
+  findOne(subCategory: string) {
+    this.logger.log(`Finding category by subCategory ${subCategory}`);
+    return this.categoryModel.findOne({ subCategory }).exec();
   }
 
   update(id: string, updateCategoryDto: UpdateCategoryDto) {
@@ -53,9 +53,8 @@ export class CategoriesService {
 
   categoryEntityToDto(category: Category): CreateCategoryDto {
     return {
-      name: category.name,
       category: category.category,
-      subCategory: category.subCategory
+      subCategory: category.subCategory,
     };
   }
 }
