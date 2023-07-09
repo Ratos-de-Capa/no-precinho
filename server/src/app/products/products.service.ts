@@ -16,7 +16,7 @@ export class ProductsService {
   create(createProductDtos: CreateProductDto[]) {
     this.logger.log(`adding products in db`);
     const products = [];
-    for ( const product of createProductDtos) {
+    for (const product of createProductDtos) {
       products.push(new this.productModel(product));
     }
     return this.productModel.updateMany(products, { upsert: true }).exec();
