@@ -4,30 +4,7 @@
     height: 100vh;
     align-items: center;
 
-    section {
+    .section {
         width: 50%;
     }
-
-    .infos {
-        background-color: #333;
-        height: inherit;
-    }
-
-    .login {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        .login__form {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-
-            width: 70%;
-        }
-    }
-}
-
-.text--danger {
-    color: #FF0000;
 }
