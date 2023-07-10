@@ -29,8 +29,11 @@ export class AmazonScraping extends Scraping {
       const productElements = Array.from(document.querySelectorAll(".a-section.a-spacing-base"));
 
       const productsAux: Product[] = [];
+      let index = 0;
 
       for (const element of productElements) {
+        if (index === 10) break;
+        index++;
         // getting elements
         const nameElement = element.querySelector<HTMLSpanElement>(".a-size-base-plus.a-color-base.a-text-normal");
         const priceWholeElement = element.querySelector<HTMLSpanElement>(".a-price-whole");
