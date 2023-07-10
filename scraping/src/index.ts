@@ -22,17 +22,17 @@ export class Program {
   }
 
   async start(): Promise<void> {
-    while (true) {
-      console.log("Starting program...");
+    console.log("Starting program...");
 
-      this.browser = await puppeteer.launch({ headless: true });
+    this.browser = await puppeteer.launch({ headless: true });
 
-      const searchList: Category[] = await this.getSearch();
+    console.log("browser version: ",await this.browser.version());
 
-      await this.startScraping(searchList);
+    const searchList: Category[] = await this.getSearch();
 
-      await this.browser.close();
-    }
+    await this.startScraping(searchList);
+
+    await this.browser.close();
   }
 
   async getSearch(): Promise<Category[]> {
