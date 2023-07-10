@@ -9,6 +9,7 @@ import { AuthGuard } from './app/auth/guards/auth.guard';
 import { CategoriesModule } from './app/categories/categories.module';
 import { ProductsModule } from './app/products/products.module';
 import { UsersModule } from './app/users/users.module';
+import { S3ClientModule } from './app/s3-client/s3-client.module';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { UsersModule } from './app/users/users.module';
     AuthModule,
     ProductsModule,
     CategoriesModule,
+    S3ClientModule,
   ],
   controllers: [],
   providers: [

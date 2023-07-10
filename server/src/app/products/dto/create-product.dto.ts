@@ -89,6 +89,7 @@ export class CreateProductDto {
 }
 
 export class CreateProductDtos {
+  @ApiProperty({ type: [CreateProductDto], required: true })
   @ValidateNested({ each: true })
   @Type(() => CreateProductDto)
   data: CreateProductDto[];

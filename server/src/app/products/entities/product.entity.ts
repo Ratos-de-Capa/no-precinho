@@ -19,6 +19,21 @@ export type ProductProps = {
   paymentDetails?: string;
 };
 
+export class Info {
+  [key: string]: string;
+}
+
+export class Reviews {
+  rating: number;
+  evaluations: number;
+}
+
+export class Image {
+  src: string;
+  key: string;
+  alt?: string;
+}
+
 @Schema({ timestamps: true })
 export class Product {
   constructor(props: ProductProps) {
@@ -38,7 +53,7 @@ export class Product {
   origin: string;
 
   @Prop({ required: true })
-  coverImageSrc: string;
+  cover: Image;
 
   @Prop()
   imagesSrc: string[];
@@ -59,16 +74,7 @@ export class Product {
   paymentDetails: string;
 }
 
-export const ProductSchema = SchemaFactory.createForClass(Product).index(
-  { link: 1 },
-  { unique: true },
-);
+export const ProductSchema = SchemaFactory.createForClass(Product);
 
-export class Info {
-  [key: string]: string;
-}
-
-export class Reviews {
-  rating: number;
-  evaluations: number;
-}
+ProductSchema.index({ link: 1 }, { unique: true });
+ProductSchema.index({ name: 'text' });
