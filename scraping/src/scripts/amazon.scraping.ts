@@ -1,206 +1,136 @@
 import { Category } from "../models/category";
 import { Scraping } from "../models/scraping";
 import { Info, Product } from "../models/product";
-import { BasicProduct } from "../models/basic-product";
-//import puppeteer from "puppeteer";
-import puppeteer from "puppeteer-extra";
-import { Browser } from "puppeteer";
-import StealthPlugin from "puppeteer-extra-plugin-stealth";
-import { PuppeteerExtraPluginAdblocker} from "puppeteer-extra-plugin-adblocker"
+import { Page } from "puppeteer";
 
 export class AmazonScraping extends Scraping {
-  browser: Browser | null;
-
-  constructor(searchList: Category[]) {
-    super(searchList);
-    puppeteer.use( new PuppeteerExtraPluginAdblocker({blockTrackers: true}) );
-    puppeteer.use(StealthPlugin());
-    this.browser = null
+  constructor(searchList: Category[], page: Page) {
+    super(searchList, page);
   }
 
-
   async search(search: Category): Promise<Product[]> {
-    const item = search.name;
-
-    this.browser = await puppeteer.launch({ headless: true });
-
-    const basicProducts = await this.getBasicProducts(item);
+    const basicProducts = await this.getBasicProducts(search);
 
     const products: Product[] = [];
 
     for (let i = 0; i < basicProducts.length; i++) {
-      const product = await this.getProductDetails(basicProducts[i]);
+      const product: Product = await this.getProductDetails(basicProducts[i]);
       console.log("product: ", product);
       products.push(product);
     }
 
-    console.log("products: ", products);
-
-    //this.browser!.close();
-
     return products;
   }
 
-  async getBasicProducts(item: string): Promise<BasicProduct[]> {    
-    const page = await this.browser!.newPage();
+  async getBasicProducts(search: Category): Promise<Product[]> {
+    await this.page.goto("https://www.amazon.com.br/s?k=" + search.subCategory);
 
-    await page.setRequestInterception(true);
+    const basicProducts: Product[] = await this.page.evaluate(() => {
+      const productElements = Array.from(document.querySelectorAll(".a-section.a-spacing-base"));
 
-    page.on("request", (req) => {
-      if (
-        req.resourceType() === "stylesheet" ||
-        req.resourceType() === "font" ||
-        req.resourceType() === "image"
-      ) {
-        req.abort();
-      } else {
-        req.continue();
-      }
-    })
-
-    page.on("console", (msg) => {
-      for (let i = 0; i < msg.args().length; ++i)
-        console.log(`${i}: ${msg.args()[i]}`);
-    });
-
-    await page.goto("https://www.amazon.com.br/s?k="+item);
-
-    const basicProducts: BasicProduct[] = await page.evaluate(() => {
-      const productElements = Array.from(
-        document.querySelectorAll(".a-section.a-spacing-base")
-      );
-
-      const categorySpan = document.querySelector(
-        "#departments ul span a span.a-size-base.a-color-base"
-      );
-
-      const category = categorySpan
-        ? (<HTMLSpanElement>categorySpan).innerText
-        : "";
-
-      const productsAux: BasicProduct[] = [];
+      const productsAux: Product[] = [];
 
       for (const element of productElements) {
-        const nameElement = element.querySelector<HTMLSpanElement>(
-          ".a-size-base-plus.a-color-base.a-text-normal"
-        );
-        const priceWholeElement =
-          element.querySelector<HTMLSpanElement>(".a-price-whole");
-        const priceFractionElement =
-          element.querySelector<HTMLSpanElement>(".a-price-fraction");
-        const imageElement =
-          element.querySelector<HTMLImageElement>(".s-image");
-        const linkElement = element.querySelector<HTMLAnchorElement>(
-          ".a-link-normal.a-text-normal"
-        );
-        const paymentDetailsSpan = Array.from(
-          element.querySelectorAll("span.a-color-secondary")
-        );
-        const paymentDetailsText = paymentDetailsSpan
-          .map((span) => span.textContent?.trim())
-          .join(" ");
+        // getting elements
+        const nameElement = element.querySelector<HTMLSpanElement>(".a-size-base-plus.a-color-base.a-text-normal");
+        const priceWholeElement = element.querySelector<HTMLSpanElement>(".a-price-whole");
+        const priceFractionElement = element.querySelector<HTMLSpanElement>(".a-price-fraction");
+        const imageElement = element.querySelector<HTMLImageElement>(".s-image");
+        const linkElement = element.querySelector<HTMLAnchorElement>(".a-link-normal.a-text-normal");
+        const paymentDetailsSpan = Array.from(element.querySelectorAll("span.a-color-secondary"));
+        const paymentDetailsText = paymentDetailsSpan.map((span) => span.textContent?.trim()).join(" ");
+        const ratingSpan = element.querySelector<HTMLSpanElement>(".a-icon-alt");
+        const evaluationsSpan = element.querySelector<HTMLSpanElement>("span.a-size-base.s-underline-text");
+        const oldPriceSpan = element.querySelector<HTMLSpanElement>("span.a-price.a-text-price > span");
 
+        // creating product object
         const name = nameElement ? nameElement.innerText.trim() : "";
-        const priceWhole = priceWholeElement
-          ? priceWholeElement.innerText.trim()
-          : "";
-        const priceFraction = priceFractionElement
-          ? priceFractionElement.innerText.trim()
-          : "";
+        const priceWhole = priceWholeElement ? priceWholeElement.innerText.trim() : "";
+        const priceFraction = priceFractionElement ? priceFractionElement.innerText.trim() : "";
         const image = imageElement ? imageElement.src : "";
         const link = linkElement ? linkElement.href : "";
+        const rating = ratingSpan ? parseFloat(ratingSpan.innerText.split(" ")[0].replace(",", ".")) : null;
+        const evaluations = evaluationsSpan ? parseInt(evaluationsSpan.innerText.replace(/\./g, "")) : null;
+        const reviews = rating && evaluations ? { rating, evaluations } : null;
         const paymentDetails =
-          paymentDetailsText !== ""
+          paymentDetailsText !== "" && paymentDetailsText.includes("até")
             ? paymentDetailsText.substring(
                 paymentDetailsText.indexOf("até"),
                 paymentDetailsText.indexOf("juros") + "juros".length
               )
-            : "";
+            : null;
         const price =
           priceWhole && priceFraction
-            ? parseFloat(
-                `${priceWhole.replace(/\./g, "")}.${priceFraction}`.replace(
-                  /[\n,]/g,
-                  ""
-                )
-              )
+            ? parseFloat(`${priceWhole.replace(/\./g, "")}.${priceFraction}`.replace(/[\n,]/g, ""))
             : null;
+        const oldPrice = oldPriceSpan
+          ? parseFloat(oldPriceSpan.innerText.replace(/[R$\s.]/g, "").replace(",", "."))
+          : null;
 
-        const pushProduct = {
-          name,
-          price,
-          imageSource: image,
-          link,
-          origin: "amazon",
-          category,
-          paymentDetails,
-        } as BasicProduct;
+        const percentOff = oldPrice && price ? Math.round(((oldPrice - price) / oldPrice) * 100) : null;
 
-        if (
-          pushProduct.name === "" ||
-          pushProduct.price === null ||
-          pushProduct.imageSource === "" ||
-          pushProduct.link === ""
-        ) {
+        // validating product object
+        if (name === "" || price === null || image === "" || link === "") {
           continue;
         }
 
-        productsAux.push(pushProduct);
+        // adding product object to array
+        productsAux.push({
+          name,
+          price,
+          coverImageSrc: image,
+          link,
+          origin: "amazon",
+          paymentDetails,
+          reviews,
+          percentOff,
+        } as Product);
       }
 
       return productsAux;
     });
 
-    return basicProducts;
+    return basicProducts.map((product) => ({ ...product, category: search }));
   }
 
-  async getProductDetails(basicProduct: BasicProduct): Promise<Product> {
-    console.log("starting get product details, product: ", basicProduct);
+  async getProductDetails(product: Product): Promise<Product> {
 
-    const page = await this.browser!.newPage();
+    await this.page.goto(product.link);
 
-    await page.setRequestInterception(true);
+    const productDetails = await this.page.evaluate(() => {
+      // getting elements
+      const datasheetChildrens = document.querySelector<HTMLBodyElement>("#productOverview_feature_div tbody")?.children;
+      const descriptionElement = document.querySelector<HTMLSpanElement>("#productDescription > p > span");
+      const images = document.querySelectorAll<HTMLImageElement>("#altImages > ul > li.a-spacing-small.item img")
 
-    page.on("request", (req) => {
-      if (
-        req.resourceType() === "stylesheet" ||
-        req.resourceType() === "font" ||
-        req.resourceType() === "image"
-      ) {
-        req.abort();
-      } else {
-        req.continue();
-      }
-    })
+      // creating product object
+      const imagesSrc = images && images.length > 0 ? Array.from(images).map((img) => img.src) : null;
+      const description = descriptionElement ? descriptionElement.innerText : null;
+      const datasheet: Info[] = [];
 
-    await page.goto(basicProduct.link);
-
-    const descriptionAndDatasheet: Info[] = await page.evaluate(() => {
-      const descriptionChildrens = document.querySelector<HTMLBodyElement>(
-        "#productOverview_feature_div tbody"
-      )?.children;
-
-      const description: Info[] = [];
-
-      if (!descriptionChildrens) {
-        return description;
+      if (!datasheetChildrens) {
+        return datasheet;
       }
 
-      for (let i = 0; i < descriptionChildrens.length; i++) {
-        const text = (<HTMLElement>descriptionChildrens[i]).innerText.split(
-          "\t"
-        );
+      for (let i = 0; i < datasheetChildrens.length; i++) {
+        const text = (<HTMLElement>datasheetChildrens[i]).innerText.split("\t");
         const info = {
           title: text[0],
           value: text[1],
         } as Info;
 
-        description.push(info);
+        datasheet.push(info);
       }
 
-      return description;
+      return {
+        datasheet, 
+        description,
+        imagesSrc
+      } as any;
     });
 
-    return { ...basicProduct, datasheet: descriptionAndDatasheet };
+    const newProduct = { ...product, ...productDetails };
+
+    return newProduct;
   }
 }

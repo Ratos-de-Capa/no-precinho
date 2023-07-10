@@ -1,13 +1,25 @@
-export interface Product {
+import { Category } from "./category";
+
+export interface Product{
     name: string;
     price: number;
-    imageSource: string;
+    coverImageSrc: string;
     link: string;
     origin: "amazon" | "mercado_livre";
-    basicDescription?: string;
-    datasheet?: Info[];
+    category: Category
+    reviews?: Reviews; // TODO
+    percentOff?: number; 
+    paymentDetails?: string;
+    description?: string; // TODO
+    datasheet?: Info[]; 
+    imagesSrc?: string[]; // TODO
 }
 
 export interface Info {
     [key: string]: string 
+}
+
+export interface Reviews {
+    rating: number;
+    evaluations: number;
 }

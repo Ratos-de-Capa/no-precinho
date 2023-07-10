@@ -2,58 +2,82 @@ import { ApiService } from "./services/api";
 import { Category } from "./models/category";
 import { AmazonScraping } from "./scripts/amazon.scraping";
 import { MercadoLivreScraping } from "./scripts/mercadolivre.scraping";
+import { Browser } from "puppeteer";
+import puppeteer from "puppeteer-extra";
+import StealthPlugin from "puppeteer-extra-plugin-stealth";
+import { PuppeteerExtraPluginAdblocker } from "puppeteer-extra-plugin-adblocker";
+import { Scraping } from "./models/scraping";
 
 export class Program {
-    apiService: ApiService;
+  apiService: ApiService;
+  browser: Browser | null;
 
-    constructor() {
-        this.apiService = new ApiService("http://localhost:9000");
-        this.start();
+  constructor() {
+    this.apiService = new ApiService("http://localhost:9000");
+    this.browser = null;
+    puppeteer.use(new PuppeteerExtraPluginAdblocker({ blockTrackers: true }));
+    puppeteer.use(StealthPlugin());
+
+    this.start();
+  }
+
+  async start(): Promise<void> {
+    while (true) {
+      console.log("Starting program...");
+
+      this.browser = await puppeteer.launch({ headless: true });
+
+      const searchList: Category[] = await this.getSearch();
+
+      await this.startScraping(searchList);
+
+      await this.browser.close();
     }
+  }
 
-    async start(): Promise<void> {
-        console.log("Starting program...")
+  async getSearch(): Promise<Category[]> {
+    try {
+      console.log("Getting search...");
+      for (let i = 0; i < 10; i++) {
+        const response = await this.apiService.get<Category[]>("categories");
 
-        const searchList: Category[] = await this.getSearch();
-
-        //console.log(`Searched list: ${searchList}`);
-
-        await this.startScraping(searchList);
-    }
-
-    async getSearch(): Promise<Category[]> {
-        try {
-            console.log('Getting search...')
-            for (let i = 0; i < 10; i++) {
-                const response = await this.apiService.get<Category[]>("categories");
-                
-                if (!response) {
-                    console.log(`Error fetching search list on attempt ${i+1}. Retrying...`);
-                    continue;
-                }
-
-                console.log("get search response: ", response);
-            
-                return response;
-            }
-
-            throw new Error("Unable to fetch search list.");
-
-        } catch (error) {
-            console.log(error);
-            throw error;            
+        if (!response) {
+          console.log(`Error fetching search list on attempt ${i + 1}. Retrying...`);
+          continue;
         }
-    }
 
-    async startScraping(searchList: Category[]) {
-        console.log('Starting scraping...')
+        console.log("get search response: ", response);
 
-        const amazonScrape = new AmazonScraping(searchList);
-        const mercadoLivreScrape = new MercadoLivreScraping(searchList);
-        
-        await amazonScrape.startScraping();
-        //mercadoLivreScrape.startScraping();
+        return response;
+      }
+
+      throw new Error("Unable to fetch search list.");
+    } catch (error) {
+      console.error(error);
+      throw error;
     }
+  }
+
+  async startScraping(searchList: Category[]) {
+    console.log("Starting scraping...");
+
+    if (this.browser) {
+      const scrapings: Scraping[] = [];
+
+      // Criar todas as páginas necessárias
+      const amazonPage = await this.browser.newPage();
+      const mercadolivrePage = await this.browser.newPage();
+
+      const amazonScraping = new AmazonScraping(searchList, amazonPage);
+      const mercadolivreScraping = new MercadoLivreScraping(searchList, mercadolivrePage);
+
+      scrapings.push(amazonScraping, mercadolivreScraping);
+
+      const scrapingPromises = scrapings.map((scraping) => scraping.startScraping());
+
+      await Promise.all(scrapingPromises); // Aguardar todas as promessas serem concluídas
+    } else console.error("Browser is null.");
+  }
 }
 
 new Program();
