@@ -1,5 +1,5 @@
 <div class="navbar">
-  <span>
+  <span (click)="openDialog()">
     <a mat-button>
       <svg
         width="25"
@@ -30,7 +30,15 @@
           />
         </defs>
       </svg>
-      <span>{{ userLocation }}</span>
+      <span>
+        <ng-template [ngIf]="userLocation.city" [ngIfElse]="disabled">
+          {{userLocation.city}} - {{userLocation.state}}
+        </ng-template>
+  
+        <ng-template #disabled>
+          Selecione sua Região
+        </ng-template></span>
+
     </a>
   </span>
 
