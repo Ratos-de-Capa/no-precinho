@@ -13,7 +13,7 @@ export class Program {
   browser: Browser | null;
 
   constructor() {
-    this.apiService = new ApiService("http://localhost:9000");
+    this.apiService = new ApiService("http://172.17.0.1:9000");
     this.browser = null;
     puppeteer.use(new PuppeteerExtraPluginAdblocker({ blockTrackers: true }));
     puppeteer.use(StealthPlugin());
@@ -24,9 +24,13 @@ export class Program {
   async start(): Promise<void> {
     console.log("Starting program...");
 
-    this.browser = await puppeteer.launch({ headless: true });
+    this.browser = await puppeteer.launch({
+      executablePath: '/usr/bin/google-chrome',
+      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+      headless: true
+    });
 
-    console.log("browser version: ",await this.browser.version());
+    console.log("browser version: ", await this.browser.version());
 
     const searchList: Category[] = await this.getSearch();
 

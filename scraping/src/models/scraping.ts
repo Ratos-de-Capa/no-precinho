@@ -15,7 +15,7 @@ export abstract class Scraping {
   }
 
   async startScraping(): Promise<void> {
-    const apiService = new ApiService("http://localhost:9000");
+    const apiService = new ApiService("http://172.17.0.1:9000");
     let index = 0;
     await this.page.setRequestInterception(true);
 

@@ -7,16 +7,6 @@ ENV PATH=/home/node/.npm-global/bin:$PATH
 
 WORKDIR /usr/src/app
 
-RUN apk update && apk upgrade && \
-    apk add --no-cache \
-    chromium \
-    nss \
-    freetype \
-    freetype-dev \
-    harfbuzz \
-    ca-certificates \
-    ttf-freefont
-
 RUN npm config set unsafe-perm true
 
 RUN npm install -g nodemon
