@@ -13,7 +13,7 @@ export class Program {
   browser: Browser | null;
 
   constructor() {
-    this.apiService = new ApiService("http://172.17.0.1:9000");
+    this.apiService = new ApiService("http://172.17.0.1:9000"); // TODO: get from env
     this.browser = null;
     puppeteer.use(new PuppeteerExtraPluginAdblocker({ blockTrackers: true }));
     puppeteer.use(StealthPlugin());

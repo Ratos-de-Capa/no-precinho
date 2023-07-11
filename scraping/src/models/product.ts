@@ -16,7 +16,8 @@ export interface Product{
 }
 
 export interface Info {
-    [key: string]: string 
+    key: string;
+    value: string; 
 }
 
 export interface Reviews {

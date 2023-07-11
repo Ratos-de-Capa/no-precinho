@@ -118,7 +118,7 @@ export class AmazonScraping extends Scraping {
       for (let i = 0; i < datasheetChildrens.length; i++) {
         const text = (<HTMLElement>datasheetChildrens[i]).innerText.split("\t");
         const info = {
-          title: text[0],
+          key: text[0],
           value: text[1],
         } as Info;
 
