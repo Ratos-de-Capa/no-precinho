@@ -42,11 +42,62 @@ export class PurchaseComponent implements OnInit {
       }
     
 
+  product = {
+    "link" : "https://www.amazon.com.br/sspa/click?ie=UTF8&spc=MTo4Mzc3NzY4NjUxMTgzNDQ0OjE2ODkwODIwNzU6c3BfYXRmOjIwMDAyNzAzODAyMTk5ODo6MDo6&url=%2FIphone-Apple-Branco-64gb-Desbloqueado%2Fdp%2FB08N1MG4VL%2Fref%3Dsr_1_1_sspa%3Fkeywords%3DiPhone%26qid%3D1689082075%26sr%3D8-1-spons%26ufe%3Dapp_do%253Aamzn1.fos.25548f35-0de7-44b3-b28e-0f56f3f96147%26sp_csd%3Dd2lkZ2V0TmFtZT1zcF9hdGY%26psc%3D1",
+    "coverImageSrc" : "https://m.media-amazon.com/images/I/71kZfQA-Y7L._AC_UL320_.jpg",
+    "datasheet" : [
+        {
+            "key" : "Marca",
+            "value" : "Apple"
+        },
+        {
+            "key" : "Nome do modelo",
+            "value" : "iPhone 11"
+        },
+        {
+            "key" : "Operadora de celulares e tecnologia sem fio",
+            "value" : "Desbloqueado"
+        },
+        {
+            "key" : "Sistema operacional",
+            "value" : "iOS 14"
+        },
+        {
+            "key" : "Tecnologia celular",
+            "value" : "4G"
+        }
+    ],
+    "description" : null,
+    "imagesSrc" : [
+        "https://m.media-amazon.com/images/I/41TS0WBcr0L._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/31ZJErre2SL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/41SfLF967UL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/41s8irt1e2L._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/31XQAgqxm5L._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/615reCVL-NL._SX35_SY46._CR0,0,35,46_BG85,85,85_BR-120_PKdp-play-icon-overlay__.jpg"
+    ],
+    "name" : "Apple iPhone 11 (64 GB) Branco",
+    "origin" : "amazon",
+    "paymentDetails" : "até 10x de R$ 309,90 sem juros",
+    "percentOff" : Number(10),
+    "price" : 2789.1,
+    "reviews" : {
+        "rating" : 4.8,
+        "evaluations" : Number(14628)
+    }
+}
+
+
+
+
+
+
+
   id: number;
-  product: any;
+  // product: any;
   relatedProducts: any[];
-
-
+  currentRate = 3.5;
+  
   constructor(
     private route: ActivatedRoute
     // private apiService: apiService
@@ -69,6 +120,6 @@ export class PurchaseComponent implements OnInit {
     // });
   }
   
-
+  
     
 }

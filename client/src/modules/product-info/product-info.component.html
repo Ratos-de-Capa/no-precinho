@@ -1,8 +1,9 @@
 <div>
     <div class="container">
-      <h2>{{title}}</h2>
-      <p>
-        {{data}}
+      <h1>{{title}}</h1>
+      <p *ngFor="let data of dataSheet">
+        <span class="title">{{data.key}}</span>:
+        <span class= "value">{{data.value}}</span>
       </p>
     </div>
 </div>

@@ -16,6 +16,8 @@
 
 #productArea{
     display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 2% 3%;
     gap: 2.5em;
     margin-bottom: 3.5em;
@@ -45,17 +47,40 @@
 
 #productRating{
     display: flex;
+    // flex-direction: column;
     text-align: center;
-    margin-bottom: 2em;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 1em;
+    gap: .8em;
 }
 
-.checked {
-  color: orange;
-}
+ngb-rating {
+    color: orange;
+  
+  }
+  
+  .star {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #d3d3d3;
+  }
+  .full {
+    color: orange;
+  }
+  .half {
+    position: absolute;
+    display: inline-block;
+    overflow: hidden;
+    color: orange;
+  }
+  
+
 
 #productRating p{
-    margin-left: .5em;
-    font-size: .9rem;
+    font-size: 1rem;
     color: #444;
 }
 
@@ -104,9 +129,7 @@
     padding: 5% 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1.2em;
+    gap: .5em;
 }
 
 
@@ -121,3 +144,5 @@
         flex-direction: column;
     }
 }
+
+

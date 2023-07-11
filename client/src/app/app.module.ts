@@ -13,6 +13,7 @@ import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 import { DialogComponent } from 'src/modules/dialog/dialog.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatDialogModule,
     ShareButtonsModule,
     ShareIconsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]

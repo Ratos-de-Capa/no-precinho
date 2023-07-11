@@ -19,4 +19,8 @@ export class ApiService {
     async makeGetRequest(path: string): Promise<any> {
         return await this._http.get(this.url + path).toPromise();
     }
+
+    async getProductById(path: string, id: number): Promise<any>{
+        return await this._http.get(this.url + path + id).toPromise();
+    }
 }

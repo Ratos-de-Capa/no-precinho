@@ -1,17 +1,17 @@
 <div class="productsContainer" (click)="navigateToProduct(123)">
     <figure class="productsRelatedImg">
-      <img src="{{ product.img }}" alt="imagem" />
+      <img src="{{ product.coverImageSrc }}" alt="imagem" />
     </figure>
 
     <div class="containerPrice">
       <h2>R$ {{ product.price }} à vista</h2>
-      <p>{{ product.portion }}</p>
+      <p>{{ product.paymentDetails }}</p>
     </div>
 
     <div class="containerStore">
       <div class="storeText">
         <mat-icon>store</mat-icon>
-        <p>{{ product.store }}</p>
+        <p>{{ product.origin }}</p>
       </div>
 
       <div>
