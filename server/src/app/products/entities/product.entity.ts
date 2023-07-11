@@ -20,7 +20,8 @@ export type ProductProps = {
 };
 
 export class Info {
-  [key: string]: string;
+  key: string;
+  value: string;
 }
 
 export class Reviews {

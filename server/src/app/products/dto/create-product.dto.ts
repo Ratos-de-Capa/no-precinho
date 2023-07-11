@@ -3,6 +3,7 @@ import {
   IsArray,
   IsNotEmpty,
   IsNumber,
+  IsOptional,
   IsString,
   ValidateNested,
 } from 'class-validator';
@@ -64,28 +65,38 @@ export class CreateProductDto {
 
   @ApiProperty({ type: Review, required: false })
   @IsNotEmpty()
+  @IsOptional()
   reviews?: Review;
 
   @ApiProperty({ type: Number, required: false })
   @IsNotEmpty()
   @IsNumber()
+  @IsOptional()
   percentOff?: number;
 
   @ApiProperty({ type: String, required: false })
   @IsNotEmpty()
   @IsString()
+  @IsOptional()
   description?: string;
 
   @ApiProperty({ type: String, required: false })
   @IsNotEmpty()
   @IsString()
+  @IsOptional()
   paymentDetails?: string;
 
   @ApiProperty({ type: [Info], required: false })
   @IsNotEmpty()
   @IsArray()
-  @IsString({ each: true })
+  @IsOptional()
   datasheet?: Info[];
+
+  @ApiProperty({ type: [String], required: false })
+  @IsNotEmpty()
+  @IsArray()
+  @IsOptional()
+  imagesSrc?: string[];
 }
 
 export class CreateProductDtos {
