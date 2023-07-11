@@ -19,6 +19,16 @@ export type ProductProps = {
   paymentDetails?: string;
 };
 
+export class Info {
+  key: string;
+  value: string;
+}
+
+export class Reviews {
+  rating: number;
+  evaluations: number;
+}
+
 @Schema({ timestamps: true })
 export class Product {
   constructor(props: ProductProps) {
@@ -64,11 +74,4 @@ export const ProductSchema = SchemaFactory.createForClass(Product).index(
   { unique: true },
 );
 
-export class Info {
-  [key: string]: string;
-}
 
-export class Reviews {
-  rating: number;
-  evaluations: number;
-}
