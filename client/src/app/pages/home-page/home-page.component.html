@@ -2,16 +2,19 @@
   <app-carousel class="carousel"></app-carousel>
 </div>
 
-<div class="product-list" >
+<div class="product-list">
   <h4>Os melhores preços desta semana</h4>
-  <app-product-list></app-product-list>
+  <app-product-list [products]="weekHighlights"></app-product-list>
 </div>
 
 <div class="publicity">
-  <app-category-card *ngFor="let category of categories" [category]="category"></app-category-card>
+  <app-publicity-card
+    *ngFor="let puclicity of ads"
+    [publicity]="puclicity"
+  ></app-publicity-card>
 </div>
 
-<div class="product-list" >
-  <h4>Os melhores preços desta semana</h4>
-  <app-product-list></app-product-list>
+<div class="product-list">
+  <h4>Os mais pupulares</h4>
+  <app-product-list [products]="popularProducts"></app-product-list>
 </div>
