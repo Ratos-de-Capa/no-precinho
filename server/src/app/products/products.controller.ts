@@ -5,6 +5,7 @@ import { UpdateProductDto } from './dto/update-product.dto';
 import { Public } from '../auth/decorators/public.decorator';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { CreateFileDto } from '../file/dto/create-file.dto';
+import { CategoryFilterDto } from './dto/category-filter.dto';
 
 @Controller('products')
 export class ProductsController {
@@ -23,9 +24,16 @@ export class ProductsController {
     return this.productsService.findAll();
   }
 
+  @Public()
   @Get(':item')
   findOne(@Param('item') item: string) {
     return this.productsService.findOne(item);
+  }
+
+  @Public()
+  @Post('/category')
+  getProductsByCategory(@Body() categoryFilterDto: CategoryFilterDto) {
+    return this.productsService.getProductsByCategory(categoryFilterDto);
   }
 
   @Public()
@@ -49,10 +57,7 @@ export class ProductsController {
   @Public()
   @Post('/update-cover/:id')
   @UseInterceptors(FileInterceptor('file'))
-  uploadCover(
-    @Param('id') id: string,
-    @UploadedFile() file: Express.Multer.File,
-  ) {
+  uploadCover(@Param('id') id: string, @UploadedFile() file: Express.Multer.File) {
     const { buffer, fieldname, originalname, size, mimetype } = file;
 
     const fileDto = new CreateFileDto({

@@ -6,6 +6,7 @@ import { UpdateProductDto } from './dto/update-product.dto';
 import { Product, ProductDocument } from './entities/product.entity';
 import { CreateFileDto } from '../file/dto/create-file.dto';
 import { FileService } from '../file/file.service';
+import { CategoryFilterDto } from './dto/category-filter.dto';
 
 @Injectable()
 export class ProductsService {
@@ -64,5 +65,10 @@ export class ProductsService {
 
     //update flag cover on db
     return this.productModel.updateOne({ _id: id }, { cover: response.url });
+  }
+
+  async getProductsByCategory(categoryDto: CategoryFilterDto) {
+    this.logger.log(`listing products by category ${categoryDto.category}`);
+    return this.productModel.find({ 'category.category': categoryDto.category }).exec();
   }
 }

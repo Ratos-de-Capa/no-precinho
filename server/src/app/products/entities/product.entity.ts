@@ -72,6 +72,9 @@ export class Product {
 
   @Prop()
   paymentDetails: string;
+
+  @Prop()
+  category: CategoryProps;
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);
