@@ -12,6 +12,11 @@ export class ProductPathComponent {
   constructor(public dialog: MatDialog, private router: Router) {}
   @Input() product: any;
 
+
+  ngOnInit(){
+    console.log(this.product);
+    
+  }
    // Abrir dialog
    openDialog(): void {
     const dialogRef = this.dialog.open(DialogComponent);

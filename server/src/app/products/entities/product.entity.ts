@@ -1,8 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
 import { CategoryProps } from '../../categories/entities/category.entity';
 
-export type ProductDocument = Product & Document & TimestampedDocument;
 
 export type ProductProps = {
   name: string;

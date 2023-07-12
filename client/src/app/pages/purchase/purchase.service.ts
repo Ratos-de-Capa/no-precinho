@@ -11,4 +11,9 @@ export class PurchaseService {
   getProductById(id: string) {
     return this.apiService.makeGetRequest(`/products/${id}`);
   }
+
+  getProductByCategory(category: string) {
+    return this.apiService.makeGetRequest(`/products/${category}`);
+  }
+
 }

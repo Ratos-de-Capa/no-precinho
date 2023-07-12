@@ -23,6 +23,10 @@ export class NavbarComponent {
 
 
     dialogRef.afterClosed().subscribe(res => {
+      if(!res){
+        return
+      }
+      
       if(res.event == 'close'){
         return
       }
@@ -30,9 +34,6 @@ export class NavbarComponent {
         this.userLocation.city = res.data.city;
         this.userLocation.state = res.data.state;
         console.log(this.userLocation)
-      }
-      if(res.event == undefined){
-        return
       }
     })
 
