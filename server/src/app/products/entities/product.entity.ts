@@ -1,8 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
 import { CategoryProps } from '../../categories/entities/category.entity';
 
-export type ProductDocument = Product & Document & TimestampedDocument;
 
 export type ProductProps = {
   name: string;
@@ -56,6 +54,9 @@ export class Product {
   @Prop({ required: true })
   cover: Image;
 
+  @Prop({ required: true })
+  category: CategoryProps;
+
   @Prop()
   images: Image[];
 
@@ -73,9 +74,6 @@ export class Product {
 
   @Prop()
   paymentDetails: string;
-
-  @Prop()
-  category: CategoryProps;
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);

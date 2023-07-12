@@ -1,40 +1,20 @@
 <div id="productImg">
 
     <figure class="mainImage">
-      <img src="https://source.unsplash.com/5WbYFH0kf_8" alt="Imagem 1" />
+      <img src="{{product.coverImageSrc}}" alt="Imagem 1" />
     </figure>
 
-    <div class="imgContainer">
-      <figure class="active" (click)="changeImg(1)">
-        <img
-          id="1"
-          src="https://source.unsplash.com/5WbYFH0kf_8"
-          alt="Imagem 1"
-        />
-      </figure>
+    <div style="width: 100%; height: 4em; text-align:center;margin-top:1em; padding:0; cursor: pointer; ">
+      <ng-image-slider #nav
+        [imagePopup]="false"
+        [images]="carousel"
+        [infinite]="true"
+        [autoSlide]="0"
+        [animationSpeed]=".5"
+        [imageSize]="{width: '80px', height: '70px'}"
+        slideImage="1">
+      </ng-image-slider>
+      
 
-      <figure (click)="changeImg(2)">
-        <img
-          id="2"
-          src="https://source.unsplash.com/VgbUxvW3gS4"
-          alt="Imagem 2"
-        />
-      </figure>
-
-      <figure (click)="changeImg(3)">
-        <img
-          id="3"
-          src="https://source.unsplash.com/5WbYFH0kf_8"
-          alt="Imagem 3"
-        />
-      </figure>
-
-      <figure (click)="changeImg(4)">
-        <img
-          id="4"
-          src="https://source.unsplash.com/VgbUxvW3gS4"
-          alt="Imagem 4"
-        />
-      </figure>
     </div>
 </div>

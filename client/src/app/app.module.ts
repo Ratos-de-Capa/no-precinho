@@ -7,18 +7,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LayoutModule } from './layout/layout.module';
 import { MaterialModule } from 'src/modules/styles/material.module';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 import { ShareIconsModule } from 'ngx-sharebuttons/icons';
-import { DialogComponent } from './dialog/dialog.component';
+import { DialogComponent } from 'src/modules/dialog/dialog.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DialogComponent,
-
+    DialogComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -31,7 +32,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatDialogModule,
     ShareButtonsModule,
     ShareIconsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]

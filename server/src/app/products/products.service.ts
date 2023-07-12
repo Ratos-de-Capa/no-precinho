@@ -36,7 +36,7 @@ export class ProductsService {
 
   async findOne(id: string) {
     this.logger.log(`Finding product by id ${id}`);
-    return this.productModel.findOne({ id: id }).exec();
+    return this.productModel.findOne({ _id: id }).exec();
   }
 
   async search(search: string) {

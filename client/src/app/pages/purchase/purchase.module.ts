@@ -7,7 +7,7 @@ import { ProductInfoModule } from 'src/modules/product-info/product-info.module'
 import { RelatedProductListModule } from 'src/modules/related-product-list/related-product-list.module';
 import { PurchaseCarouselModule } from 'src/modules/purchase-carousel/purchase-carousel.module';
 import { ProductPathModule } from 'src/modules/product-path/product-path.module';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; 
 
 
 
@@ -22,7 +22,8 @@ import { ProductPathModule } from 'src/modules/product-path/product-path.module'
     ProductInfoModule,
     RelatedProductListModule,
     PurchaseCarouselModule,
-    ProductPathModule
+    ProductPathModule,
+    NgbModule
   ]
 })
 export class PurchaseModule { }

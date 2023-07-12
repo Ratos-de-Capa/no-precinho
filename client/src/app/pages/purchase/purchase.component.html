@@ -2,7 +2,7 @@
 
 <section id="path">
     <div>
-      <app-product-path></app-product-path>
+      <app-product-path [product]="product.category"></app-product-path>
     </div>
 </section>
 
@@ -11,58 +11,59 @@
 <section id="productArea">
 
   <div>
-    <app-purchase-carousel></app-purchase-carousel>
+    <app-purchase-carousel [product]="product"></app-purchase-carousel>
   </div>
 
 
   <div id="productInfo">
     <div>
-      <h2>Smart TV LED 50" Samsung Crystal 4K HDR UN50AU7700GXZD</h2>
+      <h2>{{product.name}}</h2>
       <div id="productRating">
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star"></span>
-        <p>4.0 (800) Avaliações</p>
+        <p>{{product.reviews.rating}} ({{product.reviews.evaluations}}) Avaliações</p>
+
+        <ng-template #stars let-fill="fill">
+          <span class="star" [class.full]="fill === 100">
+            <span class="half" [style.width.%]="fill"> &#9733;</span>&#9733;
+          </span>
+        </ng-template>
+        
+        <ngb-rating
+          [(rate)]="product.reviews.rating"
+          [starTemplate]="stars"
+          [readonly]="true"
+          [max]="5"
+        ></ngb-rating>
+        
       </div>
     </div>
 
     <div id="productPrice">
-      <h3>R$ 2.199,00</h3>
-      <p>ou 12x de 162,89 com juros</p>
+      <h3>R$ {{product.price | number:'1.2-2'}}</h3>
+      <p>{{product.paymentDetails}}</p>
     </div>
 
     <div>
       <a
         id="purchaseBtn"
         mat-raised-button
-        href="https://www.google.com/"
-        target="_blank"
-        >Ir para a Loja</a
-      >
+        href="{{product.link}}"
+        target="_blank">
+        Ir para a Loja
+      </a>
     </div>
   </div>
 </section>
 
 <!-- Detalhes do Produto -->
 
-<section>
-  <div id="detailsContainer">
-    <div>
-      <app-product-info [title]="'Descrição'" [information]="loremText"></app-product-info>
-    </div>
-
-    <div id="details">
-      <div>
-        <app-product-info [title]="'Características da Imagem'" [information]="loremText"></app-product-info>
-      </div>
-      
-      <div>
-        <app-product-info [title]="'Ficha Técnica'" [information]="loremText"></app-product-info>
-      </div>
-    </div>
-    
+<section id="detailsContainer">
+  
+  
+  <div *ngIf="product.description">
+      <app-product-info [title]="'Descrição'" [dataSheet]="product.description"></app-product-info>
+  </div>
+  <div *ngIf="product.datasheet">
+        <app-product-info [title]="'Ficha Técnica'" [dataSheet]="product.datasheet"></app-product-info>
   </div>
 </section>
 
@@ -70,6 +71,6 @@
 
 <section>
   <div>
-    <app-related-product-list></app-related-product-list>
+    <app-related-product-list [products]="listProducts"></app-related-product-list>
   </div>
 </section>

@@ -7,6 +7,13 @@ import { Component, Input } from '@angular/core';
 })
 export class ProductInfoComponent {
   @Input() title: string;
-  @Input() information: string;
+  @Input() dataSheet: any;
+
+  arrayData: boolean;
+
+  ngOnInit(){
+    this.arrayData = Array.isArray(this.dataSheet);
+   
+  }
 
 }

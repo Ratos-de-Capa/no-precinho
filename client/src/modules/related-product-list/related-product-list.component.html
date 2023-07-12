@@ -1,8 +1,9 @@
 <div id="relatedProducts">
-    <h2 id="relatedProductsText">Produtos Semelhantes</h2>
-    <app-related-product-card
+  <h2 id="relatedProductsText">Produtos Semelhantes</h2>
+  <app-related-product-card
       *ngFor="let product of products"
       [product]="product"
       style="width: 100%;"
     ></app-related-product-card>
+    <!-- <app-related-product-card [product]="products" style="width: 100%;"></app-related-product-card> -->
 </div>

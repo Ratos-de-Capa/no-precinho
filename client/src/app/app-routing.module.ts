@@ -13,7 +13,7 @@ const routes: Routes = [
         pathMatch: 'full'
       },
       {
-        path: 'product',
+        path: 'product/:id',
         loadChildren: () => import('./pages/purchase/purchase.module').then(m => m.PurchaseModule)
       },
       {

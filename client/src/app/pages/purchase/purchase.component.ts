@@ -1,49 +1,66 @@
-import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
-import { DialogComponent } from 'src/app/dialog/dialog.component';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PurchaseService } from './purchase.service';
 
 @Component({
   selector: 'app-purchase',
   templateUrl: './purchase.component.html',
-  styleUrls: ['./purchase.component.scss']
+  styleUrls: ['./purchase.component.scss'],
 })
+export class PurchaseComponent implements OnInit {
+  product;
+  listProducts;
+  id: string;
+  relatedProducts: any[];
 
+  constructor(
+    private route: ActivatedRoute,
+    private purchaseService: PurchaseService,
+    private router: Router
+  ) {}
 
+  ngOnInit(): void {
+    this.id = this.route.snapshot.params['id'];
+    console.log(this.id);
 
+    this.updateProduct();
+    this.getSimilarProducts();
+  }
 
-export class PurchaseComponent {
-  imageIndex: Number = 1;
+  async updateProduct() {
+    try {
+      const res = await this.purchaseService.getProductById(this.id);
 
-  constructor(public dialog: MatDialog, private activateRoute: ActivatedRoute) {}
+      if (!res) {
+        this.redirectToHome();
+        return;
+      }
+
+      this.product = res;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   ngOninit(): void {
     //obter id dos parametros se existir
-
     //se exitr id buscar no servidor
-
     //se não exitr produto redirecionar ou
   }
 
-  // Abrir dialog
-  openDialog(): void {
-    const dialogRef = this.dialog.open(DialogComponent);
+  async getSimilarProducts() {
+    try {
+      const res = await this.purchaseService.getProductByCategory(
+        this.product.category.category
+      );
+
+      this.relatedProducts = res;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-
-
-  loremText: string = `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    Sed vestibulum semper velit, vitae consequat erat viverra nec.
-    Nullam vitae metus id metus suscipit feugiat.
-    In posuere tellus enim, eget gravida dui varius a.
-    Nullam ultrices tortor eget odio dapibus, vel aliquet ligula posuere.
-    Sed congue metus at commodo consectetur.
-    Integer vitae dui et tellus pharetra interdum nec non nunc.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    Sed vestibulum semper velit, vitae consequat erat viverra nec.
-    Nullam vitae metus id metus suscipit feugiat.
-    In posuere tellus enim, eget gravida dui varius a.
-    Nullam ultrices tortor eget odio dapibus, vel aliquet ligula posuere.
-    Sed congue metus at commodo consectetur.
-    Integer vitae dui et tellus pharetra interdum nec non nunc.`;
+  redirectToHome() {
+    this.router.navigate(['/']);
+  }
 }

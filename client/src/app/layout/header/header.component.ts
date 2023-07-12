@@ -16,4 +16,11 @@ export class HeaderComponent {
     this.router.navigate(['/products'], { queryParams: { item: this.searchTerm } })
   }
 
+  navigateToHome() {
+    this.router.navigate(['/home']);
+  }
+
+  navigateToLogin(){
+    this.router.navigate(['/login']);
+  }
 }

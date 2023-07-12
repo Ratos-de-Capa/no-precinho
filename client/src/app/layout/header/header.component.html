@@ -1,5 +1,5 @@
 <mat-toolbar class="header">
-  <span>
+  <span (click)="navigateToHome()">
     <a mat-button class="page-logo">Projeto Web</a>
   </span>
   <span class="search-field">
@@ -14,8 +14,8 @@
     />
   </span>
 
-  <span>
-    <a mat-button class="user-btn" href="login">
+  <span (click)="navigateToLogin()" >
+    <a mat-button class="user-btn">
       <i class="fa-regular fa-user user-icon"></i>
       <span class="user-label">Entre ou cadastre-se</span>
     </a>
