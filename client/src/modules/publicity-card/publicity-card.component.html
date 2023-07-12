@@ -1,0 +1,7 @@
+<div class="publicity-container" (click)="redirectToList()">
+    <figure *ngIf="publicity && publicity.type === 'img'">
+        <img [src]="publicity.src" alt="category image">
+    </figure>
+
+    <video *ngIf="publicity && publicity.type === 'video'" [src]="publicity.src" autoplay="autoplay" loop="loop"></video>
+</div>

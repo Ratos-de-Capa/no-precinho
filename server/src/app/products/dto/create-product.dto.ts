@@ -1,12 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {
-  IsArray,
-  IsNotEmpty,
-  IsNumber,
-  IsOptional,
-  IsString,
-  ValidateNested,
-} from 'class-validator';
+import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
 import { Info } from '../entities/product.entity';
 import { Type } from 'class-transformer';
 
@@ -34,6 +27,25 @@ class Category {
   subCategory: string;
 }
 
+class Image {
+  @ApiProperty({ type: String, required: true })
+  @IsNotEmpty()
+  @IsString()
+  src: string;
+
+  @ApiProperty({ type: String })
+  @IsNotEmpty()
+  @IsString()
+  @IsOptional()
+  key: string;
+
+  @ApiProperty({ type: String })
+  @IsNotEmpty()
+  @IsString()
+  @IsOptional()
+  alt: string;
+}
+
 export class CreateProductDto {
   @ApiProperty({ type: String, required: true })
   @IsNotEmpty()
@@ -47,7 +59,7 @@ export class CreateProductDto {
   @ApiProperty({ type: String, required: true })
   @IsNotEmpty()
   @IsString()
-  coverImageSrc: string;
+  cover: Image;
 
   @ApiProperty({ type: String, required: true })
   @IsNotEmpty()
@@ -96,10 +108,11 @@ export class CreateProductDto {
   @IsNotEmpty()
   @IsArray()
   @IsOptional()
-  imagesSrc?: string[];
+  images?: Image[];
 }
 
 export class CreateProductDtos {
+  @ApiProperty({ type: [CreateProductDto], required: true })
   @ValidateNested({ each: true })
   @Type(() => CreateProductDto)
   data: CreateProductDto[];

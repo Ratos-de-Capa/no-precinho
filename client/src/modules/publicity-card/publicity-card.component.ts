@@ -1,13 +1,14 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { Publicity } from './models/publicity.model';
 
 @Component({
-  selector: 'app-category-card',
-  templateUrl: './category-card.component.html',
-  styleUrls: ['./category-card.component.scss']
+  selector: 'app-publicity-card',
+  templateUrl: './publicity-card.component.html',
+  styleUrls: ['./publicity-card.component.scss']
 })
-export class CategoryCardComponent {
-  @Input() category: any
+export class PublicityCardComponent {
+  @Input() publicity: Publicity;
 
   constructor(private router: Router) { }
 

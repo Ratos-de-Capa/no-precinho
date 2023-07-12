@@ -8,8 +8,16 @@ export class HomePageService {
 
   constructor(private apiService: ApiService) { }
 
-  getProducts() {
-    return this.apiService.makeGetRequest('/products/');
+  async listAds() {
+    return await this.apiService.get('ads');
+  }
+
+  async listWeekHighlights() {
+    return await this.apiService.get('product/week-highlights');
+  }
+
+  async listPopularProducts() {
+    return await this.apiService.get('product/popular-products');
   }
 
 }

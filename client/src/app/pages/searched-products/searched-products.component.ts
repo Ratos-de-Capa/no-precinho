@@ -19,7 +19,7 @@ export class SearchedProductsComponent implements OnInit, OnDestroy{
     },
     {
       id: 2,
-      name: 'Smartphone Xiaomi Redmi Note 12', 
+      name: 'Smartphone Xiaomi Redmi Note 12',
       brand: 'Xiaomi',
       price: 1175,
       description: 'Smartphone Xiaomi Redmi Note 12 6GB RAM 128GB Câmera Tripla',
@@ -59,7 +59,7 @@ export class SearchedProductsComponent implements OnInit, OnDestroy{
     },
     {
       id: 7,
-      name: 'Smartphone Xiaomi Redmi Note 12', 
+      name: 'Smartphone Xiaomi Redmi Note 12',
       brand: 'Xiaomi',
       price: 1175,
       description: 'Smartphone Xiaomi Redmi Note 12 6GB RAM 128GB Câmera Tripla',
@@ -99,7 +99,7 @@ export class SearchedProductsComponent implements OnInit, OnDestroy{
     },
     {
       id: 12,
-      name: 'Smartphone Xiaomi Redmi Note 12', 
+      name: 'Smartphone Xiaomi Redmi Note 12',
       brand: 'Xiaomi',
       price: 1175,
       description: 'Smartphone Xiaomi Redmi Note 12 6GB RAM 128GB Câmera Tripla',
@@ -139,7 +139,7 @@ export class SearchedProductsComponent implements OnInit, OnDestroy{
     },
     {
       id: 17,
-      name: 'Smartphone Xiaomi Redmi Note 12', 
+      name: 'Smartphone Xiaomi Redmi Note 12',
       brand: 'Xiaomi',
       price: 1175,
       description: 'Smartphone Xiaomi Redmi Note 12 6GB RAM 128GB Câmera Tripla',
@@ -179,7 +179,7 @@ export class SearchedProductsComponent implements OnInit, OnDestroy{
     },
     {
       id: 22,
-      name: 'Smartphone Xiaomi Redmi Note 12', 
+      name: 'Smartphone Xiaomi Redmi Note 12',
       brand: 'Xiaomi',
       price: 1175,
       description: 'Smartphone Xiaomi Redmi Note 12 6GB RAM 128GB Câmera Tripla',
@@ -219,7 +219,7 @@ export class SearchedProductsComponent implements OnInit, OnDestroy{
     },
     {
       id: 27,
-      name: 'Smartphone Xiaomi Redmi Note 12', 
+      name: 'Smartphone Xiaomi Redmi Note 12',
       brand: 'Xiaomi',
       price: 1175,
       description: 'Smartphone Xiaomi Redmi Note 12 6GB RAM 128GB Câmera Tripla',
@@ -249,7 +249,7 @@ export class SearchedProductsComponent implements OnInit, OnDestroy{
       description: 'Smartphone Xiaomi Pocophone Poco X5 5G 128GB Câmera Tripla',
       src: 'https://i.zst.com.br/thumbs/45/1/34/-975675791.jpg'
     }
-    
+
   ];
 
   brands: string[] = ['Todos', 'Apple', 'Samsung', 'Motorola', 'Xiaomi', 'Asus', 'LG', 'Lenovo', 'Sony', 'Multilaser', 'Positivo', 'Philco', 'CCE', 'Outros'];
@@ -260,19 +260,19 @@ export class SearchedProductsComponent implements OnInit, OnDestroy{
   constructor(
     private activatedRoute: ActivatedRoute
   ) { }
-  
+
   ngOnInit(): void {
     this.sub = this.activatedRoute.queryParams.subscribe((queryParams) => {
       console.log(queryParams)
       this.searchedItem = queryParams['item'];
-    }) 
+    })
   }
 
   ngOnDestroy(): void {
     if(this.sub) this.sub.unsubscribe();
   }
 
-  
+
 }
 
 interface Product {

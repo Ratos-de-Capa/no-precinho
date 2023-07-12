@@ -32,8 +32,7 @@ export abstract class Scraping {
     });
 
     for (const category of this.categories) {
-      if (index === 3) break;
-      //console.log(`Searching for ${search.name}...`);
+      console.log(`Searching for ${category.subCategory}...`);
       console.log("starting search for: ", category);
       const result = await this.search(category);
       if (result) {
@@ -41,8 +40,6 @@ export abstract class Scraping {
         console.log("result: ", result);
         await apiService.post<Product[]>("products", { data: result });
       }
-
-      index++;
     }
   }
 

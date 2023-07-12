@@ -27,6 +27,12 @@ export class Reviews {
   evaluations: number;
 }
 
+export class Image {
+  src: string;
+  key?: string;
+  alt?: string;
+}
+
 @Schema({ timestamps: true })
 export class Product {
   constructor(props: ProductProps) {
@@ -46,13 +52,13 @@ export class Product {
   origin: string;
 
   @Prop({ required: true })
-  coverImageSrc: string;
+  cover: Image;
 
   @Prop({ required: true })
   category: CategoryProps;
 
   @Prop()
-  imagesSrc: string[];
+  images: Image[];
 
   @Prop()
   reviews: Reviews;
@@ -70,7 +76,7 @@ export class Product {
   paymentDetails: string;
 }
 
-export const ProductSchema = SchemaFactory.createForClass(Product).index(
-  { link: 1 },
-  { unique: true },
-);
+export const ProductSchema = SchemaFactory.createForClass(Product);
+
+ProductSchema.index({ link: 1 }, { unique: true });
+ProductSchema.index({ name: 'text' });
