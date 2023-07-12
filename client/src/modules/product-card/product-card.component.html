@@ -1,7 +1,7 @@
-<div class="product-card" (click)="navigateToProduct('64ad591c80be9307c211751e')">
+<div class="product-card" (click)="navigateToProduct(product.id)">
   <div class="img-container">
     <figure>
-      <img [src]="product.src" alt="imagem do Produto"/>
+      <img [src]="product.coverImageSrc" alt="imagem do Produto"/>
     </figure>
   </div>
   <div class="price">

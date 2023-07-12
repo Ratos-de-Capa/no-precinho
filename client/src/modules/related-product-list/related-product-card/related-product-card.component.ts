@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-related-product-card',
   templateUrl: './related-product-card.component.html',

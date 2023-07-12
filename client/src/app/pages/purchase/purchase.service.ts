@@ -13,7 +13,7 @@ export class PurchaseService {
   }
 
   getProductByCategory(category: string) {
-    return this.apiService.makeGetRequest(`/products/${category}`);
+    return this.apiService.makeGetRequest(`/products/${category.toLowerCase()}`);
   }
 
 }

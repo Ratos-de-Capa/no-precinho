@@ -58,6 +58,7 @@ export class PurchaseComponent implements OnInit {
     },
   };
   listProducts= [{
+    id: '8',
     link: 'https://www.amazon.com.br/sspa/click?ie=UTF8&spc=MTo4Mzc3NzY4NjUxMTgzNDQ0OjE2ODkwODIwNzU6c3BfYXRmOjIwMDAyNzAzODAyMTk5ODo6MDo6&url=%2FIphone-Apple-Branco-64gb-Desbloqueado%2Fdp%2FB08N1MG4VL%2Fref%3Dsr_1_1_sspa%3Fkeywords%3DiPhone%26qid%3D1689082075%26sr%3D8-1-spons%26ufe%3Dapp_do%253Aamzn1.fos.25548f35-0de7-44b3-b28e-0f56f3f96147%26sp_csd%3Dd2lkZ2V0TmFtZT1zcF9hdGY%26psc%3D1',
     coverImageSrc:
       'https://m.media-amazon.com/images/I/71kZfQA-Y7L._AC_UL320_.jpg',
@@ -106,6 +107,7 @@ export class PurchaseComponent implements OnInit {
       evaluations: Number(14628),
     },
   },{
+    id: '9',
     link: 'https://www.amazon.com.br/sspa/click?ie=UTF8&spc=MTo4Mzc3NzY4NjUxMTgzNDQ0OjE2ODkwODIwNzU6c3BfYXRmOjIwMDAyNzAzODAyMTk5ODo6MDo6&url=%2FIphone-Apple-Branco-64gb-Desbloqueado%2Fdp%2FB08N1MG4VL%2Fref%3Dsr_1_1_sspa%3Fkeywords%3DiPhone%26qid%3D1689082075%26sr%3D8-1-spons%26ufe%3Dapp_do%253Aamzn1.fos.25548f35-0de7-44b3-b28e-0f56f3f96147%26sp_csd%3Dd2lkZ2V0TmFtZT1zcF9hdGY%26psc%3D1',
     coverImageSrc:
       'https://m.media-amazon.com/images/I/71kZfQA-Y7L._AC_UL320_.jpg',

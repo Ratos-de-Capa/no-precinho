@@ -23,6 +23,7 @@ export class ProductCardComponent {
     }
   }
 
+
   navigateToProduct(id: string) {
     this.router.navigate(['/product', id]);
   }

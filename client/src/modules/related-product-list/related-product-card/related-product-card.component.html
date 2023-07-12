@@ -1,10 +1,11 @@
-<div class="productsContainer" (click)="navigateToProduct(123)">
+<div class="productsContainer" (click)="navigateToProduct(product.id)">
     <figure class="productsRelatedImg">
       <img src="{{ product.coverImageSrc }}" alt="imagem" />
     </figure>
 
     <div class="containerPrice">
-      <h2>R$ {{ product.price }} à vista</h2>
+      <h2>{{product.name}}</h2>
+      <h3>R$ {{ product.price }} à vista</h3>
       <p>{{ product.paymentDetails }}</p>
     </div>
 
