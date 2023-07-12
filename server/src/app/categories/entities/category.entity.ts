@@ -3,10 +3,10 @@ import { Document } from 'mongoose';
 
 export type CategoryDocument = Category & Document & TimestampedDocument;
 
-export type CategoryProps = {
+export class CategoryProps  {
   subCategory: string; // xiaomi
   category: string; // celular
-};
+}
 
 // TODO: THINK ABOUT NAME OF THIS ENTITY
 

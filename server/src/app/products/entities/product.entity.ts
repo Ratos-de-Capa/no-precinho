@@ -50,6 +50,9 @@ export class Product {
   @Prop({ required: true })
   coverImageSrc: string;
 
+  @Prop({ required: true })
+  category: CategoryProps;
+
   @Prop()
   imagesSrc: string[];
 
@@ -73,5 +76,3 @@ export const ProductSchema = SchemaFactory.createForClass(Product).index(
   { link: 1 },
   { unique: true },
 );
-
-
