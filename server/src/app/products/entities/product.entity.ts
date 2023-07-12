@@ -20,7 +20,8 @@ export type ProductProps = {
 };
 
 export class Info {
-  [key: string]: string;
+  key: string;
+  value: string;
 }
 
 export class Reviews {
@@ -30,7 +31,7 @@ export class Reviews {
 
 export class Image {
   src: string;
-  key: string;
+  key?: string;
   alt?: string;
 }
 
@@ -56,7 +57,7 @@ export class Product {
   cover: Image;
 
   @Prop()
-  imagesSrc: string[];
+  images: Image[];
 
   @Prop()
   reviews: Reviews;
