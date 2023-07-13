@@ -1,4 +1,3 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ApiService } from 'src/modules/services/api.service';
 
@@ -23,6 +22,6 @@ export class LoginService {
   async login(loginPayload: LoginPayload): Promise<LoginResponse> {
     const endpoint = `${this.uri}login`;
 
-    return this.apiService.post(endpoint, loginPayload);
+    return await this.apiService.post(endpoint, loginPayload);
   }
 }

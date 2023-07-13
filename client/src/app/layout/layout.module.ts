@@ -8,6 +8,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { ToastrModule } from 'src/modules/toastr-module/toastr.module';
+import { LocationSelectorModule } from 'src/modules/location-selector/location-selector.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ToastrModule } from 'src/modules/toastr-module/toastr.module';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    ToastrModule.forChild()
+    ToastrModule.forChild(),
+    LocationSelectorModule
   ],
   exports: [
     HeaderComponent,

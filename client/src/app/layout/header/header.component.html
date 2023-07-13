@@ -14,10 +14,17 @@
     />
   </span>
 
-  <span (click)="navigateToLogin()" >
+  <span (click)="navigateToLogin()" *ngIf="!isAuthenticated()">
     <a mat-button class="user-btn">
       <i class="fa-regular fa-user user-icon"></i>
       <span class="user-label">Entre ou cadastre-se</span>
+    </a>
+  </span>
+
+  <span>
+    <a mat-button class="user-btn" *ngIf="isAuthenticated()">
+      <i class="fa-regular fa-user user-icon"></i>
+      <span class="user-label">Olá, {{ session?.name }}</span>
     </a>
   </span>
 

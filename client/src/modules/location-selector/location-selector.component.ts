@@ -13,16 +13,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'app-location-selector',
   templateUrl: './location-selector.component.html',
-  styleUrls: ['./location-selector.component.scss'],
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatSelectModule,
-    MatFormFieldModule,
-    MatOptionModule,
-    FormsModule,
-    MatButtonModule
-  ]
+  styleUrls: ['./location-selector.component.scss']
 })
 export class LocationSelectorComponent {
   constructor(private locationService: LocationServiceService, private dialogRef: MatDialogRef <LocationSelectorComponent> ) {}

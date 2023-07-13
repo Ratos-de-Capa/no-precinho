@@ -1,13 +1,20 @@
 import { Injectable } from '@angular/core';
+import { Session } from 'src/models/session.interface';
 import { ApiService } from 'src/modules/services/api.service';
 
 @Injectable({ providedIn: 'root' })
-export class AuthResolve {
+export class AuthResolver {
   constructor(private apiService: ApiService) {}
 
-  async resolve() {
-    const endpoint = 'auth/validate';
+  async resolve(): Promise<Session> {
+    const endpoint = '/auth/getSession';
 
-    return this.apiService.get(endpoint);
+    try {
+      const session = await this.apiService.get(endpoint);
+      return session;
+    } catch (error) {
+      console.error('AuthResolver error: ', error);
+      return null;
+    }
   }
 }

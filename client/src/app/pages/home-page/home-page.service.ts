@@ -9,15 +9,15 @@ export class HomePageService {
   constructor(private apiService: ApiService) { }
 
   async listAds() {
-    return await this.apiService.get('ads');
+    return await this.apiService.get('/ads');
   }
 
   async listWeekHighlights() {
-    return await this.apiService.get('product/week-highlights');
+    return await this.apiService.get('/product/week-highlights');
   }
 
   async listPopularProducts() {
-    return await this.apiService.get('product/popular-products');
+    return await this.apiService.get('/product/popular-products');
   }
 
 }

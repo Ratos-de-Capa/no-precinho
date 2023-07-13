@@ -45,8 +45,6 @@ export class LoginFormComponent implements OnInit {
   }
 
   async onSubmit() {
-    console.log('onSubmit', this.loginForm.valid);
-
     if (this.loginForm.valid) {
       try {
         const user: LoginPayload = this.loginForm.value;
