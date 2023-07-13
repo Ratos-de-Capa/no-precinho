@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HomePageService } from './home-page.service';
 import { Publicity } from '../../../modules/publicity-card/models/publicity.model';
 import { Product } from 'src/models/product.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -9,11 +10,25 @@ import { Product } from 'src/models/product.model';
   styleUrls: ['./home-page.component.scss'],
 })
 export class HomePageComponent implements OnInit {
-  ads: Publicity[] = [];
+  ads: Publicity[] = [
+    {
+      src: '../../assets/img/pub-02.png',
+      type: 'img',
+      category: 'geladeiras',
+    },
+    {
+      src: '../../assets/img/pub-03.mp4',
+      type: 'video',
+      category: 'halteres',
+    },
+  ];
   weekHighlights: Product[] = [];
   popularProducts: Product[] = [];
 
-  constructor(private homePageService: HomePageService) {}
+  constructor(
+    private homePageService: HomePageService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.initPublicities();
@@ -47,5 +62,9 @@ export class HomePageComponent implements OnInit {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  redirecToProducts(category: string): void {
+    this.router.navigate(['/products'], { queryParams: { category } });
   }
 }

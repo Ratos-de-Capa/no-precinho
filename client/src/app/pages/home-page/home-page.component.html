@@ -11,6 +11,7 @@
   <app-publicity-card
     *ngFor="let puclicity of ads"
     [publicity]="puclicity"
+    (click)="redirecToProducts(puclicity.category)"
   ></app-publicity-card>
 </div>
 
