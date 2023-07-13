@@ -9,13 +9,15 @@ import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { ToastrModule } from 'src/modules/toastr-module/toastr.module';
 import { LocationSelectorModule } from 'src/modules/location-selector/location-selector.module';
+import { CategoriesMenuComponent } from './navbar/categories-menu/categories-menu.component';
 
 @NgModule({
   declarations: [
     LayoutComponent,
     HeaderComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    CategoriesMenuComponent
   ],
   imports: [
     CommonModule,

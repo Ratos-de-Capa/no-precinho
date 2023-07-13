@@ -3,6 +3,11 @@ import { Document } from 'mongoose';
 
 export type CategoryDocument = Category & Document & TimestampedDocument;
 
+export class CategoryMenu {
+  category: string;
+  subCategories: string[];
+}
+
 export class CategoryProps {
   subCategory: string; // xiaomi
   category: string; // celular

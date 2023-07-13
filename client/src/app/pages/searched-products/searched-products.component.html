@@ -30,10 +30,17 @@
   </div>
 
   <div class="result">
-    <div>
+    <div *ngIf="!category">
       <span>Voce buscou por</span>
       <h1>
         <b>{{ searchedItem }}</b>
+      </h1>
+    </div>
+
+    <div *ngIf="category">
+      <span>Voce esta na ategoria</span>
+      <h1>
+        <b>{{ category }}</b>
       </h1>
     </div>
 

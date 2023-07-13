@@ -76,7 +76,7 @@ export class ProductsService {
   async getProductsByCategory(categoryDto: CategoryFilterDto) {
     this.logger.log(`listing products by category ${categoryDto.category}`);
     const { category, limit, skip } = categoryDto;
-    const result = await this.productModel.find({ 'category.category': category }, null, { skip, limit }).exec();
+    const result = await this.productModel.find({ 'category.subCategory': category }).skip(skip).limit(limit).exec();
 
     return result.map((product) => this.parseProduct(product));
   }

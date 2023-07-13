@@ -16,6 +16,7 @@ export class SearchedProductsComponent implements OnInit, OnDestroy {
   brands: string[] = [];
 
   searchedItem: string;
+  category: string;
   sub: Subscription;
 
   minPrice: number = 0;
@@ -31,7 +32,13 @@ export class SearchedProductsComponent implements OnInit, OnDestroy {
     this.sub = this.activatedRoute.queryParams.subscribe((queryParams) => {
       console.log(queryParams);
       this.searchedItem = queryParams['item'];
-      this.listSearchedProducts();
+      this.category = queryParams['category'];
+
+      if (this.category === undefined || this.category === null) {
+        this.listSearchedProducts();
+      } else {
+        this.listProductsByCategory();
+      }
     });
   }
 
@@ -40,6 +47,19 @@ export class SearchedProductsComponent implements OnInit, OnDestroy {
       this.products = await this.searchedProductService.listSearchedProducts(
         this.searchedItem
       );
+
+      this.updateBrands();
+    } catch (error) {
+      this.toastr.danger('Erro ao listar produtos', 'Erro');
+    }
+  }
+
+  async listProductsByCategory(): Promise<void> {
+    try {
+      this.products = await this.searchedProductService.listProductsByCategory(
+        this.category
+      );
+      
       this.updateBrands();
     } catch (error) {
       this.toastr.danger('Erro ao listar produtos', 'Erro');
