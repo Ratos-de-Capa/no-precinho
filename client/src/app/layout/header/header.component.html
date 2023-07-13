@@ -24,18 +24,18 @@
   <span>
     <a mat-button class="user-btn" *ngIf="isAuthenticated()">
       <i class="fa-regular fa-user user-icon"></i>
-      <span class="user-label">Olá, {{ session?.name }}</span>
+      <span class="user-label">Olá, {{ userName }}</span>
     </a>
   </span>
 
   <div class="actions">
-    <button mat-icon-button matTooltip="Favoritos">
+    <button mat-icon-button matTooltip="Favoritos" (click)="goFavorites()">
       <mat-icon class="icon-center">
         <i class="fas fa-heart"></i>
       </mat-icon>
     </button>
 
-    <button mat-icon-button matTooltip="Carrinho">
+    <button mat-icon-button matTooltip="Carrinho" (click)="goToCart()">
       <mat-icon class="icon-center">
         <i class="fas fa-cart-shopping"></i>
       </mat-icon>

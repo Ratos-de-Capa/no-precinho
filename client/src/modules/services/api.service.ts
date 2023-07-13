@@ -8,7 +8,7 @@ export class ApiService {
 
   private url = 'http://localhost:9000';
   private httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }, ),
   };
 
   constructor(private _http: HttpClient) {}

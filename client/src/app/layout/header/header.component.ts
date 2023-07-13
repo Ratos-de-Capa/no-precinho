@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Session } from 'src/models/session.interface';
+import { SessionCacheService } from 'src/modules/services/session-cache.service';
+import { ToastrService } from 'src/modules/toastr-module';
 
 @Component({
   selector: 'app-header',
@@ -10,22 +12,26 @@ import { Session } from 'src/models/session.interface';
 export class HeaderComponent implements OnInit {
   searchTerm: string;
 
-  session: Session;
+  constructor(
+    private router: Router,
+    private toastrService: ToastrService,
+    private sessionCacheService: SessionCacheService
+  ) {}
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+  get userName() {
+    const session: Session = this.sessionCacheService.get('session');
+    return session?.name;
+  }
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ data }) => {
-      this.session = data;
-    });
+    this.sessionCacheService.get('session');
   }
 
   isAuthenticated() {
-    return this.session != null && this.session != undefined;
+    return this.sessionCacheService.has('session');
   }
 
   search($event) {
-    console.log(this.searchTerm);
     this.router.navigate(['/products'], {
       queryParams: { item: this.searchTerm },
     });
@@ -37,5 +43,23 @@ export class HeaderComponent implements OnInit {
 
   navigateToLogin() {
     this.router.navigate(['/login']);
+  }
+
+  goToCart() {
+    if (this.isAuthenticated()) {
+      this.router.navigate(['/cart']);
+    } else {
+      this.toastrService.info('Você precisa estar logado para acessar o carrinho');
+      this.router.navigate(['/login']);
+    }
+  }
+
+  goFavorites() {
+    if (this.isAuthenticated()) {
+      this.router.navigate(['/favorites']);
+    } else {
+      this.toastrService.info('Você precisa estar logado para acessar os favoritos');
+      this.router.navigate(['/login']);
+    }
   }
 }

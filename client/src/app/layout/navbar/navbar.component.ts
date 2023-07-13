@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Category, CategoryMenu } from 'src/models/category.model';
 import { LocationSelectorComponent } from 'src/modules/location-selector/location-selector.component';
+import { SessionCacheService } from 'src/modules/services/session-cache.service';
 import { ToastrService } from 'src/modules/toastr-module';
 import { NavbarService } from './navbar.service';
 
@@ -21,7 +23,9 @@ export class NavbarComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private navbarService: NavbarService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private sessionCacheService: SessionCacheService,
+    private router: Router
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -53,5 +57,16 @@ export class NavbarComponent implements OnInit {
         console.log(this.userLocation);
       }
     });
+  }
+
+  redirectToHistory(): void {
+    if (this.sessionCacheService.has('session')) {
+      this.router.navigate(['/history']);
+    } else {
+      this.toastrService.warning(
+        'Você precisa estar logado para acessar o histórico'
+      );
+      this.router.navigate(['/login']);
+    }
   }
 }
