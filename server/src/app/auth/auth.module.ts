@@ -10,7 +10,11 @@ import { UsersModule } from '../users/users.module';
   providers: [AuthService],
   exports: [AuthService],
   imports: [
-    UsersModule
-  ]
+    UsersModule,
+    JwtModule.register({
+      secret: jwtConstants.secret,
+      signOptions: { expiresIn: '60s' },
+    }),
+  ],
 })
 export class AuthModule {}

@@ -24,7 +24,12 @@ export class PurchaseComponent implements OnInit {
     console.log(this.id);
 
     this.updateProduct();
-    this.getSimilarProducts();
+  }
+
+  async init() {
+    await this.updateProduct();
+
+    this.getSimilarProducts(this.product.category.category, 0, 4);
   }
 
   async updateProduct() {
@@ -42,17 +47,9 @@ export class PurchaseComponent implements OnInit {
     }
   }
 
-  ngOninit(): void {
-    //obter id dos parametros se existir
-    //se exitr id buscar no servidor
-    //se não exitr produto redirecionar ou
-  }
-
-  async getSimilarProducts() {
+  async getSimilarProducts(category: string, skip: number, limit: number) {
     try {
-      const res = await this.purchaseService.getProductByCategory(
-        this.product.category.category
-      );
+      const res = await this.purchaseService.getProductByCategory(category, skip, limit);
 
       this.relatedProducts = res;
     } catch (error) {

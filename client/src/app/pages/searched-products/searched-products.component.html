@@ -1,38 +1,57 @@
-<div class="content">  
-    <div class="filters-side-bar">
-        <mat-slide-toggle class="slide-toggle">Frete Gratis</mat-slide-toggle>
+<div class="content">
+  <div class="filters-side-bar">
+    <mat-slide-toggle class="slide-toggle">Frete Gratis</mat-slide-toggle>
 
-        <div class="brand">
-            <h3>Marca</h3>
-            <mat-selection-list #brandsSelected>
-                <mat-list-option *ngFor="let brand of brands">
-                    {{brand}}
-                </mat-list-option>
-            </mat-selection-list>
-        </div>
-
-        <div>
-            <h3>Preço</h3>
-            <mat-slider class="slider" min="0" max="15000" step="500" discrete >
-                <input matSliderThumb>
-            </mat-slider>
-        </div>
+    <div class="brand">
+      <h3>Marca</h3>
+      <mat-selection-list #brandsSelected>
+        <mat-list-option *ngFor="let brand of brands">
+          {{ brand }}
+        </mat-list-option>
+      </mat-selection-list>
     </div>
 
-    <div class="result">
-        <div>
-            <span>Voce buscou por</span>
-            <h1><b>{{searchedItem}}</b></h1>
-        </div>
+    <div>
+      <h3>Preço</h3>
+      <span>Minimo: {{ minPrice }}</span>
+      <mat-slider class="slider" min="0" max="15000" step="50" discrete>
+        <input matSliderThumb [(ngModel)]="minPrice" />
+      </mat-slider>
 
-        <mat-divider></mat-divider>
-
-        <span>{{products.length}} resultados</span>
-        <div class="products-list-box">            
-            <app-product-card
-                *ngFor="let product of products"
-                [product]="product"
-            ></app-product-card>
-        </div>
+      <span>Maximo: {{ maxPrice }}</span>
+      <mat-slider class="slider" min="0" max="15000" step="50" discrete>
+        <input matSliderThumb [(ngModel)]="maxPrice" />
+      </mat-slider>
     </div>
+
+    <div class="filter-btn-container">
+      <button class="filter-btn" mat-raised-button color="primary">Aplicar filtros</button>
+    </div>
+  </div>
+
+  <div class="result">
+    <div *ngIf="!category">
+      <span>Voce buscou por</span>
+      <h1>
+        <b>{{ searchedItem }}</b>
+      </h1>
+    </div>
+
+    <div *ngIf="category">
+      <span>Voce esta na ategoria</span>
+      <h1>
+        <b>{{ category }}</b>
+      </h1>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <span>{{ products.length }} resultados</span>
+    <div class="products-list-box">
+      <app-product-card
+        *ngFor="let product of products"
+        [product]="product"
+      ></app-product-card>
+    </div>
+  </div>
 </div>

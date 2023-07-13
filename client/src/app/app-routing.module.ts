@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthResolver } from 'src/middlewares/auth.resolve';
 import { LayoutComponent } from './layout/layout.component';
 
 const routes: Routes = [
@@ -25,6 +26,9 @@ const routes: Routes = [
         loadChildren: () => import('./pages/searched-products/searched-products.module').then(m => m.SearchedProductsModule)
       }
     ],
+    resolve: {
+      data: AuthResolver
+    }
   },
   {
     path: 'login',

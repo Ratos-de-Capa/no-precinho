@@ -1,17 +1,6 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { CategoriesService } from './categories.service';
-import {
-  CreateCategoryDto,
-  CreateManyCategoryDto,
-} from './dto/create-category.dto';
+import { CreateCategoryDto, CreateManyCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 import { Public } from '../auth/decorators/public.decorator';
 
@@ -31,16 +20,13 @@ export class CategoriesController {
   }
 
   @Public()
-  @Get(':id')
+  @Get('/find/:id')
   findOne(@Param('id') id: string) {
     return this.categoriesService.findOne(id);
   }
 
   @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateCategoryDto: UpdateCategoryDto,
-  ) {
+  update(@Param('id') id: string, @Body() updateCategoryDto: UpdateCategoryDto) {
     return this.categoriesService.update(id, updateCategoryDto);
   }
 
@@ -53,5 +39,11 @@ export class CategoriesController {
   @Post('/many')
   createMany(@Body() createManyCategoryDto: CreateManyCategoryDto) {
     return this.categoriesService.createMany(createManyCategoryDto);
+  }
+
+  @Public()
+  @Get('/get-categories-menu')
+  getCategoriesMenu() {
+    return this.categoriesService.getCategoriesMenu();
   }
 }

@@ -1,17 +1,18 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { Product } from 'src/models/product.model';
 
 @Component({
   selector: 'app-product-card',
   templateUrl: './product-card.component.html',
-  styleUrls: ['./product-card.component.scss']
+  styleUrls: ['./product-card.component.scss'],
 })
 export class ProductCardComponent {
   @ViewChild('description') description: ElementRef;
 
-  @Input() product: any;
+  @Input() product: Product;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
   ngAfterViewInit() {
     const elemento = this.description.nativeElement;
@@ -23,8 +24,18 @@ export class ProductCardComponent {
     }
   }
 
-
   navigateToProduct(id: string) {
+    console.log('navigating to product', id);
+    
     this.router.navigate(['/product', id]);
+  }
+
+  getOldPrice() {
+    if (this.product.percentOff) {
+      return (+this.product.price / (1 - this.product.percentOff / 100)).toFixed(
+        2
+      );
+    }
+    return null;
   }
 }

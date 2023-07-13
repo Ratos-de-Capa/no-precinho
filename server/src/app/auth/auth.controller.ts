@@ -1,55 +1,67 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Post, Request, Res, UnauthorizedException } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { SignInDto } from './dtos/auth.dto';
-import { Public } from './decorators/public.decorator';
+import { Body, Controller, Get, HttpCode, HttpStatus, Logger, Post, Request, Res } from '@nestjs/common';
 import { Response } from 'express';
-import { SESSION_DURATION, SessionAccessToken } from './constants/session.constant';
+import { AuthService } from './auth.service';
+import { SessionAccessToken, SESSION_DURATION } from './constants/session.constant';
+import { Public } from './decorators/public.decorator';
+import { SignInDto } from './dtos/auth.dto';
 
 @Controller('auth')
 export class AuthController {
-    constructor(private authService: AuthService) { }
+  private readonly logger = new Logger(AuthController.name);
 
-    @Public()
-    @HttpCode(HttpStatus.OK)
-    @Post('login')
-    async signIn(@Res() res: Response, @Body() signInDto: SignInDto) {
-        const authResult = await this.authService.signIn(signInDto.login, signInDto.password);
+  constructor(private authService: AuthService) {}
 
-        if(!authResult) {
-            throw new UnauthorizedException();
-        }
+  @Public()
+  @HttpCode(HttpStatus.OK)
+  @Post('login')
+  async signIn(@Res() res: Response, @Body() signInDto: SignInDto) {
+    const authResult = await this.authService.signIn(signInDto.login, signInDto.password);
 
-        const { access_token } = authResult;
-
-        res.cookie(SessionAccessToken, access_token, {
-            maxAge: SESSION_DURATION,
-            httpOnly: true,
-        });
-
-        //TODO - log user login event
-
-        res.json({
-            success: true,
-            message: 'Authentication ok'
-        });
+    if (!authResult) {
+      res.status(HttpStatus.UNAUTHORIZED).json({
+        success: false,
+        message: 'Authentication failed',
+      });
+      return;
     }
 
-    @Get('profile')
-    getProfile(@Request() req) {
-        return req.user;
-    }
+    const { access_token } = authResult;
 
-    @Public()
-    @HttpCode(HttpStatus.OK)
-    @Post('logout')
-    async signOut(@Res() res: Response) {
-        res.clearCookie(SessionAccessToken);
+    this.logger.log(`User ${signInDto.login} logged in, session token: ${access_token}`);
 
-        //TODO - log user logout event
+    console.log('access_token: ', access_token);
+    console.log('SESSION_DURATION: ', SESSION_DURATION);
+    console.log('SessionAccessToken: ', SessionAccessToken);
 
-        res.json({
-            success: true,
-            message: 'Logout ok'
-        });
-    }
+    res
+      .cookie(SessionAccessToken, access_token, {
+        maxAge: SESSION_DURATION,
+      })
+      .json({
+        success: true,
+        message: 'Authentication ok',
+      });
+  }
+
+  @Public()
+  @Get('getSession')
+  getProfile(@Request() req) {
+    console.log('req.user: ', req.user);
+
+    return req.user;
+  }
+
+  @Public()
+  @HttpCode(HttpStatus.OK)
+  @Post('logout')
+  async signOut(@Request() req, @Res() res: Response) {
+    res.clearCookie(SessionAccessToken);
+
+    this.logger.log(`User ${req.user.login} logged out`);
+
+    res.json({
+      success: true,
+      message: 'Logout ok',
+    });
+  }
 }

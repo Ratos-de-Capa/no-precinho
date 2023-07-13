@@ -7,6 +7,7 @@ import { MaterialModule } from 'src/modules/styles/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InfosComponent } from './infos/infos.component';
 import { LoginFormComponent } from './login-form/login-form.component';
+import { ToastrModule } from 'src/modules/toastr-module/toastr.module';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { LoginFormComponent } from './login-form/login-form.component';
     LoginRoutingModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forChild()
   ]
 })
 export class LoginModule { }

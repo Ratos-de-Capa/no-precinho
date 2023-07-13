@@ -3,7 +3,7 @@ import { Category } from "./category";
 export interface Product{
     name: string;
     price: number;
-    coverImageSrc: string;
+    cover: Image;
     link: string;
     origin: "amazon" | "mercado_livre";
     category: Category
@@ -12,7 +12,7 @@ export interface Product{
     paymentDetails?: string;
     description?: string; // TODO
     datasheet?: Info[]; 
-    imagesSrc?: string[]; // TODO
+    images?: Image[]; // TODO
 }
 
 export interface Info {
@@ -24,3 +24,10 @@ export interface Reviews {
     rating: number;
     evaluations: number;
 }
+
+export interface Image {
+    src: string;
+    key?: string;
+    alt?: string;
+  }
+  

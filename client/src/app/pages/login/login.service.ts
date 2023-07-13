@@ -1,46 +1,27 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ApiService } from 'src/modules/services/api.service';
 
 export type LoginPayload = {
-  login: string,
-  password: string
-}
+  login: string;
+  password: string;
+};
 
 type LoginResponse = {
-  success: boolean,
-  message: string
-}
+  success: boolean;
+  message: string;
+};
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoginService {
-  private url = 'http://localhost:9000/auth/login';
+  private uri = '/auth/';
 
-  constructor(private _http: HttpClient) { }
+  constructor(private apiService: ApiService) {}
 
-  async login(loginPayload: LoginPayload) {
-    try {
-      const httpResponse = await this._http.post(this.url, {
-        login: loginPayload.login,
-        password: loginPayload.password
-      }, {
-        headers: this.getHeaders()
-      }).toPromise() as LoginResponse;
-  
-      if (httpResponse.success) {
-        console.log(`user: ${loginPayload.login} logged in`);
-      }
-    } catch (error) {
-      console.error('deu pau', error)
-    }
-  }
+  async login(loginPayload: LoginPayload): Promise<LoginResponse> {
+    const endpoint = `${this.uri}login`;
 
-  private getHeaders() {
-    const headers = new HttpHeaders();
-    headers.append('Accept', 'application/json');
-    headers.append('Content-Type', 'application/json');
-    
-    return headers;
+    return await this.apiService.post(endpoint, loginPayload);
   }
 }

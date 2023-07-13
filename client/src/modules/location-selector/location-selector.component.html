@@ -1,40 +1,47 @@
-<div  mat-dialog-content class="container">
-    <h3>Escolha sua Localização</h3>
-    
-    <div class="selectContainer">
+<div mat-dialog-content class="container">
+  <h3>Escolha sua Localização</h3>
 
+  <div class="selectContainer">
+    <mat-form-field appearance="outline">
+      <mat-label>Selecione um Estado</mat-label>
+      <mat-select
+        [(ngModel)]="selectedState"
+        (ngModelChange)="onStateSelected()"
+      >
+        <mat-option *ngFor="let state of listState" [value]="state">
+          {{ state.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-        <mat-form-field appearance="fill">
-            <mat-label>Selecione um Estado</mat-label>
-            <mat-select [(ngModel)]="selectedState" (ngModelChange)="onStateSelected()" >
-              <mat-option *ngFor="let state of listState" [value]="state">
-                {{state.name}}
-              </mat-option>
-            </mat-select>
-        </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Selecione uma Cidade</mat-label>
+      <mat-select [(ngModel)]="selectedCity" [disabled]="!selectedState">
+        <mat-option *ngFor="let city of listCity" [value]="city">
+          {{ city.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
 
-        <mat-form-field appearance="fill">
-            <mat-label>Selecione uma Cidade</mat-label>
-            <mat-select [(ngModel)]="selectedCity" >
-              <mat-option *ngFor="let city of listCity" [value]="city">
-                {{city.name}}
-              </mat-option>
-            </mat-select>
-        </mat-form-field>
+  <div mat-dialog-actions class="btns">
+    <button
+      [disabled]="!selectedCity"
+      class="dialogBtn"
+      mat-raised-button
+      (click)="applyChanges()"
+      color="primary"
+    >
+      Aplicar Mudanças
+    </button>
 
-    </div>
-    
-    <div mat-dialog-actions class="btns">
-        <ng-template [ngIf]="selectedCity" [ngIfElse]="disabled">
-                <button class="dialogBtn" mat-raised-button (click)="applyChanges()" color="primary">Aplicar Mudanças</button>
-        </ng-template>
-          
-          <ng-template #disabled>
-                <button class="dialogBtn" mat-raised-button disabled>Aplicar Mudanças</button>
-          </ng-template>
-        <button class="dialogBtn" mat-raised-button (click)="closeDialog()" color="warn">Fechar</button>
-    </div>
-
+    <button
+      class="dialogBtn"
+      mat-raised-button
+      (click)="closeDialog()"
+      color="warn"
+    >
+      Fechar
+    </button>
+  </div>
 </div>
-    
-    

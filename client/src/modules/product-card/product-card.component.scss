@@ -1,5 +1,6 @@
 .product-card {
   width: 260px;
+  height: 330px;
   display: block;
   border: 1px solid rgb(209, 209, 209);
   border-radius: 12px;
@@ -15,8 +16,14 @@
 }
 
 .img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+figure {
   height: 224px;
-  width: 224px;
+  width: 165px;
 }
 
 .img-container img {
@@ -46,7 +53,7 @@
 }
 
 .card-content.truncate::after {
-  content: '...';
+  content: "...";
   position: absolute;
   bottom: 0;
   right: 0;
@@ -54,7 +61,22 @@
   padding: 0 0.5em;
 }
 
-.price {
-  margin-top: 5px;
+.old-price {
+  margin-top: 3px;
+  font-size: 12px;
+  text-decoration: line-through;
+  color: rgb(102, 102, 102);
+}
+
+.new-price {
+  margin-top: 3px;
+  margin-left: 3px;
+  font-size: 16px;
+  color: rgb(0, 0, 0);
   font-weight: 600;
+}
+
+.discount-ctn {
+  display: flex;
+  flex-direction: column;
 }

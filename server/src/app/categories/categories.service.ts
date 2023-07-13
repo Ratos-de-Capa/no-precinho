@@ -1,20 +1,15 @@
 import { Injectable, Logger } from '@nestjs/common';
-import {
-  CreateCategoryDto,
-  CreateManyCategoryDto,
-} from './dto/create-category.dto';
+import { CreateCategoryDto, CreateManyCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 import { InjectModel } from '@nestjs/mongoose';
-import { Category, CategoryDocument } from './entities/category.entity';
+import { Category, CategoryDocument, CategoryMenu } from './entities/category.entity';
 import { Model } from 'mongoose';
 
 @Injectable()
 export class CategoriesService {
   private readonly logger = new Logger(CategoriesService.name);
 
-  constructor(
-    @InjectModel(Category.name) private categoryModel: Model<CategoryDocument>,
-  ) {}
+  constructor(@InjectModel(Category.name) private categoryModel: Model<CategoryDocument>) {}
 
   create(createCategoryDto: CreateCategoryDto) {
     this.logger.log(`Creating category ${createCategoryDto.subCategory}`);
@@ -26,9 +21,7 @@ export class CategoriesService {
     this.logger.log(`Finding all categories`);
     const categoryEntities = await this.categoryModel.find().exec();
 
-    return categoryEntities.map((category) =>
-      this.categoryEntityToDto(category),
-    );
+    return categoryEntities.map((category) => this.categoryEntityToDto(category));
   }
 
   findOne(subCategory: string) {
@@ -51,10 +44,40 @@ export class CategoriesService {
     return this.categoryModel.insertMany(createCategoryDto.categories);
   }
 
+  async getCategoriesMenu() {
+    this.logger.log(`Getting categories menu`);
+    const categoryEntities = await this.categoryModel.find().exec();
+
+    const categoriesMap = new Map<string, CategoryMenu>();
+
+    for (const category of categoryEntities) {
+      this.categoryEntityToMenu(category, categoriesMap);
+    }
+
+    return Array.from(categoriesMap.values());
+  }
+
   categoryEntityToDto(category: Category): CreateCategoryDto {
     return {
       category: category.category,
       subCategory: category.subCategory,
     };
+  }
+
+  categoryEntityToMenu(category: Category, categoriesMap: Map<string, CategoryMenu>): CategoryMenu {
+    if (categoriesMap.has(category.category)) {
+      const categoryMenu = categoriesMap.get(category.category);
+      categoryMenu.subCategories.push(category.subCategory);
+      return;
+    }
+
+    const categoryMenu: CategoryMenu = {
+      category: category.category,
+      subCategories: [category.subCategory],
+    };
+
+    categoriesMap.set(category.category, categoryMenu);
+
+    return categoryMenu;
   }
 }

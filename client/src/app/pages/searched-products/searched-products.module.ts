@@ -4,6 +4,7 @@ import { SearchedProductsRoutingModule } from './searched-products-routing.modul
 import { MaterialModule } from 'src/modules/styles/material.module';
 import { SearchedProductsComponent } from './searched-products.component';
 import { ProductCardModule } from 'src/modules/product-card/product-card.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [ 
@@ -13,7 +14,9 @@ import { ProductCardModule } from 'src/modules/product-card/product-card.module'
     CommonModule,
     SearchedProductsRoutingModule,
     MaterialModule,
-    ProductCardModule
+    ProductCardModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class SearchedProductsModule { }

@@ -1,12 +1,14 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { CategoryProps } from '../../categories/entities/category.entity';
+import { Document } from 'mongoose';
 
+export type ProductDocument = Product & Document & TimestampedDocument;
 
 export type ProductProps = {
   name: string;
   price: string;
-  coverImageSrc: string;
-  imagesSrc?: string[];
+  cover: Image;
+  images?: Image[];
   category: CategoryProps;
   link: string;
   origin: string;

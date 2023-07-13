@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HomePageService } from './home-page.service';
 import { Publicity } from '../../../modules/publicity-card/models/publicity.model';
+import { Product } from 'src/models/product.model';
 
 @Component({
   selector: 'app-home-page',
@@ -9,8 +10,8 @@ import { Publicity } from '../../../modules/publicity-card/models/publicity.mode
 })
 export class HomePageComponent implements OnInit {
   ads: Publicity[] = [];
-  weekHighlights = [];
-  popularProducts = [];
+  weekHighlights: Product[] = [];
+  popularProducts: Product[] = [];
 
   constructor(private homePageService: HomePageService) {}
 

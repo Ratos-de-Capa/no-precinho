@@ -45,17 +45,16 @@
   <div class="nav-actions-link">
     <span>
       <a mat-button class="category-btn">
-        <span>Categorias</span>
-        <i class="fa-solid fa-chevron-down"></i>
+        <app-categories-menu [categories]="categories"></app-categories-menu>
       </a>
     </span>
     <span>
-      <a mat-button class="category-btn">
+      <a mat-button class="category-btn" [routerLink]="['/']">
         <span>Ofertas do Dia</span>
       </a>
     </span>
     <span>
-      <a mat-button class="category-btn">
+      <a mat-button class="category-btn" (click)="redirectToHistory()">
         <span>Histórico</span>
       </a>
     </span>
