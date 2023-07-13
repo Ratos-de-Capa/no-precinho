@@ -7,26 +7,26 @@ import { KeyManager } from '../utils/encrypt.util';
 
 @Injectable()
 export class AuthService {
-    constructor(private usersService: UsersService, private jwtService: JwtService) { }
+  constructor(private usersService: UsersService, private jwtService: JwtService) {}
 
-    async signIn(login: string, pass: string): Promise<IAccessToken> {
-        const user = await this.usersService.findOne(login);
+  async signIn(login: string, pass: string): Promise<IAccessToken> {
+    const user = await this.usersService.findOne(login);
 
-        if (user?.password !== KeyManager.encryptPassword(pass)) {
-            throw new UnauthorizedException();
-        }
-
-        const payload: ISession = {
-            sub: user.id,
-            login: user.login,
-            email: user.email,
-            name: user.name,
-            loginDate: new Date(),
-            registerDate: user.createdAt
-        };
-
-        return {
-            access_token: await this.jwtService.signAsync(payload),
-        };
+    if (user?.password !== KeyManager.encryptPassword(pass)) {
+      throw new UnauthorizedException();
     }
+
+    const payload: ISession = {
+      sub: user.id,
+      login: user.login,
+      email: user.email,
+      name: user.name,
+      loginDate: new Date(),
+      registerDate: user.createdAt,
+    };
+
+    return {
+      access_token: await this.jwtService.signAsync(payload),
+    };
+  }
 }

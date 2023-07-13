@@ -1,7 +1,7 @@
 <section class="login">
     <span>Projeto Web</span>
     <h1>Bem-Vindo</h1>
-    <div class="login__form" [formGroup]="loginForm">
+    <form class="login__form" [formGroup]="loginForm" (click)="onSubmit()">
         <mat-form-field appearance="outline">
             <input matInput type="text" formControlName="login" id="login" placeholder="Seu login">
             <mat-error class="text--danger"
@@ -23,8 +23,8 @@
             </mat-error>
         </mat-form-field>
 
-        <button mat-flat-button color="primary" [disabled]="!loginForm.valid" (click)="onSubmit()">Log in</button>
-    </div>
+        <button mat-flat-button color="primary" [disabled]="!loginForm.valid" type="submit">Log in</button>
+    </form>
 
     <span><a routerLink="/signup">Não tem uma conta? Cadastre-se</a></span>
 </section>
