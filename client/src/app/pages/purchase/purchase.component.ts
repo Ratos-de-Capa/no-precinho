@@ -48,7 +48,7 @@ export class PurchaseComponent implements OnInit {
     //se não exitr produto redirecionar ou
   }
 
-  async getSimilarProducts() {
+  async getSimilarProducts(category: string, skip: number, limit: number) {
     try {
       const res = await this.purchaseService.getProductByCategory(
         this.product.category.category

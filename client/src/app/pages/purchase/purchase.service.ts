@@ -9,11 +9,11 @@ export class PurchaseService {
   constructor(private apiService: ApiService) { }
 
   getProductById(id: string) {
-    return this.apiService.makeGetRequest(`/products/${id}`);
+    return this.apiService.get(`/products/${id}`);
   }
 
   getProductByCategory(category: string) {
-    return this.apiService.makeGetRequest(`/products/${category.toLowerCase()}`);
+    return this.apiService.get(`/products/${category.toLowerCase()}`);
   }
 
 }

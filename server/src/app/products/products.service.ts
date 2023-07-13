@@ -69,6 +69,7 @@ export class ProductsService {
 
   async getProductsByCategory(categoryDto: CategoryFilterDto) {
     this.logger.log(`listing products by category ${categoryDto.category}`);
-    return this.productModel.find({ 'category.category': categoryDto.category }).exec();
+    const { category, limit, skip } = categoryDto;
+    return this.productModel.find({ 'category.category': category }, null, { skip, limit }).exec();
   }
 }
