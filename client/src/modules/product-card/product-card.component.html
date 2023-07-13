@@ -1,13 +1,20 @@
 <div class="product-card" (click)="navigateToProduct(product.id)">
   <div class="img-container">
     <figure>
-      <img [src]="product.coverImageSrc" alt="imagem do Produto"/>
+      <img [src]="product.cover.src" alt="imagem do Produto" />
     </figure>
   </div>
   <div class="price">
-    <span>{{ product.price | currency:'BRL' }}</span>
+    <span *ngIf="!product.percentOff">{{
+      product.price | currency : "BRL"
+    }}</span>
+
+    <div class="discount-ctn" *ngIf="product.percentOff">
+      <span class="old-price">{{ getOldPrice() | currency : "BRL" }}</span>
+      <span class="new-price">{{ product.price | currency : "BRL" }}</span>
+    </div>
   </div>
   <div class="card-content" #description>
-    <p>{{product.name}}</p>
+    <p>{{ product.name }}</p>
   </div>
 </div>

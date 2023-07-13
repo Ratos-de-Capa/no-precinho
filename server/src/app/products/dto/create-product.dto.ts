@@ -58,7 +58,6 @@ export class CreateProductDto {
 
   @ApiProperty({ type: String, required: true })
   @IsNotEmpty()
-  @IsString()
   cover: Image;
 
   @ApiProperty({ type: String, required: true })

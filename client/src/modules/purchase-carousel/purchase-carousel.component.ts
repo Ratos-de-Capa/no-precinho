@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Product } from 'src/models/product.model';
 
 
 @Component({
@@ -11,13 +12,13 @@ import { Component, Input } from '@angular/core';
 
 
 export class PurchaseCarouselComponent {
-  @Input() product;
+  @Input() product: Product;
 
   carousel= [];
   temp;
 
   ngOnInit() {
-    this.temp = this.product.imagesSrc.map((img)=> img)
+    this.temp = this.product.images.map(({src})=> {src})
     for(let img in this.temp){
     
       this.carousel[img] ={
@@ -28,9 +29,8 @@ export class PurchaseCarouselComponent {
 
   }
 
-
   changeImg(event){
-    this.product.coverImageSrc= this.product.imagesSrc[event]
+    this.product.cover= this.product.images[event]
   }
 
 }

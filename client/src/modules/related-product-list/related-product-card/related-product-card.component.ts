@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { Product } from 'src/models/product.model';
 
 @Component({
   selector: 'app-related-product-card',
@@ -7,12 +8,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./related-product-card.component.scss']
 })
 export class RelatedProductCardComponent {
-  @Input() product: any;
+  @Input() product: Product;
 
   constructor(private router: Router) { }
 
 
-  navigateToProduct(id: number) {
+  navigateToProduct(id: string) {
     this.router.navigate(['/product', id]);
   }
 

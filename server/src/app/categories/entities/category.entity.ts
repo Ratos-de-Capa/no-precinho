@@ -3,7 +3,7 @@ import { Document } from 'mongoose';
 
 export type CategoryDocument = Category & Document & TimestampedDocument;
 
-export class CategoryProps  {
+export class CategoryProps {
   subCategory: string; // xiaomi
   category: string; // celular
 }

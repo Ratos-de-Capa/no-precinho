@@ -81,7 +81,7 @@ export class AmazonScraping extends Scraping {
         productsAux.push({
           name,
           price,
-          coverImageSrc: image,
+          cover: { src: image },
           link,
           origin: "amazon",
           paymentDetails,
@@ -97,14 +97,15 @@ export class AmazonScraping extends Scraping {
   }
 
   async getProductDetails(product: Product): Promise<Product> {
-
     await this.page.goto(product.link);
 
     const productDetails = await this.page.evaluate(() => {
       // getting elements
-      const datasheetChildrens = document.querySelector<HTMLBodyElement>("#productOverview_feature_div tbody")?.children;
+      const datasheetChildrens = document.querySelector<HTMLBodyElement>(
+        "#productOverview_feature_div tbody"
+      )?.children;
       const descriptionElement = document.querySelector<HTMLSpanElement>("#productDescription > p > span");
-      const images = document.querySelectorAll<HTMLImageElement>("#altImages > ul > li.a-spacing-small.item img")
+      const images = document.querySelectorAll<HTMLImageElement>("#altImages > ul > li.a-spacing-small.item img");
 
       // creating product object
       const imagesSrc = images && images.length > 0 ? Array.from(images).map((img) => img.src) : null;
@@ -126,9 +127,9 @@ export class AmazonScraping extends Scraping {
       }
 
       return {
-        datasheet, 
+        datasheet,
         description,
-        imagesSrc
+        images: imagesSrc?.map((src) => ({ src })),
       } as any;
     });
 

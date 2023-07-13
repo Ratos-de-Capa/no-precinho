@@ -29,22 +29,28 @@ export class ProductsService {
     return this.productModel.bulkWrite(bulkOps);
   }
 
-  findAll() {
+  async findAll() {
     this.logger.log(`Finding all products`);
-    return this.productModel.find().exec();
+    const result = await this.productModel.find().exec();
+
+    return result.map((product) => this.parseProduct(product));
   }
 
   async findOne(id: string) {
     this.logger.log(`Finding product by id ${id}`);
-    return this.productModel.findOne({ _id: id }).exec();
+    const result = await this.productModel.findOne({ _id: id }).exec();
+
+    return this.parseProduct(result);
   }
 
   async search(search: string) {
     this.logger.log(`Searching product by search ${search}`);
-    return this.productModel
+    const result = await this.productModel
       .find({ $text: { $search: search, $caseSensitive: false } })
       .sort({ score: { $meta: 'textScore' } })
       .exec();
+
+    return result.map((product) => this.parseProduct(product));
   }
 
   update(id: string, updateProductDto: UpdateProductDto) {
@@ -70,6 +76,55 @@ export class ProductsService {
   async getProductsByCategory(categoryDto: CategoryFilterDto) {
     this.logger.log(`listing products by category ${categoryDto.category}`);
     const { category, limit, skip } = categoryDto;
-    return this.productModel.find({ 'category.category': category }, null, { skip, limit }).exec();
+    const result = await this.productModel.find({ 'category.category': category }, null, { skip, limit }).exec();
+
+    return result.map((product) => this.parseProduct(product));
+  }
+
+  async getWeekHighlights(skip: number, limit: number) {
+    this.logger.log(`listing week highlights`);
+    const result = await this.productModel.find().sort({ 'reviews.rating': -1 }).skip(skip).limit(limit).exec();
+
+    return result.map((product) => this.parseProduct(product));
+  }
+
+  async getPopularProducts(skip: number, limit: number) {
+    this.logger.log(`listing popular products`);
+    const result = await this.productModel.find().sort({ 'reviews.evaluations': -1 }).skip(skip).limit(limit).exec();
+
+    return result.map((product) => this.parseProduct(product));
+  }
+
+  parseProduct(product: ProductDocument) {
+    const {
+      _id,
+      name,
+      price,
+      cover,
+      images,
+      category,
+      link,
+      origin,
+      reviews,
+      percentOff,
+      description,
+      datasheet,
+      paymentDetails,
+    } = product;
+    return {
+      id: _id,
+      name,
+      price,
+      cover,
+      images,
+      category,
+      link,
+      origin,
+      reviews,
+      percentOff,
+      description,
+      datasheet,
+      paymentDetails,
+    };
   }
 }

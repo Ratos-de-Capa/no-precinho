@@ -72,4 +72,38 @@ export class ProductsController {
 
     return this.productsService.updateCover(id, fileDto);
   }
+
+  @Public()
+  @Get('/week-highlights/:skip/:limit')
+  getWeekHighlights(@Param('skip') skip: string, @Param('limit') limit: string) {
+    let skipInit = 0;
+    let limitInit = 10;
+
+    if (skip !== null && skip !== undefined && skip !== '') {
+      skipInit = parseInt(skip);
+    }
+
+    if (limit !== null && limit !== undefined && limit !== '') {
+      limitInit = parseInt(limit);
+    }
+
+    return this.productsService.getWeekHighlights(skipInit, limitInit);
+  }
+
+  @Public()
+  @Get('/popular-products/:skip/:limit')
+  getPopularProducts(@Param('skip') skip: string, @Param('limit') limit: string) {
+    let skipInit = 0;
+    let limitInit = 10;
+
+    if (skip !== null && skip !== undefined && skip !== '') {
+      skipInit = parseInt(skip);
+    }
+
+    if (limit !== null && limit !== undefined && limit !== '') {
+      limitInit = parseInt(limit);
+    }
+
+    return this.productsService.getPopularProducts(skipInit, limitInit);
+  }
 }
