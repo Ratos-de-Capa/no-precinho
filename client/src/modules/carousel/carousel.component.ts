@@ -19,12 +19,6 @@ export class CarouselComponent {
       type: 'img',
       title: 'Slide 2',
       description: 'Descrição do Slide 2'
-    },
-    {
-      src: 'https://designerapp.officeapps.live.com/designerapp/Media.ashx/?id=58363348-ebea-41cc-aeed-6b00b39fc2ec.mp4&fileToken=b724c7e3-57d9-454e-9bcc-8a94f7f1c5c3&dcHint=BrazilSouth',
-      type: 'video',
-      title: 'Slide 3',
-      description: 'Descrição do Slide 3'
     }
   ];
 
