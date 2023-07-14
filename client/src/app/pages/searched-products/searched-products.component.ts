@@ -53,7 +53,7 @@ export class SearchedProductsComponent implements OnInit, OnDestroy {
           this.filter.maxPrice = queryParams['max-price'];
         }
 
-        if (queryParams['brand'] === 'undefined') {
+        if (!queryParams['brand']) {
           this.filter.brand = [];
         } else {
           this.filter.brand = queryParams['brand'].split('-');

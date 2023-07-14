@@ -103,14 +103,12 @@ export class ProductsService {
     const filter = {
       ...(category && { 'category.category': category }),
       ...(subCategory && { 'category.subCategory': subCategory }),
-      ...(name && { name: { $regex: name, $options: 'i' } }),
+      ...(name && { $text: { $search: name, $caseSensitive: false } }),
       ...(origin && { origin }),
       ...(minPrice && { price: { $gte: minPrice } }),
       ...(maxPrice && { price: { $lte: maxPrice } }),
-      ...(brand && brand.length > 0 && { brand: { $in: brand } }),
+      ...(brand && brand.length > 0 && { 'datasheet.value': { $in: brand } }),
     };
-
-    console.log('filter', filter);
 
     const result = await this.productModel.find(filter).skip(skip).limit(limit).exec();
 
