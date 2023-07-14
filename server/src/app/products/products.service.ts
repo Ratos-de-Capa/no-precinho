@@ -7,6 +7,7 @@ import { Product, ProductDocument } from './entities/product.entity';
 import { CreateFileDto } from '../file/dto/create-file.dto';
 import { FileService } from '../file/file.service';
 import { CategoryFilterDto } from './dto/category-filter.dto';
+import { FindProductDto } from './dto/find-product.dto';
 
 @Injectable()
 export class ProductsService {
@@ -91,6 +92,27 @@ export class ProductsService {
   async getPopularProducts(skip: number, limit: number) {
     this.logger.log(`listing popular products`);
     const result = await this.productModel.find().sort({ 'reviews.evaluations': -1 }).skip(skip).limit(limit).exec();
+
+    return result.map((product) => this.parseProduct(product));
+  }
+
+  async findProducts(findProductDto: FindProductDto) {
+    this.logger.log(`listing products by filter ${JSON.stringify(findProductDto)}`);
+    const { category, subCategory, brand, name, origin, minPrice, maxPrice, limit, skip } = findProductDto;
+
+    const filter = {
+      ...(category && { 'category.category': category }),
+      ...(subCategory && { 'category.subCategory': subCategory }),
+      ...(name && { name: { $regex: name, $options: 'i' } }),
+      ...(origin && { origin }),
+      ...(minPrice && { price: { $gte: minPrice } }),
+      ...(maxPrice && { price: { $lte: maxPrice } }),
+      ...(brand && brand.length > 0 && { brand: { $in: brand } }),
+    };
+
+    console.log('filter', filter);
+
+    const result = await this.productModel.find(filter).skip(skip).limit(limit).exec();
 
     return result.map((product) => this.parseProduct(product));
   }

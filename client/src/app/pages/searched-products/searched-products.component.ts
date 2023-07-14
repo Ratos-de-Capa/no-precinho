@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { Product } from 'src/models/product.model';
 import { ToastrService } from 'src/modules/toastr-module';
 import { SearchedProductsService } from './searched-products.service';
+import { ProductsFilter } from 'src/models/products-filter.model';
 
 @Component({
   selector: 'app-searched-products',
@@ -14,13 +15,19 @@ export class SearchedProductsComponent implements OnInit, OnDestroy {
   @Input() products: Product[] = [];
 
   brands: string[] = [];
-
-  searchedItem: string;
-  category: string;
   sub: Subscription;
 
-  minPrice: number = 0;
-  maxPrice: number = 15000;
+  filter: ProductsFilter = {
+    name: '',
+    category: '',
+    subCategory: '',
+    brand: [],
+    origin: '',
+    minPrice: 0,
+    maxPrice: 15000,
+    skip: 0,
+    limit: 20,
+  };
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -29,37 +36,39 @@ export class SearchedProductsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.sub = this.activatedRoute.queryParams.subscribe((queryParams) => {
-      console.log(queryParams);
-      this.searchedItem = queryParams['item'];
-      this.category = queryParams['category'];
+    this.sub = this.activatedRoute.queryParams.subscribe(
+      async (queryParams) => {
+        console.log('queryParams', queryParams);
 
-      if (this.category === undefined || this.category === null) {
-        this.listSearchedProducts();
-      } else {
-        this.listProductsByCategory();
+        this.filter.name = queryParams['item'];
+        this.filter.category = queryParams['category'];
+        this.filter.subCategory = queryParams['sub-category'];
+        this.filter.origin = queryParams['origin'];
+
+        if (queryParams['min-price']) {
+          this.filter.minPrice = queryParams['min-price'];
+        }
+
+        if (queryParams['max-price']) {
+          this.filter.maxPrice = queryParams['max-price'];
+        }
+
+        if (queryParams['brand'] === 'undefined') {
+          this.filter.brand = [];
+        } else {
+          this.filter.brand = queryParams['brand'].split('-');
+        }
+
+        await this.listProducts();
       }
-    });
+    );
   }
 
-  async listSearchedProducts(): Promise<void> {
+  async listProducts() {
     try {
-      this.products = await this.searchedProductService.listSearchedProducts(
-        this.searchedItem
+      this.products = await this.searchedProductService.listProducts(
+        this.filter
       );
-
-      this.updateBrands();
-    } catch (error) {
-      this.toastr.danger('Erro ao listar produtos', 'Erro');
-    }
-  }
-
-  async listProductsByCategory(): Promise<void> {
-    try {
-      this.products = await this.searchedProductService.listProductsByCategory(
-        this.category
-      );
-      
       this.updateBrands();
     } catch (error) {
       this.toastr.danger('Erro ao listar produtos', 'Erro');

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Product } from 'src/models/product.model';
+import { ProductsFilter } from 'src/models/products-filter.model';
 import { ApiService } from 'src/modules/services/api.service';
 
 @Injectable({
@@ -14,5 +15,9 @@ export class SearchedProductsService {
 
   async listProductsByCategory(category: string, skip = 0, limit = 20): Promise<Product[]> {
     return this.apiService.post(`/products/category`, { category, skip, limit });
+  }
+
+  async listProducts(filter: ProductsFilter) {
+    return this.apiService.post(`/products/find`, filter);
   }
 }
