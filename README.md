@@ -31,16 +31,16 @@ O principal benefício do uso desta aplicação é em relação a economia reali
 ## <a id="tecnologias">🛠️ Tecnologias Utilizadas</a>
 
 1. [Angular](https://angular.io/)
-2. [Angular Material](https://material.angular.io/)
+1. [Angular Material](https://material.angular.io/)
 3. [NestJs](https://nestjs.com/)
 4. [MongoDB](https://www.mongodb.com)
 
 
 ## <a id="requisitos">Requisitos do Projeto ?</a>
 Por se tratar de um versão em desenvolvimento não é necessario algumas tecnologias
-[Docker](https://www.docker.com/)
-[Docker compose](https://docs.docker.com/compose/)
-[Node ^V14](https://nodejs.org/en)
+1. [Docker](https://www.docker.com/)
+2. [Docker compose](https://docs.docker.com/compose/)
+3. [Node ^V14](https://nodejs.org/en)
 
 ## <a id="projeto">Como rodar o Projeto ?</a>
 ```bash
