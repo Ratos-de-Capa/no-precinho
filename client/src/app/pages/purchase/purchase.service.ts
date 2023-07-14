@@ -11,9 +11,9 @@ export class PurchaseService {
     return this.apiService.get(`/products/${id}`);
   }
 
-  getProductsByCategory(category: string, skip: number, limit: number) {
-    return this.apiService.post(`/products/category`, {
-      category,
+  getProductsByCategory(subCategory: string, skip: number, limit: number) {
+    return this.apiService.post(`/products/find`, {
+      subCategory,
       skip,
       limit,
     });

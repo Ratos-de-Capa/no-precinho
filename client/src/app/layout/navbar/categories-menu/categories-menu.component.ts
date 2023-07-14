@@ -13,7 +13,11 @@ export class CategoriesMenuComponent {
 
   constructor(private router: Router) { }
 
-  redirecToProducts(category: string): void {
+  redirecToProductsWithSubCategory(category: string): void {
+    this.router.navigate(['/products'], { queryParams: { 'sub-category': category } });
+  }
+
+  redirecToProductsWithCategory(category: string): void {
     this.router.navigate(['/products'], { queryParams: { category } });
   }
 

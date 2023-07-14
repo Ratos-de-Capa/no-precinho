@@ -20,12 +20,10 @@ export class PurchaseComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.params['id'];
-    console.log(this.id);
-
-    this.init();
-
-    //this.updateProduct();
+    this.route.params.subscribe((params) => {
+      this.id = params['id'];
+      this.init();
+    });
   }
 
   async init() {
@@ -43,18 +41,21 @@ export class PurchaseComponent implements OnInit {
         return;
       }
 
-
       this.product = res;
     } catch (error) {
       console.log(error);
     }
   }
 
-  async getSimilarProducts(category: string, skip: number, limit: number) {
+  async getSimilarProducts(subCategory: string, skip: number, limit: number) {
     try {
-      const res = await this.purchaseService.getProductsByCategory(category, skip, limit);
+      const res = await this.purchaseService.getProductsByCategory(
+        subCategory,
+        skip,
+        limit
+      );
 
-      console.log(res)
+      console.log(res);
 
       this.relatedProducts = res;
     } catch (error) {

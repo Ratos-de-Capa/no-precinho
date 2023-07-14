@@ -4,8 +4,8 @@
 
     <div class="brand">
       <h3>Marca</h3>
-      <mat-selection-list #brandsSelected>
-        <mat-list-option *ngFor="let brand of brands">
+      <mat-selection-list #brandsSelected [(ngModel)]="filter.brand">
+        <mat-list-option *ngFor="let brand of brands" [value]="brand">
           {{ brand }}
         </mat-list-option>
       </mat-selection-list>
@@ -13,35 +13,39 @@
 
     <div>
       <h3>Preço</h3>
-      <span>Minimo: {{ minPrice }}</span>
+      <span>Minimo: {{ filter.minPrice }}</span>
       <mat-slider class="slider" min="0" max="15000" step="50" discrete>
-        <input matSliderThumb [(ngModel)]="minPrice" />
+        <input matSliderThumb [(ngModel)]="filter.minPrice" />
       </mat-slider>
 
-      <span>Maximo: {{ maxPrice }}</span>
+      <span>Maximo: {{ filter.maxPrice }}</span>
       <mat-slider class="slider" min="0" max="15000" step="50" discrete>
-        <input matSliderThumb [(ngModel)]="maxPrice" />
+        <input matSliderThumb [(ngModel)]="filter.maxPrice" />
       </mat-slider>
     </div>
 
-    <div class="filter-btn-container">
-      <button class="filter-btn" mat-raised-button color="primary">Aplicar filtros</button>
+    <div class="filter-btn-container" (click)="listProducts()">
+      <button class="filter-btn" mat-raised-button color="primary">
+        Aplicar filtros
+      </button>
     </div>
   </div>
 
   <div class="result">
-    <div *ngIf="!category">
-      <span>Voce buscou por</span>
-      <h1>
-        <b>{{ searchedItem }}</b>
-      </h1>
-    </div>
+    <div>
+      <span *ngIf="filter.name">
+        <span>Voce buscou por</span>
+        <h1>
+          <b>{{ filter.name }}</b>
+        </h1>
+      </span>
 
-    <div *ngIf="category">
-      <span>Voce esta na ategoria</span>
-      <h1>
-        <b>{{ category }}</b>
-      </h1>
+      <span *ngIf="filter.category">
+        <span>Categoria</span>
+        <h1>
+          <b>{{ filter.category }}</b>
+        </h1>
+      </span>
     </div>
 
     <mat-divider></mat-divider>

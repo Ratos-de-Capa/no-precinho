@@ -6,6 +6,7 @@ import { Public } from '../auth/decorators/public.decorator';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { CreateFileDto } from '../file/dto/create-file.dto';
 import { CategoryFilterDto } from './dto/category-filter.dto';
+import { FindProductDto } from './dto/find-product.dto';
 
 @Controller('products')
 export class ProductsController {
@@ -28,6 +29,12 @@ export class ProductsController {
   @Get(':item')
   findOne(@Param('item') item: string) {
     return this.productsService.findOne(item);
+  }
+
+  @Public()
+  @Post('/find')
+  findProducts(@Body() findProductDto: FindProductDto) {
+    return this.productsService.findProducts(findProductDto);
   }
 
   @Public()

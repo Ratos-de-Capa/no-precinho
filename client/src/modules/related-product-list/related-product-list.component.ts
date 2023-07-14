@@ -6,6 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./related-product-list.component.scss']
 })
 export class RelatedProductListComponent {
-   @Input() products: any 
- 
+   @Input() products: any
 }

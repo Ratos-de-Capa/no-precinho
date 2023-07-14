@@ -3,7 +3,6 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { SignupService } from '../signup.service';
 import { ValidationService } from 'src/modules/form-validation/validation.service';
 import { Router } from '@angular/router';
-import * as md5 from 'md5';
 import { SessionCacheService } from 'src/modules/services/session-cache.service';
 
 @Component({
@@ -13,10 +12,10 @@ import { SessionCacheService } from 'src/modules/services/session-cache.service'
 })
 export class SignupFormComponent implements OnInit{
   signupForm: FormGroup;
-  
+
   passwordHide = true;
   confirmPasswordHide = true;
-  
+
   constructor(
     private formBuilder: FormBuilder,
     private validationService: ValidationService,
@@ -30,7 +29,7 @@ export class SignupFormComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.signupForm  = this.createSignupForm(); 
+    this.signupForm  = this.createSignupForm();
   }
 
   changePasswordHideState() {
