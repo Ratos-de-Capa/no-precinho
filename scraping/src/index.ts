@@ -75,7 +75,7 @@ export class Program {
       const amazonScraping = new AmazonScraping(searchList, amazonPage);
       const mercadolivreScraping = new MercadoLivreScraping(searchList, mercadolivrePage);
 
-      scrapings.push(amazonScraping, mercadolivreScraping);
+      scrapings.push(mercadolivreScraping);
 
       const scrapingPromises = scrapings.map((scraping) => scraping.startScraping());
 
