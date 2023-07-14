@@ -17,4 +17,6 @@ export class RelatedProductCardComponent {
     this.router.navigate(['/product', id]);
   }
 
+ 
+
 }
