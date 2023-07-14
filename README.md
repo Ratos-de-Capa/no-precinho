@@ -35,6 +35,13 @@ O principal benefício do uso desta aplicação é em relação a economia reali
 3. [NestJs](https://nestjs.com/)
 4. [MongoDB](https://www.mongodb.com)
 
+
+## <a id="requisitos">Requisitos do Projeto ?</a>
+Por se tratar de um versão em desenvolvimento não é necessario algumas tecnologias
+[Docker](https://www.docker.com/)
+[Docker compose](https://docs.docker.com/compose/)
+[Node ^V14](https://nodejs.org/en)
+
 ## <a id="projeto">Como rodar o Projeto ?</a>
 ```bash
 # Clone o repositório
@@ -55,10 +62,25 @@ $ cd client
 # Instale as dependencias
 $ npm i 
 
-# Execute a aplicação
-$ ng serve
+# Acesse a pasta docker
+cd .docker/dev
 
+# Execute a aplicação
+$ docker-compose build && docker-compose up
+
+# Acesse a apliação na url: http://localhost
 ```
+
+![home page](https://github.com/Ratos-de-Capa/Projeto/assets/83738496/97570e7b-bb6c-4283-9688-4a520c617348)
+
+![serach products page](https://github.com/Ratos-de-Capa/Projeto/assets/83738496/f3354268-92e7-4ac4-9707-6872e7d34db4)
+
+![Purchase page](https://github.com/Ratos-de-Capa/Projeto/assets/83738496/96f28399-2b69-42be-a8f8-8e5eea659a4e)
+
+![Login page](https://github.com/Ratos-de-Capa/Projeto/assets/83738496/1aee8d1a-d5a3-4489-a1cf-918b5c52811c)
+
+![Register page](https://github.com/Ratos-de-Capa/Projeto/assets/83738496/74de05ea-526a-4051-b576-d6d4a540a2b7)
+
 
 ## <a id="autores">👨‍💻 Autores</a>
 
