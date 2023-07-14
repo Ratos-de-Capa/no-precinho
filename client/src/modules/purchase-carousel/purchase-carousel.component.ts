@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { Product } from 'src/models/product.model';
 
 
 @Component({
@@ -12,7 +11,7 @@ import { Product } from 'src/models/product.model';
 
 
 export class PurchaseCarouselComponent {
-  @Input() product: Product;
+  @Input() product;
 
   carousel= [];
   temp;
@@ -30,7 +29,8 @@ export class PurchaseCarouselComponent {
   }
 
   changeImg(event){
-    this.product.cover= this.product.images[event]
+    // this.product.cover= this.product.images[event]
+    return;
   }
 
 }
