@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 type User = {
   id?: string,
@@ -13,11 +14,11 @@ type User = {
   providedIn: 'root'
 })
 export class SignupService {
-  private url = 'http://localhost:9000/users/create';
+  private url = 'http://localhost:9000/users';
 
   constructor(private _http: HttpClient) { }
 
-  async createUser({ email, login, password, name }: User) {
+  async createUser({ email, login, password, name }: User): Promise<[boolean, string]> {
     try {
       const httpResponse = await this._http.post(this.url, {
         name,
@@ -27,12 +28,16 @@ export class SignupService {
       }, {
         headers: this.getHeaders()
       }).toPromise();
+
+      console.log(httpResponse);
   
-      if (httpResponse['success']) {
-        console.log(`user: ${login} created`);
+      if (httpResponse) {
+        return [true, `Usuário: ${login} criado com sucesso!`];
       }
+      return [false, 'Erro ao criar usuário!'];
     } catch (error) {
-      console.error('deu pau', error)
+      console.log(error);
+      return [false, 'Erro ao criar usuário!'];
     }
   }
 

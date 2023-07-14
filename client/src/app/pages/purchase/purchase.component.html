@@ -1,5 +1,9 @@
 <!-- Caminho até o Produto -->
 
+<div>
+
+</div>
+
 <section id="path">
     <div>
       <app-product-path [product]="product.category"></app-product-path>
@@ -10,7 +14,7 @@
 
 <section id="productArea">
 
-  <div>
+  <div id="images">
     <app-purchase-carousel [product]="product"></app-purchase-carousel>
   </div>
 
@@ -54,6 +58,7 @@
   </div>
 </section>
 
+<br>
 <!-- Detalhes do Produto -->
 
 <section id="detailsContainer">
@@ -62,7 +67,7 @@
   <div *ngIf="product.description">
       <app-product-info [title]="'Descrição'" [dataSheet]="product.description"></app-product-info>
   </div>
-  <div *ngIf="product.datasheet">
+  <div *ngIf="product.datasheet.length > 0">
         <app-product-info [title]="'Ficha Técnica'" [dataSheet]="product.datasheet"></app-product-info>
   </div>
 </section>

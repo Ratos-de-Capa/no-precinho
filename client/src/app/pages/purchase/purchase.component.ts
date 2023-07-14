@@ -23,13 +23,15 @@ export class PurchaseComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     console.log(this.id);
 
-    this.updateProduct();
+    this.init();
+
+    //this.updateProduct();
   }
 
   async init() {
     await this.updateProduct();
 
-    this.getSimilarProducts(this.product.category.category, 0, 4);
+    await this.getSimilarProducts(this.product.category.subCategory, 0, 4);
   }
 
   async updateProduct() {
@@ -41,6 +43,7 @@ export class PurchaseComponent implements OnInit {
         return;
       }
 
+
       this.product = res;
     } catch (error) {
       console.log(error);
@@ -49,7 +52,9 @@ export class PurchaseComponent implements OnInit {
 
   async getSimilarProducts(category: string, skip: number, limit: number) {
     try {
-      const res = await this.purchaseService.getProductByCategory(category, skip, limit);
+      const res = await this.purchaseService.getProductsByCategory(category, skip, limit);
+
+      console.log(res)
 
       this.relatedProducts = res;
     } catch (error) {

@@ -46,6 +46,10 @@ export class HeaderComponent implements OnInit {
   }
 
   goToCart() {
+
+    alert("Carrinho de compras em construção")
+    return;
+
     if (this.isAuthenticated()) {
       this.router.navigate(['/cart']);
     } else {
@@ -55,6 +59,9 @@ export class HeaderComponent implements OnInit {
   }
 
   goFavorites() {
+    alert("Favoritos em construção")
+    return;
+    
     if (this.isAuthenticated()) {
       this.router.navigate(['/favorites']);
     } else {

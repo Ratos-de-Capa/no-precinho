@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { SignupService } from '../signup.service';
 import { ValidationService } from 'src/modules/form-validation/validation.service';
+import { Router } from '@angular/router';
+import * as md5 from 'md5';
+import { SessionCacheService } from 'src/modules/services/session-cache.service';
 
 @Component({
   selector: 'app-signup-form',
@@ -17,7 +20,9 @@ export class SignupFormComponent implements OnInit{
   constructor(
     private formBuilder: FormBuilder,
     private validationService: ValidationService,
-    private signupService: SignupService
+    private signupService: SignupService,
+    private router: Router,
+    private sessionCacheService: SessionCacheService
   ) { }
 
   get signupFormControl() {
@@ -50,9 +55,16 @@ export class SignupFormComponent implements OnInit{
 
   async onSubmit() {
     if (this.signupForm.valid) {
-      const user = this.signupForm.value;
+      const user: { email, login, password, name } = this.signupForm.value;
 
-      await this.signupService.createUser(user);
+      const [result, message] = await this.signupService.createUser(user);
+
+      alert(message)
+
+      if (result) {
+        this.sessionCacheService.set('session', {name: user.name})
+        this.router.navigate(['/home']);
+      }
     }
   }
 }

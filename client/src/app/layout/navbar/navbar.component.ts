@@ -61,9 +61,9 @@ export class NavbarComponent implements OnInit {
 
   redirectToHistory(): void {
     if (this.sessionCacheService.has('session')) {
-      this.router.navigate(['/history']);
+      alert("Não implementado, desculpe :(");
     } else {
-      this.toastrService.warning(
+      alert(
         'Você precisa estar logado para acessar o histórico'
       );
       this.router.navigate(['/login']);

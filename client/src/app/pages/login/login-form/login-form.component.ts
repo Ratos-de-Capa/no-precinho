@@ -8,6 +8,9 @@ import {
 import { Router } from '@angular/router';
 import { ToastrService } from 'src/modules/toastr-module';
 import { LoginPayload, LoginService } from '../login.service';
+import * as md5 from 'md5';
+import { SessionCacheService } from 'src/modules/services/session-cache.service';
+import { Session } from 'src/models/session.interface';
 
 @Component({
   selector: 'app-login-form',
@@ -22,7 +25,8 @@ export class LoginFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private loginService: LoginService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private sessionCacheService: SessionCacheService
   ) {}
 
   ngOnInit() {
@@ -62,6 +66,7 @@ export class LoginFormComponent implements OnInit {
         }
 
         this.toastr.success('Login realizado com sucesso!');
+        this.sessionCacheService.set('session', {name: user.login});
         this.goToHome();
       } catch (error) {
         this.toastr.danger('Erro ao realizar login!');
